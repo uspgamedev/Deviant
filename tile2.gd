@@ -1,11 +1,11 @@
 extends Panel
 
-var color = "White"
 var priority
 
 func _ready():
 	pass
 	
+#Type pode ser "Core" ou "Tile"
 func get_type():
 	return "Core"
 
@@ -15,9 +15,8 @@ func set_priority(name):
 func get_priority():
 	return priority
 
-func set_color(r, g, b, name):
-	color = name
-	get_node("Pipe").set_color(Color(r, g, b))
+func set_color(col):
+	get_node("Pipe").set_color(col)
 
 func get_color():
-	return color
+	return get_node("Pipe").get_color()

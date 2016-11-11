@@ -8,7 +8,7 @@ func draw_core():
 	update()
 
 func _draw():
-	draw_circle(Vector2(20, 20), 20, Color("Black"))
+	draw_circle(Vector2(20, 20), 20, Color(0, 0, 0))
 	
 
 
