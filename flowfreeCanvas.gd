@@ -13,6 +13,8 @@ const White = Color(1, 1, 1)
 var board = [[], [], [], [], []]
 var boardCorners = [Vector2(0, 0), Vector2(0, 335), Vector2(335, 335), Vector2(335, 0)]
 var activeTiles = [[]]
+var check = true
+var mouse_color = White
 
 
 func _ready():
@@ -38,7 +40,7 @@ func _ready():
 	print(board[1][0].get_color())
 	set_fixed_process(true)
 	pass
-	
+
 func _fixed_process(delta):
 	if (Input.is_mouse_button_pressed(BUTTON_LEFT) == true):
 		var i = 0
@@ -48,48 +50,51 @@ func _fixed_process(delta):
 			j = 0
 			while (itIs == false and j < 5):
 				itIs = mouse_is_on_tile(i, j)
-				j += 1
-			i += 1
-		if (itIs == true):
-			print(i, ":", j)
+				if (itIs == false):
+					j += 1
+			if (itIs == false):
+				i += 1
+		if (itIs == true and i < 5 and j < 5):
+			#print(i, ":", j, "print 1")
 			var stop = false
-			while (activeTiles[0].size() != 0 and stop == false):
-				if (activeTiles[0][activeTiles[0].size()-1] != Vector2(i ,j)):
-					activeTiles[0].remove()
+			while (activeTiles[0].size() != 0 and stop == false and board[i][j].get_color() != White and board[i][j].get_type() != "Core"):
+				if (activeTiles[0][activeTiles[0].size()-1].x != i or activeTiles[0][activeTiles[0].size()-1].y != j):
+					board[activeTiles[0][activeTiles[0].size()-1].x][activeTiles[0][activeTiles[0].size()-1].y].set_color(White)
+					activeTiles[0].remove(activeTiles[0].size()-1)
 				else:
 					stop = true
-			while 1:
-				if (Input.is_mouse_button_pressed(BUTTON_LEFT) == false):
-					break
-				var mouse_color = board[i][j].get_color()
-				print(mouse_color)
-				if (board[i][j].get_type() == "Tile"):
-					if (board[i][j].get_color() == White and is_the_next(i, j, 0)):
-						board[i][j].set_color(mouse_color)
-						activeTiles[0].append(Vector2(i ,j))
-				else:
-					if (board[i][j].get_priority() == 0):
-						activeTiles[0].append(Vector2(i ,j))
-				break
+			#print("Hey")
+			#print(mouse_color)
+			if (board[i][j].get_type() == "Tile"):
+				if (board[i][j].get_color() == White and is_the_next(i, j, 0)):
+					board[i][j].set_color(mouse_color)
+					activeTiles[0].append(Vector2(i ,j))
+					#print(activeTiles)
+					#print("it's a tile")
+			else:
+				#print("It's a core!")
+				activeTiles[0].append(Vector2(i ,j))
+				mouse_color = board[i][j].get_color()
 
 func mouse_is_on_tile(i, j):
 	var pos = get_viewport().get_mouse_pos()
 	#print(get_viewport().get_mouse_pos().x, ":", get_viewport().get_mouse_pos().y)
 	if (pos.x > i*(tile_side+5)+recoil and pos.y > j*(tile_side+5)+recoil and pos.x < (i+1)*tile_side+recoil and pos.y < (j+1)*tile_side+recoil):
-		print(i, ":", j)
+		#print(i, ":", j)
 		return true
 	return false
-	
+
+#adicionar a checagem na cor da tile
 func is_the_next(i, j, colorNo):
 	if (activeTiles[0].size() == 0):
 		return true
-	var tile = activeTiles[colorNo][activeTiles[0].size()-1]
-	if (tile == Vector2(i+1, j)):
+	var tile = activeTiles[colorNo][activeTiles[colorNo].size()-1]
+	if (tile.x == i+1 and tile.y == j):
 		return true
-	if (tile == Vector2(i-1, j)):
+	if (tile.x == i-1 and tile.y == j):
 		return true
-	if (tile == Vector2(i, j+1)):
+	if (tile.x == i and tile.y == j+1):
 		return true
-	if (tile == Vector2(i, j-1)):
+	if (tile.x == i and tile.y == j-1):
 		return true
 	return false
