@@ -57,15 +57,19 @@ func _fixed_process(delta):
 		if (itIs == true and i < 5 and j < 5):
 			#print(i, ":", j, "print 1")
 			var stop = false
-			while (activeTiles[0].size() != 0 and stop == false and board[i][j].get_color() != White and board[i][j].get_type() != "Core"):
-				if (activeTiles[0][activeTiles[0].size()-1].x != i or activeTiles[0][activeTiles[0].size()-1].y != j):
-					board[activeTiles[0][activeTiles[0].size()-1].x][activeTiles[0][activeTiles[0].size()-1].y].set_color(White)
-					activeTiles[0].remove(activeTiles[0].size()-1)
-				else:
-					stop = true
+			if (board[i][j].get_type() == "Core" and activeTiles[0].size() != 0 and activeTiles[0][0].x != i and activeTiles[0][0].y != j and is_the_next(i, j, 0)):
+				activeTiles[0].append(Vector2(i ,j))
+			else:
+				while (activeTiles[0].size() != 0 and stop == false and board[i][j].get_color() != White):
+					if (activeTiles[0][activeTiles[0].size()-1].x != i or activeTiles[0][activeTiles[0].size()-1].y != j):
+						if (board[activeTiles[0][activeTiles[0].size()-1].x][activeTiles[0][activeTiles[0].size()-1].y].get_type() != "Core"):
+							board[activeTiles[0][activeTiles[0].size()-1].x][activeTiles[0][activeTiles[0].size()-1].y].set_color(White)
+						activeTiles[0].remove(activeTiles[0].size()-1)
+					else:
+						stop = true
 			#print("Hey")
 			#print(mouse_color)
-			if (board[i][j].get_type() == "Tile"):
+			if (board[i][j].get_type() == "Tile" and board[activeTiles[0][activeTiles[0].size()-1].x][activeTiles[0][activeTiles[0].size()-1].y].get_type() != "Core"):
 				if (board[i][j].get_color() == White and is_the_next(i, j, 0)):
 					board[i][j].set_color(mouse_color)
 					activeTiles[0].append(Vector2(i ,j))
