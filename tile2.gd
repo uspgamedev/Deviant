@@ -4,8 +4,7 @@ var priority
 
 func _ready():
 	pass
-	
-#Type pode ser "Core" ou "Tile"
+
 func get_type():
 	return "Core"
 
