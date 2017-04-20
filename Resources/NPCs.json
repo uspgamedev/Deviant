@@ -1,0 +1,10 @@
+{
+     "FirstChar" : {
+         "Body" : "res://images/FirstCharBody.jpg",
+         "Face" : "res://images/FirstCharFace.jpg"
+     },
+     "SecChar" : {
+         "Body" : "res://images/SecCharBody.jpg",
+         "Face" : "res://images/SecCharFace.jpg"
+     }
+}
