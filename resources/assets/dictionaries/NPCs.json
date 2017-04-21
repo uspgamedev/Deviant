@@ -1,0 +1,10 @@
+{
+     "FirstChar" : {
+         "Body" : "res://resources/assets/images/FirstCharBody.jpg",
+         "Face" : "res://resources/assets/images/FirstCharFace.jpg"
+     },
+     "SecChar" : {
+         "Body" : "res://resources/assets/images/SecCharBody.jpg",
+         "Face" : "res://resources/assets/images/SecCharFace.jpg"
+     }
+}

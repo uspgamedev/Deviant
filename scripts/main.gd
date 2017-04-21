@@ -8,7 +8,6 @@ var isTalking = 0
 var mouseInNPC2 = false
 
 func _ready():
-	var Face1 = preload("res://images/FirstCharFace.jpg")
 	SCENES = parse_scene("scenes")
 	NPCS = parse_scene("NPCs")
 	ITENS = parse_scene("itens")
@@ -30,7 +29,7 @@ func getPos(vec):
 func parse_scene(name):
 	var dict = {}
 	var file = File.new()
-	file.open("res://Resources/" + name + ".json", file.READ)
+	file.open("res://resources/assets/dictionaries/" + name + ".json", file.READ)
 	var text = file.get_as_text()
 	dict.parse_json(text)
 	file.close()

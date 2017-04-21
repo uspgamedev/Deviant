@@ -1,6 +1,6 @@
 {
     "TestRoom" : {
-        "Background" : "res://images/TestRoom.jpg",
+        "Background" : "res://resources/assets/images/TestRoom.jpg",
         "Characters" : [["FirstChar", 200, 100], ["SecChar", 600, 100]],
         "Itens" : [["Cola", 400, 100]]
     }

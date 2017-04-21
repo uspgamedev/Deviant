@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="2" version="2.1" version_name="Godot Engine v2.1.stable.official">
-	<ext_resource path="res://tile.gd" type="Script" index="0"></ext_resource>
+<resource_file type="PackedScene" subresource_count="2" version="2.1" version_name="Godot Engine v2.1.3.stable.official">
+	<ext_resource path="res://scripts/minigames/flowfree/flowfreeCanvas.gd" type="Script" index="0"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -11,7 +11,7 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="25">
+			<string_array  len="23">
 				<string> "Panel" </string>
 				<string> "focus/ignore_mouse" </string>
 				<string> "focus/stop_mouse" </string>
@@ -22,8 +22,7 @@
 				<string> "margin/right" </string>
 				<string> "margin/bottom" </string>
 				<string> "script/script" </string>
-				<string> "Pipe" </string>
-				<string> "transform/pos" </string>
+				<string> "Background" </string>
 				<string> "polygon" </string>
 				<string> "uv" </string>
 				<string> "color" </string>
@@ -35,7 +34,6 @@
 				<string> "texture/rotation" </string>
 				<string> "invert/enable" </string>
 				<string> "invert/border" </string>
-				<string> "__meta__" </string>
 				<string> "Polygon2D" </string>
 			</string_array>
 			<string> "node_count" </string>
@@ -44,28 +42,20 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="58"> 				-1, -1, 0, 0, -1, 9, 1, 0, 2, 1, 3, 2, 4, 2, 5, 3, 6, 3, 7, 4, 8, 4, 9, 5, 0, 0, 0, 24, 10, -1, 13, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16, 11, 17, 12, 18, 11, 19, 13, 20, 14, 21, 0, 22, 15, 23, 16, 0 </int_array>
+			<int_array  len="54"> 				-1, -1, 0, 0, -1, 9, 1, 0, 2, 1, 3, 2, 4, 2, 5, 3, 6, 3, 7, 3, 8, 3, 9, 4, 0, 0, 0, 22, 10, -1, 11, 11, 5, 12, 5, 13, 6, 14, 7, 15, 8, 16, 9, 17, 8, 18, 10, 19, 3, 20, 0, 21, 11, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="17" shared="false">
+			<array  len="12" shared="false">
 				<bool> False </bool>
 				<bool> True </bool>
 				<int> 2 </int>
-				<real> -15 </real>
-				<real> 29 </real>
+				<real> 0 </real>
 				<resource  external="0">  </resource>
-				<vector2> 23.618, 22.6474 </vector2>
-				<vector2_array  len="4"> 					-30, -30, 30, -30, 30, 30, -30, 30 </vector2_array>
 				<vector2_array  len="0"> 					 </vector2_array>
 				<color> 1, 1, 1, 1 </color>
 				<color_array  len="0"> 					 </color_array>
 				<vector2> 0, 0 </vector2>
 				<resource name=""></resource>				<vector2> 1, 1 </vector2>
-				<real> 0 </real>
 				<real> 100 </real>
-				<dictionary  shared="false">
-					<string> "_edit_lock_" </string>
-					<bool> True </bool>
-				</dictionary>
 			</array>
 			<string> "version" </string>
 			<int> 2 </int>

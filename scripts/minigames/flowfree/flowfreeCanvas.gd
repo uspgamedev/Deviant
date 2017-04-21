@@ -1,8 +1,8 @@
 
 extends Panel
 
-const Tile = preload("res://tile.xscn")
-const Core = preload("res://core.xscn")
+const Tile = preload("res://resources/scenes/minigames/flowfree/tile.xscn")
+const Core = preload("res://resources/scenes/minigames/flowfree/core.xscn")
 
 const tile_side = 60
 const recoil = 20
