@@ -13,15 +13,21 @@ func _ready():
 	ITENS = parse_scene("itens")
 	var room = SCENES["TestRoom"]
 	get_node("Background").set_texture(load(room["Background"]))
-	get_node("NPC1").set_texture(load(NPCS[room["Characters"][0][0]]["Body"]))
+	get_node("NPC1").set_normal_texture(getNPCImage(room, 0, "Body"))
 	get_node("NPC1").set_pos(getPos(room["Characters"][0]))
-	get_node("NPC2").set_texture(load(NPCS[room["Characters"][1][0]]["Body"]))
+	get_node("NPC2").set_normal_texture(getNPCImage(room, 1, "Body"))
 	get_node("NPC2").set_pos(getPos(room["Characters"][1]))
-	get_node("Item1").set_texture(load(ITENS[room["Itens"][0][0]]["Image"]))
+	get_node("Item1").set_normal_texture(getItemImage(room, 0, "Image"))
 	get_node("Item1").set_pos(getPos(room["Itens"][0]))
 	set_fixed_process(true)
 	set_process_input(true)
 	pass
+
+func getNPCImage(room, num, type):
+	return load(NPCS[room["Characters"][num][0]][type])
+	
+func getItemImage(room, num, type):
+	return load(ITENS[room["Itens"][num][0]][type])
 
 func getPos(vec):
 	 return Vector2(vec[1], vec[2])
