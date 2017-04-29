@@ -1,0 +1,17 @@
+{
+    "1": {
+        "function": "faceShow",
+        "char": "FirstChar",
+        "pos": 0
+    },
+    "2": {
+        "function": "dialogueShow",
+        "pos": 0,
+        "text": ["Hi, my name",
+                "is Dr.Harberwood"]
+    },
+    "3": {
+        "function": "faceHide",
+        "pos": 0
+    }
+}
