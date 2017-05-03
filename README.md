@@ -1,13 +1,6 @@
-## Shabblaw: No More Life
+## Project Deviant
 
 **The project**
 
-*Shabblaw: No More Life*, or simply *Shabblaw*,  is  an  adventure  game
-about a dystopic future where human extinction  is  imminent.  It  is  a
-USPGameDev project built on Godot Engine.
-
-**To do**
-
-* *Connect the dots* minigame
-* Minesweeper minigame
-* Everything else
+*Project Deviant* (working title), is an thriller adventure game set on a
+dystopic future. It is a USPGameDev project built on Godot Engine.
