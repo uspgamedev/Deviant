@@ -1,10 +1,12 @@
 {
      "FirstChar" : {
          "Body" : "res://resources/assets/images/FirstCharBody.jpg",
-         "Face" : "res://resources/assets/images/FirstCharFace.jpg"
+         "Face" : "res://resources/assets/images/FirstCharFace.jpg",
+         "Dialogue" : "res://resources/assets/dialogues/dialogue1.json"
      },
-     "SecChar" : {
+     "SecondChar" : {
          "Body" : "res://resources/assets/images/SecCharBody.jpg",
-         "Face" : "res://resources/assets/images/SecCharFace.jpg"
+         "Face" : "res://resources/assets/images/SecCharFace.jpg",
+         "Dialogue" : "res://resources/assets/dialogues/dialogue2.json"
      }
 }

@@ -1,7 +1,22 @@
 {
     "TestRoom" : {
         "Background" : "res://resources/assets/images/TestRoom.jpg",
-        "Characters" : [["FirstChar", 200, 100], ["SecChar", 600, 100]],
-        "Itens" : [["Cola", 400, 100]]
+        "Characters" : [
+            {"Name" : "FirstChar", "Pos" : [200, 100]},
+            {"Name" : "SecondChar", "Pos" : [600, 100]}
+        ],
+        "Items" : [
+            {"Name" : "Cola", "Pos" : [400, 100], "Args" : []},
+            {"Name" : "Door", "Pos" : [800, 100], "Args" : ["Outdoors"]}
+        ]
+    },
+    "Outdoors" : {
+        "Background" : "res://resources/assets/images/DialogSpriteSheet.jpg",
+        "Characters" : [
+            {"Name" : "FirstChar", "Pos" : [400, 100]}
+        ],
+        "Items" : [
+            {"Name" : "Door", "Pos" : [200, 100], "Args" : ["TestRoom"]}
+        ]
     }
 }

@@ -1,0 +1,10 @@
+{
+    "Cola" : {
+        "Image" : "res://resources/assets/images/ColaCan.jpg",
+        "Function" : "addToBag"
+    },
+    "Door" : {
+        "Image" : "res://resources/assets/images/Door.jpg",
+        "Function" : "changeScene"
+    }
+}
