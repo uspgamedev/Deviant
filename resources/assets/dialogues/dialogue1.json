@@ -11,6 +11,9 @@
                 "is Dr.Harberwood"]
     },
     "3": {
+        "function": "End"
+    },
+    "4": {
         "function": "faceHide",
         "pos": 0
     }

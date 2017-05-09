@@ -11,7 +11,7 @@
         ]
     },
     "Outdoors" : {
-        "Background" : "res://resources/assets/images/DialogSpriteSheet.jpg",
+        "Background" : "res://resources/assets/images/Outdoors.jpg",
         "Characters" : [
             {"Name" : "FirstChar", "Pos" : [400, 100]}
         ],

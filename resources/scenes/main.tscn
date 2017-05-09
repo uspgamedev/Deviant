@@ -1,0 +1,241 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://scripts/main.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "make_it_dim"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.705882 ) ]
+}
+
+[sub_resource type="ImageTexture" id=2]
+
+flags = 7
+image = Image()
+size = Vector2( 0, 0 )
+storage = 0
+lossy_quality = 0.7
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "face_appear"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect/pos")
+tracks/0/interp = 2
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -101, 74 ), Vector2( 55, 74 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 2
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Panel" type="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+
+[node name="Background" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+stretch_mode = 0
+
+[node name="NPC0" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 124.0
+margin/top = 79.0
+margin/right = 263.0
+margin/bottom = 404.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="NPC1" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 624.0
+margin/top = 91.0
+margin/right = 763.0
+margin/bottom = 416.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Item0" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Item1" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 379.0
+margin/top = 138.0
+margin/right = 509.0
+margin/bottom = 313.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="DarkLight" type="Polygon2D" parent="."]
+
+polygon = Vector2Array( 0, 0, 0, 600, 1024, 600, 1024, 0 )
+uv = Vector2Array(  )
+color = Color( 0, 0, 0, 0 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="dim" type="AnimationPlayer" parent="DarkLight"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/make_it_dim = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="FaceView0" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 55.0
+margin/top = 74.0
+margin/right = 273.0
+margin/bottom = 422.0
+texture = SubResource( 2 )
+stretch_mode = 0
+
+[node name="appear" type="AnimationPlayer" parent="FaceView0"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/face_appear = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="Log" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 9.0
+margin/top = 0.0
+margin/right = 49.0
+margin/bottom = 40.0
+
+[node name="Label" type="Label" parent="Log"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -8.0
+margin/top = 428.0
+margin/right = 836.0
+margin/bottom = 601.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Panel" type="Panel" parent="Log"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -9.0
+margin/top = 428.0
+margin/right = 836.0
+margin/bottom = 600.0
+
+[connection signal="pressed" from="NPC0" to="." method="NPCClick" binds= [ 0 ]]
+
+[connection signal="pressed" from="NPC1" to="." method="NPCClick" binds= [ 1 ]]
+
+[connection signal="pressed" from="Item0" to="." method="itemClick" binds= [ 0 ]]
+
+[connection signal="pressed" from="Item1" to="." method="itemClick" binds= [ 1 ]]
+
+

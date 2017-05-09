@@ -7,9 +7,20 @@
     "2": {
         "function": "dialogueShow",
         "pos": 0,
-        "text": ["Have you ever felt you are in a simulation?"]
+        "text": ["Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                 "Quisque neque magna, tincidunt sed eros ac, dapibus dignissim nibh",
+                 "Nulla facilisi. In hac habitasse platea dictumst",
+                 "Integer porttitor leo sapien, et euismod tortor dignissim convallis",
+                 "Curabitur mattis, eros in pulvinar iaculis, lacus est scelerisque nisl, ac elementum arcu libero sed purus",
+                 "In viverra hendrerit consectetur",
+                 "Quisque facilisis, massa sit amet venenatis interdum, mi purus convallis dolor, eu iaculis neque quam et neque",
+                 "Donec pellentesque tellus quis accumsan ultricies",
+                 "In at metus in justo mollis ultrices"]
     },
     "3": {
+        "function": "End"
+    },
+    "4": {
         "function": "faceHide",
         "pos": 0
     }

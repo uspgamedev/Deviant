@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scripts/dialogueBox.gd" type="Script" id=1]
 [ext_resource path="res://resources/assets/images/DialogueCorner.jpg" type="Texture" id=2]
-[ext_resource path="res://resources/assets/images/DialoguePoint.jpg" type="Texture" id=3]
+[ext_resource path="res://resources/assets/images/DialogueCorner3.jpg" type="Texture" id=3]
 [ext_resource path="res://resources/assets/images/DialogueTopBorder.jpg" type="Texture" id=4]
 [ext_resource path="res://resources/assets/images/DialogueInner.jpg" type="Texture" id=5]
-[ext_resource path="res://resources/assets/images/DialogueSideBorder.jpg" type="Texture" id=6]
-[ext_resource path="res://resources/assets/fonts/main_font.fnt" type="BitmapFont" id=7]
+[ext_resource path="res://resources/assets/images/DialogueBotBorder.jpg" type="Texture" id=6]
+[ext_resource path="res://resources/assets/images/DialogueCorner1.jpg" type="Texture" id=7]
+[ext_resource path="res://resources/assets/images/DialogueCorner2.jpg" type="Texture" id=8]
+[ext_resource path="res://resources/assets/fonts/main_font.fnt" type="BitmapFont" id=9]
 
 [node name="DialogueBox" type="Control"]
 
@@ -20,7 +22,7 @@ margin/right = 40.0
 margin/bottom = 40.0
 script/script = ExtResource( 1 )
 
-[node name="DialogueTile" type="TextureFrame" parent="."]
+[node name="DialogueTile0" type="TextureFrame" parent="."]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -43,7 +45,6 @@ margin/left = -163.0
 margin/top = -29.0
 margin/right = -58.0
 margin/bottom = 31.0
-texture = ExtResource( 3 )
 stretch_mode = 0
 
 [node name="DialogueTile2" type="TextureFrame" parent="."]
@@ -56,7 +57,7 @@ margin/left = -116.0
 margin/top = 29.0
 margin/right = -58.0
 margin/bottom = 87.0
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 stretch_mode = 0
 
 [node name="DialogueTile3" type="TextureFrame" parent="."]
@@ -95,7 +96,7 @@ margin/left = -58.0
 margin/top = 29.0
 margin/right = -18.0
 margin/bottom = 69.0
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 stretch_mode = 0
 
 [node name="DialogueTile6" type="TextureFrame" parent="."]
@@ -134,7 +135,7 @@ margin/left = 0.0
 margin/top = 29.0
 margin/right = 40.0
 margin/bottom = 69.0
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 stretch_mode = 0
 
 [node name="DialogueTile9" type="TextureFrame" parent="."]
@@ -147,7 +148,7 @@ margin/left = 58.0
 margin/top = -87.0
 margin/right = 98.0
 margin/bottom = -47.0
-texture = ExtResource( 2 )
+texture = ExtResource( 7 )
 stretch_mode = 0
 
 [node name="DialogueTile10" type="TextureFrame" parent="."]
@@ -158,9 +159,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 58.0
 margin/top = -29.0
-margin/right = 98.0
-margin/bottom = 11.0
-texture = ExtResource( 6 )
+margin/right = 116.0
+margin/bottom = 31.0
 stretch_mode = 0
 
 [node name="DialogueTile11" type="TextureFrame" parent="."]
@@ -173,7 +173,7 @@ margin/left = 58.0
 margin/top = 29.0
 margin/right = 98.0
 margin/bottom = 69.0
-texture = ExtResource( 2 )
+texture = ExtResource( 8 )
 stretch_mode = 0
 
 [node name="Text" type="Label" parent="."]
@@ -186,12 +186,28 @@ margin/left = -105.0
 margin/top = -75.0
 margin/right = 100.0
 margin/bottom = 73.0
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "HI, my name is john uauaua iushfdishd fushdfi"
 autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.05
+one_shot = false
+autostart = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
 
 
