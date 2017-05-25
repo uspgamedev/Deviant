@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://resources/scenes/dialogueBox.tscn" type="PackedScene" id=2]
@@ -6,7 +6,23 @@
 
 [sub_resource type="Animation" id=1]
 
-resource/name = "make_it_dim"
+resource/name = "change_scene"
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+
 length = 1.0
 loop = false
 step = 0.1
@@ -21,7 +37,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.705882 ) ]
 }
 
-[sub_resource type="ImageTexture" id=2]
+[sub_resource type="ImageTexture" id=3]
 
 flags = 7
 image = Image()
@@ -29,9 +45,8 @@ size = Vector2( 0, 0 )
 storage = 0
 lossy_quality = 0.7
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 
-resource/name = "face_appear"
 length = 1.0
 loop = false
 step = 0.1
@@ -56,7 +71,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=7]
 
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 174, 87 )
@@ -196,7 +211,8 @@ __meta__ = {
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/make_it_dim = SubResource( 1 )
+anims/change_scene = SubResource( 1 )
+anims/make_it_dim = SubResource( 2 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -205,7 +221,7 @@ autoplay = ""
 [node name="FaceView0" type="Sprite" parent="."]
 
 transform/pos = Vector2( -101, 74 )
-texture = SubResource( 2 )
+texture = SubResource( 3 )
 centered = false
 modulate = Color( 1, 1, 1, 0 )
 region = true
@@ -216,7 +232,7 @@ region_rect = Rect2( 128, 0, 196, 320 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/face_appear = SubResource( 3 )
+anims/face_appear = SubResource( 4 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -281,7 +297,7 @@ margin/bottom = 465.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = SubResource( 4 )
+textures/normal = SubResource( 7 )
 textures/pressed = SubResource( 5 )
 textures/hover = SubResource( 6 )
 params/resize_mode = 0

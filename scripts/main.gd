@@ -84,8 +84,9 @@ func clearRoom():
 # Is executed when an NPC is clicked. Runs the dialog associated
 # with that NPC
 func NPCClick(num):
+	print("Top")
 	if not isTalking:
-		isTalking = not isTalking
+		isTalking = true
 		runDialogue(getNPC(num, "Dialogue"))
 
 # Interprets the dialogue json with name "name" and executes it's
@@ -117,24 +118,28 @@ func runDialogue(name):
 			if NPCsNames[1] == char:
 				num = 1
 			get_node(view+"/appear").play_backwards("face_appear")
+			yield(get_node(view+"/appear"), "finished")
 			get_node("NPC"+str(num)).set_opacity(1)
 			if pos == 0:
 				get_node("DarkLight/dim").play_backwards("make_it_dim")
 			yield(get_node(view+"/appear"), "finished")
 			get_node(view).set_texture(null)
-			isTalking = not isTalking
+			print("Acabou")
 		elif foo == "dialogueShow":
 			var pos = dial[counter]["pos"]
 			var text = dial[counter]["text"]
 			Box.change_side(pos)
-			Box.setAlpha(1)
+			Box.get_node("anim").play("pop_up")
+			yield(Box.get_node("anim"), "finished")
 			Box.printText(text)
 			yield(Box, "ended")
-			Box.setAlpha(0)
+			Box.get_node("anim").play_backwards("pop_up")
+			yield(Box.get_node("anim"), "finished")
+			isTalking = false
 		elif foo == "End":
 			break
 		counter = str(int(counter) + 1)
-			
+
 
 # Executed when an item is clicked. Runs the function associated
 # with that item with the aguments specified in the field "args"
@@ -145,9 +150,11 @@ func itemClick(num):
 	var function = ITEMS[name]["Function"]
 	var args = ItemsArgs[num]
 	if (function == "changeScene"):
-		print("Entrou")
+		get_node("DarkLight/dim").play("change_scene")
+		yield(get_node("DarkLight/dim"), "finished")
 		loadScene(args[0])
-		
+		get_node("DarkLight/dim").play_backwards("change_scene")
+
 func BagOpen():
 	if bagOpen:
 		get_node("Bag/ItemList").set_opacity(0)
@@ -155,5 +162,3 @@ func BagOpen():
 	else:
 		get_node("Bag/ItemList").set_opacity(1)
 		bagOpen = true
-
-
