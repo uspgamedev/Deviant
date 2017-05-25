@@ -115,6 +115,7 @@ func runDialogue(name):
 			if NPCsNames[1] == char:
 				num = 1
 			get_node(view).get_node("appear").play_backwards("face_appear")
+			yield(get_node(view+"/appear"), "finished")
 			get_node("NPC"+str(num)).set_opacity(1)
 			if pos == 0:
 				get_node("DarkLight").get_node("dim").play_backwards("make_it_dim")
@@ -125,10 +126,12 @@ func runDialogue(name):
 			var pos = dial[counter]["pos"]
 			var text = dial[counter]["text"]
 			Box.change_side(0)
-			Box.setAlpha(1)
+			Box.get_node("anim").play("pop_up")
+			yield(Box.get_node("anim"), "finished")
 			Box.printText(text)
 			yield(Box, "ended")
-			Box.setAlpha(0)
+			Box.get_node("anim").play_backwards("pop_up")
+			yield(Box.get_node("anim"), "finished")
 		elif foo == "End":
 			break
 		counter = str(int(counter) + 1)
@@ -143,6 +146,8 @@ func itemClick(num):
 	var function = ITEMS[name]["Function"]
 	var args = ItemsArgs[num]
 	if (function == "changeScene"):
-		print("Entrou")
+		get_node("DarkLight/dim").play("change_scene")
+		yield(get_node("DarkLight/dim"), "finished")
 		loadScene(args[0])
+		get_node("DarkLight/dim").play_backwards("change_scene")
 
