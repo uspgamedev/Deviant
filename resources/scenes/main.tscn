@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://resources/scenes/dialogueBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/assets/images/BagButton.tex" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 
@@ -54,6 +55,24 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+
+[sub_resource type="AtlasTexture" id=4]
+
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 174, 87 )
+margin = Rect2( 0, 0, 0, 0 )
+
+[sub_resource type="AtlasTexture" id=5]
+
+atlas = ExtResource( 3 )
+region = Rect2( 0, 87, 174, 87 )
+margin = Rect2( 0, 0, 0, 0 )
+
+[sub_resource type="AtlasTexture" id=6]
+
+atlas = ExtResource( 3 )
+region = Rect2( 0, 174, 174, 87 )
+margin = Rect2( 0, 0, 0, 0 )
 
 [node name="Panel" type="Panel"]
 
@@ -209,9 +228,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 9.0
+margin/left = 0.0
 margin/top = 0.0
-margin/right = 49.0
+margin/right = 40.0
 margin/bottom = 40.0
 __meta__ = {
 "_edit_lock_": true
@@ -223,9 +242,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -8.0
+margin/left = 0.0
 margin/top = 428.0
-margin/right = 836.0
+margin/right = 844.0
 margin/bottom = 601.0
 percent_visible = 1.0
 lines_skipped = 0
@@ -237,9 +256,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -8.0
+margin/left = 0.0
 margin/top = 425.0
-margin/right = 842.0
+margin/right = 850.0
 margin/bottom = 600.0
 
 [node name="DialogueBox" parent="." instance=ExtResource( 2 )]
@@ -249,12 +268,45 @@ margin/top = 200.0
 margin/right = 540.0
 margin/bottom = 240.0
 
-[connection signal="button_down" from="NPC0/TextureButton" to="." method="NPCClick" binds= [ 0 ]]
+[node name="Bag" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 850.0
+margin/top = 425.0
+margin/right = 890.0
+margin/bottom = 465.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = SubResource( 4 )
+textures/pressed = SubResource( 5 )
+textures/hover = SubResource( 6 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="ItemList" type="ItemList" parent="Bag"]
+
+visibility/opacity = 0.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = -425.0
+margin/right = 174.0
+margin/bottom = 0.0
+
+[connection signal="pressed" from="NPC0/TextureButton" to="." method="NPCClick" binds= [ 0 ]]
 
 [connection signal="button_down" from="NPC1/TextureButton" to="." method="NPCClick" binds= [ 1 ]]
 
 [connection signal="pressed" from="Item0" to="." method="itemClick" binds= [ 0 ]]
 
 [connection signal="pressed" from="Item1" to="." method="itemClick" binds= [ 1 ]]
+
+[connection signal="pressed" from="Bag" to="." method="BagOpen"]
 
 

@@ -11,6 +11,7 @@ var ItemsNames = [null, null]
 var ItemsArgs = [null, null]
 
 var isTalking = false
+var bagOpen = false
 var room
 
 func _ready():
@@ -21,6 +22,7 @@ func _ready():
 	loadScene("TestRoom")
 	#set_fixed_process(true)
 	#set_process_input(true)
+	get_node("Bag/ItemList").add_icon_item(load(getItem(0, "Image")))
 
 func _fixed_process(delta):
 	pass
@@ -102,11 +104,11 @@ func runDialogue(name):
 			if NPCsNames[1] == char:
 				num = 1
 			get_node(view).set_texture(load(getNPC(num, "Image")))
-			get_node(view).get_node("appear").play("face_appear")
+			get_node(view+"/appear").play("face_appear")
 			get_node("NPC"+str(num)).set_opacity(0)
 			if pos == 0:
-				get_node("DarkLight").get_node("dim").play("make_it_dim")
-			yield(get_node(view).get_node("appear"), "finished")
+				get_node("DarkLight/dim").play("make_it_dim")
+			yield(get_node(view+"/appear"), "finished")
 		elif foo == "faceHide":
 			var pos = dial[counter]["pos"]
 			var char = dial[counter]["char"]
@@ -114,17 +116,17 @@ func runDialogue(name):
 			var view = "FaceView"+str(pos)
 			if NPCsNames[1] == char:
 				num = 1
-			get_node(view).get_node("appear").play_backwards("face_appear")
+			get_node(view+"/appear").play_backwards("face_appear")
 			get_node("NPC"+str(num)).set_opacity(1)
 			if pos == 0:
-				get_node("DarkLight").get_node("dim").play_backwards("make_it_dim")
-			yield(get_node(view).get_node("appear"), "finished")
+				get_node("DarkLight/dim").play_backwards("make_it_dim")
+			yield(get_node(view+"/appear"), "finished")
 			get_node(view).set_texture(null)
 			isTalking = not isTalking
 		elif foo == "dialogueShow":
 			var pos = dial[counter]["pos"]
 			var text = dial[counter]["text"]
-			Box.change_side(0)
+			Box.change_side(pos)
 			Box.setAlpha(1)
 			Box.printText(text)
 			yield(Box, "ended")
@@ -145,4 +147,13 @@ func itemClick(num):
 	if (function == "changeScene"):
 		print("Entrou")
 		loadScene(args[0])
+		
+func BagOpen():
+	if bagOpen:
+		get_node("Bag/ItemList").set_opacity(0)
+		bagOpen = false
+	else:
+		get_node("Bag/ItemList").set_opacity(1)
+		bagOpen = true
+
 

@@ -18,10 +18,11 @@
                  "In at metus in justo mollis ultrices"]
     },
     "3": {
-        "function": "End"
+        "function": "faceHide",
+        "char" : "SecondChar",
+        "pos": 0
     },
     "4": {
-        "function": "faceHide",
-        "pos": 0
+        "function": "End"
     }
 }
