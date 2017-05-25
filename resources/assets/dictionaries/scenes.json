@@ -1,6 +1,6 @@
 {
     "TestRoom" : {
-        "Background" : "res://resources/assets/images/TestRoom.jpg",
+        "Background" : "res://resources/assets/images/TestRoom.tex",
         "Characters" : [
             {"Name" : "FirstChar", "Pos" : [200, 100]},
             {"Name" : "SecondChar", "Pos" : [600, 100]}
@@ -11,12 +11,12 @@
         ]
     },
     "Outdoors" : {
-        "Background" : "res://resources/assets/images/Outdoors.jpg",
+        "Background" : "res://resources/assets/images/Outdoors.tex",
         "Characters" : [
             {"Name" : "FirstChar", "Pos" : [400, 100]}
         ],
         "Items" : [
-            {"Name" : "Door", "Pos" : [200, 100], "Args" : ["TestRoom"]}
+            {"Name" : "Door", "Pos" : [600, 5], "Args" : ["TestRoom"]}
         ]
     }
 }

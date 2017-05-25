@@ -11,10 +11,11 @@
                 "is Dr.Harberwood"]
     },
     "3": {
-        "function": "End"
+        "function": "faceHide",
+        "char": "FirstChar",
+        "pos": 0
     },
     "4": {
-        "function": "faceHide",
-        "pos": 0
+        "function": "End"
     }
 }

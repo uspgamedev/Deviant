@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
+[ext_resource path="res://resources/scenes/dialogueBox.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Animation" id=1]
 
@@ -34,8 +35,8 @@ length = 1.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect/pos")
-tracks/0/interp = 2
+tracks/0/path = NodePath(".:transform/pos")
+tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
 "times": FloatArray( 0, 1 ),
@@ -45,7 +46,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 2
+tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
 "times": FloatArray( 0, 1 ),
@@ -78,32 +79,44 @@ margin/right = 0.0
 margin/bottom = 0.0
 stretch_mode = 0
 
-[node name="NPC0" type="TextureButton" parent="."]
+[node name="NPC0" type="Sprite" parent="."]
+
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 128, 320 )
+
+[node name="TextureButton" type="TextureButton" parent="NPC0"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 124.0
-margin/top = 79.0
-margin/right = 263.0
-margin/bottom = 404.0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 139.0
+margin/bottom = 325.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 params/resize_mode = 0
 params/stretch_mode = 0
 
-[node name="NPC1" type="TextureButton" parent="."]
+[node name="NPC1" type="Sprite" parent="."]
+
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 128, 320 )
+
+[node name="TextureButton" type="TextureButton" parent="NPC1"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 624.0
-margin/top = 91.0
-margin/right = 763.0
-margin/bottom = 416.0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 139.0
+margin/bottom = 325.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -170,18 +183,14 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="FaceView0" type="TextureFrame" parent="."]
+[node name="FaceView0" type="Sprite" parent="."]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 55.0
-margin/top = 74.0
-margin/right = 273.0
-margin/bottom = 422.0
+transform/pos = Vector2( -101, 74 )
 texture = SubResource( 2 )
-stretch_mode = 0
+centered = false
+modulate = Color( 1, 1, 1, 0 )
+region = true
+region_rect = Rect2( 128, 0, 196, 320 )
 
 [node name="appear" type="AnimationPlayer" parent="FaceView0"]
 
@@ -204,6 +213,9 @@ margin/left = 9.0
 margin/top = 0.0
 margin/right = 49.0
 margin/bottom = 40.0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Label" type="Label" parent="Log"]
 
@@ -225,14 +237,21 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -9.0
-margin/top = 428.0
-margin/right = 836.0
+margin/left = -8.0
+margin/top = 425.0
+margin/right = 842.0
 margin/bottom = 600.0
 
-[connection signal="pressed" from="NPC0" to="." method="NPCClick" binds= [ 0 ]]
+[node name="DialogueBox" parent="." instance=ExtResource( 2 )]
 
-[connection signal="pressed" from="NPC1" to="." method="NPCClick" binds= [ 1 ]]
+margin/left = 500.0
+margin/top = 200.0
+margin/right = 540.0
+margin/bottom = 240.0
+
+[connection signal="button_down" from="NPC0/TextureButton" to="." method="NPCClick" binds= [ 0 ]]
+
+[connection signal="button_down" from="NPC1/TextureButton" to="." method="NPCClick" binds= [ 1 ]]
 
 [connection signal="pressed" from="Item0" to="." method="itemClick" binds= [ 0 ]]
 

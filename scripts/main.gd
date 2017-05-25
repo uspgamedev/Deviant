@@ -1,8 +1,6 @@
 
 extends Panel
 
-var NewBox = preload("res://resources/scenes/dialogueBox.tscn")
-
 var NPCS
 var SCENES
 var ITEMS
@@ -19,14 +17,16 @@ func _ready():
 	SCENES = parseJson("dictionaries/scenes")
 	NPCS = parseJson("dictionaries/NPCs")
 	ITEMS = parseJson("dictionaries/items")
-	Box = NewBox.instance()
-	Box.set_pos(Vector2(500, 200))
-	add_child(Box)
+	Box = get_node("DialogueBox")
 	loadScene("TestRoom")
-	set_fixed_process(true)
-	set_process_input(true)
+	#set_fixed_process(true)
+	#set_process_input(true)
+
+func _fixed_process(delta):
 	pass
-	
+
+# Recieves the name of a json file and returns it's corresponding
+# dictionary
 func parseJson(name):
 	var dict = {}
 	var file = File.new()
@@ -36,48 +36,58 @@ func parseJson(name):
 	file.close()
 	return dict
 
-func _fixed_process(delta):
-	pass
-	
+# Recieves the name of a scene and loads the room with it's
+# NPCs, items and background
 func loadScene(name):
 	room = SCENES[name]
 	get_node("Background").set_texture(load(room["Background"]))
 	clearRoom()
 	for i in range(room["Characters"].size()):
 		var nodeName = "NPC"+str(i)
-		get_node(nodeName).set_normal_texture(load(getNPC(i, "Body")))
-		get_node(nodeName).set_pos(getPos(room["Characters"][i]["Pos"]))
+		get_node(nodeName).set_texture(load(getNPC(i, "Image")))
+		get_node(nodeName).set_pos(getPos("Characters", i))
 	for i in range(room["Items"].size()):
 		var nodeName = "Item"+str(i)
-		get_node(nodeName).set_normal_texture(getItem(i, "Image"))
-		get_node(nodeName).set_pos(getPos(room["Items"][i]["Pos"]))
+		get_node(nodeName).set_normal_texture(load(getItem(i, "Image")))
+		get_node(nodeName).set_pos(getPos("Items", i))
 
-func getNPC(num, type):
+# Recieves the position "num" of the NPC at the scene's "Characters"
+# list and returns it's "key" field
+func getNPC(num, key):
 	var name = room["Characters"][num]["Name"]
 	NPCsNames[num] = name
-	return NPCS[name][type]
-	
-func getItem(num, type):
+	return NPCS[name][key]
+
+# Recieves the position "num" of the item at the scene's "Items"
+# list and returns it's "key" field
+func getItem(num, key):
 	var name = room["Items"][num]["Name"]
 	ItemsNames[num] = name
 	ItemsArgs[num] = room["Items"][num]["Args"]
-	return load(ITEMS[name][type])
+	return ITEMS[name][key]
 
-func getPos(vec):
-	 return Vector2(vec[0], vec[1])
-	
+# Recieves a scene "group" (can be "Items" or "Characters") and
+# returns the "pos" value of the element number "num" in the group list
+func getPos(group, num):
+	var vec = room[group][num]["Pos"]
+	return Vector2(vec[0], vec[1])
+
+# Clear all the sprites of the room
 func clearRoom():
 	for i in range(2):
-		get_node("NPC"+str(i)).set_normal_texture(null)
+		get_node("NPC"+str(i)).set_texture(null)
 	for i in range(2):
 		get_node("Item"+str(i)).set_normal_texture(null)
 
+# Is executed when an NPC is clicked. Runs the dialog associated
+# with that NPC
 func NPCClick(num):
 	if not isTalking:
 		isTalking = not isTalking
 		runDialogue(getNPC(num, "Dialogue"))
-	pass
-	
+
+# Interprets the dialogue json with name "name" and executes it's
+# functions
 func runDialogue(name):
 	var dial = parseJson("dialogues/" + name)
 	var counter = "1"
@@ -91,12 +101,26 @@ func runDialogue(name):
 			var view = "FaceView"+str(pos)
 			if NPCsNames[1] == char:
 				num = 1
-			get_node(view).set_texture(load(getNPC(num, "Face")))
+			get_node(view).set_texture(load(getNPC(num, "Image")))
 			get_node(view).get_node("appear").play("face_appear")
 			get_node("NPC"+str(num)).set_opacity(0)
 			if pos == 0:
 				get_node("DarkLight").get_node("dim").play("make_it_dim")
 			yield(get_node(view).get_node("appear"), "finished")
+		elif foo == "faceHide":
+			var pos = dial[counter]["pos"]
+			var char = dial[counter]["char"]
+			var num = 0
+			var view = "FaceView"+str(pos)
+			if NPCsNames[1] == char:
+				num = 1
+			get_node(view).get_node("appear").play_backwards("face_appear")
+			get_node("NPC"+str(num)).set_opacity(1)
+			if pos == 0:
+				get_node("DarkLight").get_node("dim").play_backwards("make_it_dim")
+			yield(get_node(view).get_node("appear"), "finished")
+			get_node(view).set_texture(null)
+			isTalking = not isTalking
 		elif foo == "dialogueShow":
 			var pos = dial[counter]["pos"]
 			var text = dial[counter]["text"]
@@ -109,9 +133,10 @@ func runDialogue(name):
 			break
 		counter = str(int(counter) + 1)
 			
-			
-	
 
+# Executed when an item is clicked. Runs the function associated
+# with that item with the aguments specified in the field "args"
+# from SCENES json
 func itemClick(num):
 	print(num)
 	var name = ItemsNames[num]
@@ -120,5 +145,4 @@ func itemClick(num):
 	if (function == "changeScene"):
 		print("Entrou")
 		loadScene(args[0])
-	pass
 

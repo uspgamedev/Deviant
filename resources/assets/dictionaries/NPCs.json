@@ -1,12 +1,10 @@
 {
      "FirstChar" : {
-         "Body" : "res://resources/assets/images/FirstCharBody.jpg",
-         "Face" : "res://resources/assets/images/FirstCharFace.jpg",
+         "Image" : "res://resources/assets/images/Bob.tex",
          "Dialogue" : "dialogue1"
      },
      "SecondChar" : {
-         "Body" : "res://resources/assets/images/SecCharBody.jpg",
-         "Face" : "res://resources/assets/images/SecCharFace.jpg",
+         "Image" : "res://resources/assets/images/Nelson.tex",
          "Dialogue" : "dialogue2"
      }
 }

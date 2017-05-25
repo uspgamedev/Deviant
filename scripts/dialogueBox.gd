@@ -1,10 +1,5 @@
 extends Control
 
-const LPoint = preload("res://resources/assets/images/DialoguePointLeft.jpg")
-const RPoint = preload("res://resources/assets/images/DialoguePointRight.jpg")
-const LBorder = preload("res://resources/assets/images/DialogueLeftBorder.jpg")
-const RBorder = preload("res://resources/assets/images/DialogueRightBorder.jpg")
-
 var wasPressed = false
 var isPressed = false
 
@@ -14,28 +9,33 @@ signal ended
 func _ready():
 	set_fixed_process(true)
 	setAlpha(0)
-	pass
 	
 func _fixed_process(dt):
 	isPressed = Input.is_key_pressed(KEY_SPACE)
 	if (not wasPressed and isPressed):
 		emit_signal("pressed")
 	wasPressed = isPressed
-	
+
+# Sets the alpha color value of all tiles to "val"
 func setAlpha(val):
-	for i in range(12):
-		get_node("DialogueTile"+str(i)).set_modulate(Color(1, 1, 1, val))
-	
+	for i in range(13):
+		get_node("Tile"+str(i)).set_modulate(Color(1, 1, 1, val))
+
+# Change the side of the dialogue arrow (the tip which is pointed
+# to the NPC that is talking)
 func change_side(side):
 	if (side == 0):
-		get_node("DialogueTile1").set_texture(LPoint)
-		get_node("DialogueTile1").set_pos(Vector2(-163, -29))
-		get_node("DialogueTile10").set_texture(RBorder)
+		get_node("Tile1").set_frame(3)
+		get_node("Tile10").set_frame(1)
+		get_node("Tile12").set_modulate(Color(1, 1, 1, 1))
+		get_node("Tile13").set_modulate(Color(1, 1, 1, 0))
 	else:
-		get_node("DialogueTile1").set_texture(LBorder)
-		get_node("DialogueTile1").set_pos(Vector2(-116, -29))
-		get_node("DialogueTile10").set_texture(RPoint)
-	
+		get_node("Tile1").set_frame(1)
+		get_node("Tile10").set_frame(3)
+		get_node("Tile12").set_modulate(Color(1, 1, 1, 0))
+		get_node("Tile13").set_modulate(Color(1, 1, 1, 1))
+
+# Shows each string of "vec" at the diague box, each at a time
 func printText(vec):
 	var buffer
 	for line in vec:
@@ -48,5 +48,3 @@ func printText(vec):
 		yield(self, "pressed")
 	get_node("Text").set_text("")
 	emit_signal("ended")
-			
-	pass
