@@ -71,19 +71,19 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=5]
 
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 174, 87 )
 margin = Rect2( 0, 0, 0, 0 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=6]
 
 atlas = ExtResource( 3 )
 region = Rect2( 0, 87, 174, 87 )
 margin = Rect2( 0, 0, 0, 0 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=7]
 
 atlas = ExtResource( 3 )
 region = Rect2( 0, 174, 174, 87 )
@@ -130,7 +130,7 @@ margin/top = 0.0
 margin/right = 139.0
 margin/bottom = 325.0
 toggle_mode = false
-enabled_focus_mode = 2
+enabled_focus_mode = 0
 shortcut = null
 params/resize_mode = 0
 params/stretch_mode = 0
@@ -152,7 +152,7 @@ margin/top = 0.0
 margin/right = 139.0
 margin/bottom = 325.0
 toggle_mode = false
-enabled_focus_mode = 2
+enabled_focus_mode = 0
 shortcut = null
 params/resize_mode = 0
 params/stretch_mode = 0
@@ -168,7 +168,7 @@ margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
 toggle_mode = false
-enabled_focus_mode = 2
+enabled_focus_mode = 0
 shortcut = null
 params/resize_mode = 0
 params/stretch_mode = 0
@@ -184,7 +184,7 @@ margin/top = 138.0
 margin/right = 509.0
 margin/bottom = 313.0
 toggle_mode = false
-enabled_focus_mode = 2
+enabled_focus_mode = 0
 shortcut = null
 params/resize_mode = 0
 params/stretch_mode = 0
@@ -295,11 +295,11 @@ margin/top = 425.0
 margin/right = 890.0
 margin/bottom = 465.0
 toggle_mode = false
-enabled_focus_mode = 2
+enabled_focus_mode = 0
 shortcut = null
-textures/normal = SubResource( 7 )
-textures/pressed = SubResource( 5 )
-textures/hover = SubResource( 6 )
+textures/normal = SubResource( 5 )
+textures/pressed = SubResource( 6 )
+textures/hover = SubResource( 7 )
 params/resize_mode = 0
 params/stretch_mode = 0
 

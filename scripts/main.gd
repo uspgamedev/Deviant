@@ -23,6 +23,9 @@ func _ready():
 	#set_fixed_process(true)
 	#set_process_input(true)
 	get_node("Bag/ItemList").add_icon_item(load(getItem(0, "Image")))
+	print(get_node("Bag/ItemList").get_item_icon(0))
+	get_node("Bag/ItemList").add_icon_item(load(getItem(0, "Image")))
+	print(get_node("Bag/ItemList").get_item_icon(1))
 
 func _fixed_process(delta):
 	pass
@@ -46,12 +49,16 @@ func loadScene(name):
 	clearRoom()
 	for i in range(room["Characters"].size()):
 		var nodeName = "NPC"+str(i)
-		get_node(nodeName).set_texture(load(getNPC(i, "Image")))
+		var img = load(getNPC(i, "Image"))
+		get_node(nodeName).set_texture(img)
 		get_node(nodeName).set_pos(getPos("Characters", i))
+		get_node(nodeName+"/TextureButton").set_size(Vector2(128, 320))
 	for i in range(room["Items"].size()):
 		var nodeName = "Item"+str(i)
-		get_node(nodeName).set_normal_texture(load(getItem(i, "Image")))
+		var img = load(getItem(i, "Image"))
+		get_node(nodeName).set_normal_texture(img)
 		get_node(nodeName).set_pos(getPos("Items", i))
+		get_node(nodeName).set_size(img.get_size())
 
 # Recieves the position "num" of the NPC at the scene's "Characters"
 # list and returns it's "key" field
@@ -118,7 +125,6 @@ func runDialogue(name):
 			if NPCsNames[1] == char:
 				num = 1
 			get_node(view+"/appear").play_backwards("face_appear")
-			yield(get_node(view+"/appear"), "finished")
 			get_node("NPC"+str(num)).set_opacity(1)
 			if pos == 0:
 				get_node("DarkLight/dim").play_backwards("make_it_dim")
