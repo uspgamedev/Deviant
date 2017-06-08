@@ -11,11 +11,45 @@
                 "is Dr.Harberwood"]
     },
     "3": {
+        "function": "say",
+        "text": ["How are you?"]
+    },
+    "4": {
+        "function": "dialogueShow",
+        "pos": 0,
+        "text": ["I'm fine, thanks",
+                 "And you?"]
+    },
+    "5": {
+        "function": "choose",
+        "text": "Choose an answer:",
+        "opts": ["Fine too", "Go to hell", ""],
+        "goto": ["6", "9", ""]
+    },
+    "6": {
+        "function": "dialogueShow",
+        "pos": 0,
+        "text": ["Top"]
+    },
+    "7": {
         "function": "faceHide",
         "char": "FirstChar",
         "pos": 0
     },
-    "4": {
+    "8": {
+        "function": "End"
+    },
+    "9": {
+        "function": "dialogueShow",
+        "pos": 0,
+        "text": ["How rude!!!"]
+    },
+    "10": {
+        "function": "faceHide",
+        "char": "FirstChar",
+        "pos": 0
+    },
+    "11": {
         "function": "End"
     }
 }

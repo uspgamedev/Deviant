@@ -1,0 +1,157 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scripts/Log.gd" type="Script" id=1]
+[ext_resource path="res://resources/assets/fonts/main_font.fnt" type="BitmapFont" id=2]
+
+[node name="Log" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+option = 0
+
+[node name="Panel" type="Panel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 850.0
+margin/bottom = 175.0
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 25.0
+margin/top = 25.0
+margin/right = 825.0
+margin/bottom = 150.0
+custom_fonts/font = ExtResource( 2 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Button0" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 25.0
+margin/top = 55.0
+margin/right = 285.0
+margin/bottom = 155.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Label" type="Label" parent="Button0"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 250.0
+margin/bottom = 90.0
+custom_fonts/font = ExtResource( 2 )
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Button1" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 295.0
+margin/top = 55.0
+margin/right = 555.0
+margin/bottom = 155.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Label" type="Label" parent="Button1"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 250.0
+margin/bottom = 90.0
+custom_fonts/font = ExtResource( 2 )
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Button2" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 565.0
+margin/top = 55.0
+margin/right = 825.0
+margin/bottom = 155.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Label" type="Label" parent="Button2"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 250.0
+margin/bottom = 90.0
+custom_fonts/font = ExtResource( 2 )
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.05
+one_shot = false
+autostart = false
+
+[connection signal="pressed" from="Button0" to="." method="buttonClick" binds= [ 0 ]]
+
+[connection signal="pressed" from="Button1" to="." method="buttonClick" binds= [ 1 ]]
+
+[connection signal="pressed" from="Button2" to="." method="buttonClick" binds= [ 2 ]]
+
+

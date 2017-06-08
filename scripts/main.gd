@@ -12,6 +12,7 @@ var ItemsArgs = [null, null]
 
 var isTalking = false
 var bagOpen = false
+var roomName = null
 var room
 
 func _ready():
@@ -22,10 +23,8 @@ func _ready():
 	loadScene("TestRoom")
 	#set_fixed_process(true)
 	#set_process_input(true)
-	get_node("Bag/ItemList").add_icon_item(load(getItem(0, "Image")))
-	print(get_node("Bag/ItemList").get_item_icon(0))
-	get_node("Bag/ItemList").add_icon_item(load(getItem(0, "Image")))
-	print(get_node("Bag/ItemList").get_item_icon(1))
+	
+	# print(get_node("Bag/ItemList").get_item_icon(0))
 
 func _fixed_process(delta):
 	pass
@@ -45,6 +44,7 @@ func parseJson(name):
 # NPCs, items and background
 func loadScene(name):
 	room = SCENES[name]
+	roomName = name
 	get_node("Background").set_texture(load(room["Background"]))
 	clearRoom()
 	for i in range(room["Characters"].size()):
@@ -117,6 +117,7 @@ func runDialogue(name):
 			if pos == 0:
 				get_node("DarkLight/dim").play("make_it_dim")
 			yield(get_node(view+"/appear"), "finished")
+			counter = str(int(counter) + 1)
 		elif foo == "faceHide":
 			var pos = dial[counter]["pos"]
 			var char = dial[counter]["char"]
@@ -130,7 +131,7 @@ func runDialogue(name):
 				get_node("DarkLight/dim").play_backwards("make_it_dim")
 			yield(get_node(view+"/appear"), "finished")
 			get_node(view).set_texture(null)
-			print("Acabou")
+			counter = str(int(counter) + 1)
 		elif foo == "dialogueShow":
 			var pos = dial[counter]["pos"]
 			var text = dial[counter]["text"]
@@ -142,9 +143,22 @@ func runDialogue(name):
 			Box.get_node("anim").play_backwards("pop_up")
 			yield(Box.get_node("anim"), "finished")
 			isTalking = false
+			counter = str(int(counter) + 1)
+		elif foo == "say":
+			var text = dial[counter]["text"]
+			get_node("Log").printText(text)
+			yield(get_node("Log"), "ended")
+			counter = str(int(counter) + 1)
+		elif foo == "choose":
+			var text = dial[counter]["text"]
+			var opts = dial[counter]["opts"]
+			var goto = dial[counter]["goto"]
+			get_node("Log").printChoose(text, opts)
+			yield(get_node("Log"), "ended")
+			print(get_node("Log").option)
+			counter = goto[get_node("Log").option]
 		elif foo == "End":
 			break
-		counter = str(int(counter) + 1)
 
 
 # Executed when an item is clicked. Runs the function associated
@@ -160,11 +174,16 @@ func itemClick(num):
 		yield(get_node("DarkLight/dim"), "finished")
 		loadScene(args[0])
 		get_node("DarkLight/dim").play_backwards("change_scene")
+	elif (function == "addToBag"):
+		get_node("Item"+str(num)).set_pos(Vector2(-100, -100))
+		get_node("Bag/ItemList").add_icon_item(load(getItem(num, "Image")))
+		SCENES[roomName]["Items"].remove(num)
 
+# Opens bag
 func BagOpen():
 	if bagOpen:
-		get_node("Bag/ItemList").set_opacity(0)
+		get_node("Bag/ItemList").set_pos(Vector2(175, -425))
 		bagOpen = false
 	else:
-		get_node("Bag/ItemList").set_opacity(1)
+		get_node("Bag/ItemList").set_pos(Vector2(0, -425))
 		bagOpen = true

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://resources/scenes/dialogueBox.tscn" type="PackedScene" id=2]
-[ext_resource path="res://resources/assets/images/BagButton.tex" type="Texture" id=3]
+[ext_resource path="res://resources/scenes/Log.tscn" type="PackedScene" id=3]
+[ext_resource path="res://resources/assets/images/BagButton.tex" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 
@@ -73,19 +74,19 @@ tracks/1/keys = {
 
 [sub_resource type="AtlasTexture" id=5]
 
-atlas = ExtResource( 3 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 174, 87 )
 margin = Rect2( 0, 0, 0, 0 )
 
 [sub_resource type="AtlasTexture" id=6]
 
-atlas = ExtResource( 3 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 87, 174, 87 )
 margin = Rect2( 0, 0, 0, 0 )
 
 [sub_resource type="AtlasTexture" id=7]
 
-atlas = ExtResource( 3 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 174, 174, 87 )
 margin = Rect2( 0, 0, 0, 0 )
 
@@ -238,51 +239,17 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="Log" type="Control" parent="."]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Label" type="Label" parent="Log"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 428.0
-margin/right = 844.0
-margin/bottom = 601.0
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Panel" type="Panel" parent="Log"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 425.0
-margin/right = 850.0
-margin/bottom = 600.0
-
 [node name="DialogueBox" parent="." instance=ExtResource( 2 )]
 
 margin/left = 500.0
 margin/top = 200.0
 margin/right = 540.0
 margin/bottom = 240.0
+
+[node name="Log" parent="." instance=ExtResource( 3 )]
+
+margin/top = 425.0
+margin/bottom = 465.0
 
 [node name="Bag" type="TextureButton" parent="."]
 
@@ -305,14 +272,13 @@ params/stretch_mode = 0
 
 [node name="ItemList" type="ItemList" parent="Bag"]
 
-visibility/opacity = 0.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
+margin/left = 175.0
 margin/top = -425.0
-margin/right = 174.0
+margin/right = 349.0
 margin/bottom = 0.0
 
 [connection signal="pressed" from="NPC0/TextureButton" to="." method="NPCClick" binds= [ 0 ]]
