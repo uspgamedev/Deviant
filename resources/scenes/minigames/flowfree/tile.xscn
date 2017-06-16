@@ -11,8 +11,8 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="25">
-				<string> "Panel" </string>
+			<string_array  len="26">
+				<string> "Tile" </string>
 				<string> "focus/ignore_mouse" </string>
 				<string> "focus/stop_mouse" </string>
 				<string> "size_flags/horizontal" </string>
@@ -22,6 +22,7 @@
 				<string> "margin/right" </string>
 				<string> "margin/bottom" </string>
 				<string> "script/script" </string>
+				<string> "Control" </string>
 				<string> "Pipe" </string>
 				<string> "transform/pos" </string>
 				<string> "polygon" </string>
@@ -44,16 +45,16 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="58"> 				-1, -1, 0, 0, -1, 9, 1, 0, 2, 1, 3, 2, 4, 2, 5, 3, 6, 3, 7, 4, 8, 4, 9, 5, 0, 0, 0, 24, 10, -1, 13, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16, 11, 17, 12, 18, 11, 19, 13, 20, 14, 21, 0, 22, 15, 23, 16, 0 </int_array>
+			<int_array  len="58"> 				-1, -1, 10, 0, -1, 9, 1, 0, 2, 1, 3, 2, 4, 2, 5, 3, 6, 3, 7, 4, 8, 4, 9, 5, 0, 0, 0, 25, 11, -1, 13, 12, 6, 13, 7, 14, 8, 15, 9, 16, 10, 17, 11, 18, 12, 19, 11, 20, 13, 21, 14, 22, 0, 23, 15, 24, 16, 0 </int_array>
 			<string> "variants" </string>
 			<array  len="17" shared="false">
 				<bool> False </bool>
 				<bool> True </bool>
 				<int> 2 </int>
-				<real> -15 </real>
-				<real> 29 </real>
+				<real> -30 </real>
+				<real> 30 </real>
 				<resource  external="0">  </resource>
-				<vector2> 23.618, 22.6474 </vector2>
+				<vector2> 30, 30 </vector2>
 				<vector2_array  len="4"> 					-30, -30, 30, -30, 30, 30, -30, 30 </vector2_array>
 				<vector2_array  len="0"> 					 </vector2_array>
 				<color> 1, 1, 1, 1 </color>

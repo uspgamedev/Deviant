@@ -42,6 +42,10 @@ func printText(vec):
 	for line in vec:
 		buffer = ""
 		for i in line:
+			if (not wasPressed) and isPressed:
+				buffer = line
+				get_node("sprite/Text").set_text(buffer)
+				break
 			get_node("Timer").start()
 			yield(get_node("Timer"), "timeout")
 			buffer += i

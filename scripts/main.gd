@@ -14,6 +14,7 @@ var isTalking = false
 var bagOpen = false
 var roomName = null
 var room
+var ctr
 
 func _ready():
 	SCENES = parseJson("dictionaries/scenes")
@@ -100,13 +101,17 @@ func NPCClick(num):
 # functions
 func runDialogue(name):
 	var dial = parseJson("dialogues/" + name)
-	var counter = "1"
-	var foo
+	ctr = "1"
+	var foo = null
+	var cmd = null
 	while true:
-		foo = dial[counter]["function"]
+		cmd = dial[ctr]
+		foo = cmd["function"]
 		if foo == "faceShow":
-			var pos = dial[counter]["pos"]
-			var char = dial[counter]["char"]
+			# Executes face show animation for character "char" at
+			# screen position "pos"
+			var char = cmd["char"]
+			var pos = cmd["pos"]
 			var num = 0
 			var view = "FaceView"+str(pos)
 			if NPCsNames[1] == char:
@@ -117,10 +122,12 @@ func runDialogue(name):
 			if pos == 0:
 				get_node("DarkLight/dim").play("make_it_dim")
 			yield(get_node(view+"/appear"), "finished")
-			counter = str(int(counter) + 1)
+			ctr = str(int(ctr) + 1)
 		elif foo == "faceHide":
-			var pos = dial[counter]["pos"]
-			var char = dial[counter]["char"]
+			# Executes face hide animation for character "char" at
+			# screen position "pos"
+			var char = cmd["char"]
+			var pos = cmd["pos"]
 			var num = 0
 			var view = "FaceView"+str(pos)
 			if NPCsNames[1] == char:
@@ -131,10 +138,12 @@ func runDialogue(name):
 				get_node("DarkLight/dim").play_backwards("make_it_dim")
 			yield(get_node(view+"/appear"), "finished")
 			get_node(view).set_texture(null)
-			counter = str(int(counter) + 1)
+			ctr = str(int(ctr) + 1)
 		elif foo == "dialogueShow":
-			var pos = dial[counter]["pos"]
-			var text = dial[counter]["text"]
+			# Shows dialogue box with text "text" and pointing to screen
+			# position "pos"
+			var text = cmd["text"]
+			var pos = cmd["pos"]
 			Box.change_side(pos)
 			Box.get_node("anim").play("pop_up")
 			yield(Box.get_node("anim"), "finished")
@@ -143,23 +152,24 @@ func runDialogue(name):
 			Box.get_node("anim").play_backwards("pop_up")
 			yield(Box.get_node("anim"), "finished")
 			isTalking = false
-			counter = str(int(counter) + 1)
+			ctr = str(int(ctr) + 1)
 		elif foo == "say":
-			var text = dial[counter]["text"]
+			# Shows text "text" at Log
+			var text = cmd["text"]
 			get_node("Log").printText(text)
 			yield(get_node("Log"), "ended")
-			counter = str(int(counter) + 1)
+			ctr = str(int(ctr) + 1)
 		elif foo == "choose":
-			var text = dial[counter]["text"]
-			var opts = dial[counter]["opts"]
-			var goto = dial[counter]["goto"]
+			# Shows a question "text" and it's possible answers "opts" at Log
+			var text = cmd["text"]
+			var opts = cmd["opts"]
+			var goto = cmd["goto"]
 			get_node("Log").printChoose(text, opts)
 			yield(get_node("Log"), "ended")
 			print(get_node("Log").option)
-			counter = goto[get_node("Log").option]
+			ctr = goto[get_node("Log").option]
 		elif foo == "End":
 			break
-
 
 # Executed when an item is clicked. Runs the function associated
 # with that item with the aguments specified in the field "args"
@@ -170,14 +180,20 @@ func itemClick(num):
 	var function = ITEMS[name]["Function"]
 	var args = ItemsArgs[num]
 	if (function == "changeScene"):
-		get_node("DarkLight/dim").play("change_scene")
-		yield(get_node("DarkLight/dim"), "finished")
-		loadScene(args[0])
-		get_node("DarkLight/dim").play_backwards("change_scene")
+		changeScene(args[0])
 	elif (function == "addToBag"):
-		get_node("Item"+str(num)).set_pos(Vector2(-100, -100))
-		get_node("Bag/ItemList").add_icon_item(load(getItem(num, "Image")))
-		SCENES[roomName]["Items"].remove(num)
+		addToBag(num)
+
+func changeScene(scene):
+	get_node("DarkLight/dim").play("change_scene")
+	yield(get_node("DarkLight/dim"), "finished")
+	loadScene(scene)
+	get_node("DarkLight/dim").play_backwards("change_scene")
+	
+func addToBag(num):
+	get_node("Item"+str(num)).set_pos(Vector2(-100, -100))
+	get_node("Bag/ItemList").add_icon_item(load(getItem(num, "Image")))
+	SCENES[roomName]["Items"].remove(num)
 
 # Opens bag
 func BagOpen():
