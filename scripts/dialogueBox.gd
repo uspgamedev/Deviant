@@ -7,19 +7,23 @@ signal pressed
 signal ended
 
 func _ready():
-	set_fixed_process(true)
+	set_process_input(true)
 	get_node("sprite").set_opacity(0)
 	
-func _fixed_process(dt):
-	isPressed = Input.is_key_pressed(KEY_SPACE)
-	if (not wasPressed and isPressed):
-		emit_signal("pressed")
-	wasPressed = isPressed
+func _input(event):
+	if (event.is_action_pressed("next_dialog")):
+		isPressed = true
+		wasPressed = true
+	if (event.is_action_released("next_dialog")):
+		isPressed = false
+		if wasPressed and (not isPressed):
+			emit_signal("pressed")
+		wasPressed = false
 
 # Sets the alpha color value of all tiles to "val"
-func setAlpha(val):
-	for i in range(13):
-		get_node("sprite/Tile"+str(i)).set_modulate(Color(1, 1, 1, val))
+#func set_alpha(val):
+#	for i in range(13):
+#		get_node("sprite/Tile"+str(i)).set_modulate(Color(1, 1, 1, val))
 
 # Change the side of the dialogue arrow (the tip which is pointed
 # to the NPC that is talking)
@@ -37,14 +41,14 @@ func change_side(side):
 		get_node(sp+"13").set_modulate(Color(1, 1, 1, 1))
 
 # Shows each string of "vec" at the diague box, each at a time
-func printText(vec):
+func print_text(vec):
 	var buffer
 	for line in vec:
 		buffer = ""
 		for i in line:
-			if (not wasPressed) and isPressed:
-				buffer = line
-				get_node("sprite/Text").set_text(buffer)
+			if isPressed:
+				yield(self, "pressed")
+				get_node("sprite/Text").set_text(line)
 				break
 			get_node("Timer").start()
 			yield(get_node("Timer"), "timeout")

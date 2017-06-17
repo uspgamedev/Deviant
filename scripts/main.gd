@@ -1,38 +1,41 @@
 
-extends Panel
+extends Control
 
 var NPCS
 var SCENES
 var ITEMS
 var Box
+var Log
 
-var NPCsNames = [null, null]
-var ItemsNames = [null, null]
-var ItemsArgs = [null, null]
+var NPCs = [null, null]
+var Items = [null, null]
 
-var isTalking = false
+var blockClick = false
 var bagOpen = false
 var roomName = null
 var room
-var ctr
 
 func _ready():
-	SCENES = parseJson("dictionaries/scenes")
-	NPCS = parseJson("dictionaries/NPCs")
-	ITEMS = parseJson("dictionaries/items")
+	SCENES = parse_json("dictionaries/scenes")
+	NPCS = parse_json("dictionaries/NPCs")
+	ITEMS = parse_json("dictionaries/items")
 	Box = get_node("DialogueBox")
-	loadScene("TestRoom")
+	Log = get_node("Log")
+	NPCs[0] = get_node("NPC0")
+	NPCs[1] = get_node("NPC1")
+	Items[0] = get_node("Item0")
+	Items[1] = get_node("Item1")
+	load_scene("TestRoom")
 	#set_fixed_process(true)
-	#set_process_input(true)
-	
+	#set_process_input(true)	
 	# print(get_node("Bag/ItemList").get_item_icon(0))
 
-func _fixed_process(delta):
-	pass
+#func _fixed_process(delta):
+#	pass
 
 # Recieves the name of a json file and returns it's corresponding
 # dictionary
-func parseJson(name):
+func parse_json(name):
 	var dict = {}
 	var file = File.new()
 	file.open("res://resources/assets/" + name + ".json", file.READ)
@@ -43,67 +46,77 @@ func parseJson(name):
 
 # Recieves the name of a scene and loads the room with it's
 # NPCs, items and background
-func loadScene(name):
+func load_scene(name):
 	room = SCENES[name]
 	roomName = name
 	get_node("Background").set_texture(load(room["Background"]))
-	clearRoom()
+	clear_room()
 	for i in range(room["Characters"].size()):
-		var nodeName = "NPC"+str(i)
-		var img = load(getNPC(i, "Image"))
-		get_node(nodeName).set_texture(img)
-		get_node(nodeName).set_pos(getPos("Characters", i))
-		get_node(nodeName+"/TextureButton").set_size(Vector2(128, 320))
+		NPCs[i].set_info(get_NPC(i))
+		NPCs[i].set_pos(get_pos("Characters", i))
 	for i in range(room["Items"].size()):
-		var nodeName = "Item"+str(i)
-		var img = load(getItem(i, "Image"))
-		get_node(nodeName).set_normal_texture(img)
-		get_node(nodeName).set_pos(getPos("Items", i))
-		get_node(nodeName).set_size(img.get_size())
+		Items[i].set_info(get_item(i))
+		Items[i].set_pos(get_pos("Items", i))
 
 # Recieves the position "num" of the NPC at the scene's "Characters"
 # list and returns it's "key" field
-func getNPC(num, key):
+func get_NPC(num, key="All"):
 	var name = room["Characters"][num]["Name"]
-	NPCsNames[num] = name
-	return NPCS[name][key]
-
+	var ret = {}
+	ret["Name"] = name
+	ret["Image"] = NPCS[name]["Image"]
+	ret["Dialogue"] = NPCS[name]["Dialogue"]
+	if key == "All":
+		return ret
+	return ret[key]
+	
 # Recieves the position "num" of the item at the scene's "Items"
 # list and returns it's "key" field
-func getItem(num, key):
+func get_item(num, key="All"):
+	var ret = {}
 	var name = room["Items"][num]["Name"]
-	ItemsNames[num] = name
-	ItemsArgs[num] = room["Items"][num]["Args"]
-	return ITEMS[name][key]
+	ret["Name"] = name
+	ret["Args"] = room["Items"][num]["Args"]
+	ret["Image"] = ITEMS[name]["Image"]
+	ret["Function"] = ITEMS[name]["Function"]
+	if key == "All":
+		return ret
+	return ret[key]
 
 # Recieves a scene "group" (can be "Items" or "Characters") and
 # returns the "pos" value of the element number "num" in the group list
-func getPos(group, num):
+func get_pos(group, num):
 	var vec = room[group][num]["Pos"]
 	return Vector2(vec[0], vec[1])
+	
+func get_num(name):
+	for i in range(room["Characters"].size()):
+		if room["Characters"][i]["Name"] == name:
+			return i
+	for i in range(room["Items"].size()):
+		if room["Items"][i]["Name"] == name:
+			return i
+	return null
 
 # Clear all the sprites of the room
-func clearRoom():
+func clear_room():
 	for i in range(2):
-		get_node("NPC"+str(i)).set_texture(null)
+		NPCs[i].set_info(null)
 	for i in range(2):
-		get_node("Item"+str(i)).set_normal_texture(null)
-
-# Is executed when an NPC is clicked. Runs the dialog associated
-# with that NPC
-func NPCClick(num):
-	print("Top")
-	if not isTalking:
-		isTalking = true
-		runDialogue(getNPC(num, "Dialogue"))
+		Items[i].set_info(null)
 
 # Interprets the dialogue json with name "name" and executes it's
 # functions
-func runDialogue(name):
-	var dial = parseJson("dialogues/" + name)
-	ctr = "1"
+func run_dialogue(name):
+	if blockClick:
+		return
+	var dial = parse_json("dialogues/" + name)
+	var ctr = "1"
 	var foo = null
 	var cmd = null
+	if bagOpen:
+		_bag_open()
+	blockClick = true
 	while true:
 		cmd = dial[ctr]
 		foo = cmd["function"]
@@ -114,11 +127,11 @@ func runDialogue(name):
 			var pos = cmd["pos"]
 			var num = 0
 			var view = "FaceView"+str(pos)
-			if NPCsNames[1] == char:
+			if NPCs[1].get_name() == char:
 				num = 1
-			get_node(view).set_texture(load(getNPC(num, "Image")))
+			get_node(view).set_texture(NPCs[num].get_texture())
 			get_node(view+"/appear").play("face_appear")
-			get_node("NPC"+str(num)).set_opacity(0)
+			NPCs[num].set_opacity(0)
 			if pos == 0:
 				get_node("DarkLight/dim").play("make_it_dim")
 			yield(get_node(view+"/appear"), "finished")
@@ -130,10 +143,10 @@ func runDialogue(name):
 			var pos = cmd["pos"]
 			var num = 0
 			var view = "FaceView"+str(pos)
-			if NPCsNames[1] == char:
+			if NPCs[1].get_name() == char:
 				num = 1
 			get_node(view+"/appear").play_backwards("face_appear")
-			get_node("NPC"+str(num)).set_opacity(1)
+			NPCs[num].set_opacity(1)
 			if pos == 0:
 				get_node("DarkLight/dim").play_backwards("make_it_dim")
 			yield(get_node(view+"/appear"), "finished")
@@ -147,58 +160,65 @@ func runDialogue(name):
 			Box.change_side(pos)
 			Box.get_node("anim").play("pop_up")
 			yield(Box.get_node("anim"), "finished")
-			Box.printText(text)
+			Box.print_text(text)
 			yield(Box, "ended")
 			Box.get_node("anim").play_backwards("pop_up")
 			yield(Box.get_node("anim"), "finished")
-			isTalking = false
 			ctr = str(int(ctr) + 1)
 		elif foo == "say":
 			# Shows text "text" at Log
 			var text = cmd["text"]
-			get_node("Log").printText(text)
-			yield(get_node("Log"), "ended")
+			Log.print_text(text)
+			yield(Log, "ended")
 			ctr = str(int(ctr) + 1)
 		elif foo == "choose":
 			# Shows a question "text" and it's possible answers "opts" at Log
 			var text = cmd["text"]
 			var opts = cmd["opts"]
 			var goto = cmd["goto"]
-			get_node("Log").printChoose(text, opts)
-			yield(get_node("Log"), "ended")
-			print(get_node("Log").option)
-			ctr = goto[get_node("Log").option]
+			Log.print_choose(text, opts)
+			yield(Log, "ended")
+			ctr = goto[Log.option]
 		elif foo == "End":
+			blockClick = false
 			break
 
 # Executed when an item is clicked. Runs the function associated
 # with that item with the aguments specified in the field "args"
 # from SCENES json
-func itemClick(num):
-	print(num)
-	var name = ItemsNames[num]
-	var function = ITEMS[name]["Function"]
-	var args = ItemsArgs[num]
-	if (function == "changeScene"):
-		changeScene(args[0])
-	elif (function == "addToBag"):
-		addToBag(num)
+func run_item_func(name, foo, args, img):
+	if blockClick:
+		return
+	blockClick = true
+	if (foo == "changeScene"):
+		var dim = get_node("DarkLight/dim")
+		dim.play("change_scene")
+		yield(dim, "finished")
+		load_scene(args[0])
+		dim.play_backwards("change_scene")
+	elif (foo == "addToBag"):
+		add_to_bag(name, img)
+	blockClick = false
 
-func changeScene(scene):
-	get_node("DarkLight/dim").play("change_scene")
-	yield(get_node("DarkLight/dim"), "finished")
-	loadScene(scene)
-	get_node("DarkLight/dim").play_backwards("change_scene")
+func change_scene(scene):
+	var dim = get_node("DarkLight/dim")
+	dim.play("change_scene")
+	yield(dim, "finished")
+	load_scene(scene)
+	dim.play_backwards("change_scene")
 	
-func addToBag(num):
-	get_node("Item"+str(num)).set_pos(Vector2(-100, -100))
-	get_node("Bag/ItemList").add_icon_item(load(getItem(num, "Image")))
+func add_to_bag(name, img):
+	var num = get_num(name)
+	Items[num].set_pos(Vector2(-100, -100))
+	get_node("Bag/ItemList").add_icon_item(img)
 	SCENES[roomName]["Items"].remove(num)
 
-# Opens bag
-func BagOpen():
+# Open/close bag
+func _bag_open():
+	if blockClick:
+		return
 	if bagOpen:
-		get_node("Bag/ItemList").set_pos(Vector2(175, -425))
+		get_node("Bag/ItemList").set_pos(Vector2(84, -425))
 		bagOpen = false
 	else:
 		get_node("Bag/ItemList").set_pos(Vector2(0, -425))

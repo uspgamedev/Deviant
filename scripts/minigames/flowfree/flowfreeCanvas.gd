@@ -1,11 +1,12 @@
 
-extends Panel
+extends Control
 
 const Tile = preload("res://resources/scenes/minigames/flowfree/tile.xscn")
 const Core = preload("res://resources/scenes/minigames/flowfree/core.xscn")
 
 const tile_side = 60
 const recoil = 10
+const board_side = 340
 
 ## Paleta de cores pré-definidas
 const DarkCyan = Color(0, 0.5, 0.5)
@@ -33,12 +34,13 @@ class Stack:
 		vect.remove(vect.size()-1)
 
 var board = [[], [], [], [], []]
-var boardCorners = [Vector2(0, 0), Vector2(0, 340), Vector2(340, 340), Vector2(340, 0)]
+var boardCorners = [Vector2(0, 0), Vector2(0, board_side), Vector2(board_side, board_side), Vector2(board_side, 0)]
 var activeTiles = [Stack.new(), Stack.new()]
 var check = true
 var mouse_color = White
 
 func _ready():
+	set_size(Vector2(board_side, board_side))
 	get_node("Background").set_polygon(boardCorners)
 	get_node("Background").set_color(DarkCyan)
 	for i in range(5):
@@ -92,7 +94,7 @@ func _fixed_process(delta):
 			elif (board[i][j].get_color() != White):
 				mouse_color = board[i][j].get_color()
 			cd = code(mouse_color)
-			if (activeTiles[cd].isEmpty() or board[i][j].get_type() == "Tile" or activeTiles[cd].first() == Vector2(i, j)):
+			if (board[i][j].get_type() == "Tile" or activeTiles[cd].first() == Vector2(i, j)):
 				while (board[i][j].get_color() != White and (not activeTiles[cd].isEmpty())):
 					last = activeTiles[cd].top()
 					if last != Vector2(i, j):
@@ -117,6 +119,7 @@ func _fixed_process(delta):
 					activeTiles[cd].push(Vector2(i ,j))
 				elif (board[i][j].get_type() == "Core"):
 					activeTiles[cd].push(Vector2(i ,j))
+			update()
 
 func code(col):
 	if col == Yellow:
@@ -124,6 +127,13 @@ func code(col):
 	elif col == Red:
 		return 1
 	return 2
+	
+func decode(num):
+	if num == 0:
+		return Yellow
+	elif num == 1:
+		return Red
+	return White
 	
 func is_solved():
 	var last
@@ -159,3 +169,13 @@ func is_the_next(i, j, colorNo):
 	if (tile.x == i and tile.y == j-1):
 		return true
 	return false
+	
+func _draw():
+	for i in range(activeTiles.size()):
+		var vect = activeTiles[i].vect
+		for j in range(1, vect.size()):
+			var first = vect[j-1]
+			var second = vect[j]
+			var from = Vector2((first.x+0.5)*(tile_side+5)+recoil, (first.y+0.5)*(tile_side+5)+recoil)
+			var to = Vector2((second.x+0.5)*(tile_side+5)+recoil, (second.y+0.5)*(tile_side+5)+recoil)
+			draw_line(from, to, decode(i), 10)

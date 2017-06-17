@@ -9,19 +9,27 @@ signal pressed
 signal chosen
 
 func _ready():
-	set_fixed_process(true)
+	set_process_input(true)
 	
-func _fixed_process(dt):
-	isPressed = Input.is_key_pressed(KEY_SPACE)
-	if (not wasPressed and isPressed):
-		emit_signal("pressed")
-	wasPressed = isPressed
+func _input(event):
+	if (event.is_action_pressed("next_dialog")):
+		isPressed = true
+		wasPressed = true
+	if (event.is_action_released("next_dialog")):
+		isPressed = false
+		if wasPressed and (not isPressed):
+			emit_signal("pressed")
+		wasPressed = false
 
-func printText(vec):
+func print_text(vec):
 	var buffer
 	for line in vec:
 		buffer = ""
 		for i in line:
+			if isPressed:
+				yield(self, "pressed")
+				get_node("Label").set_text(line)
+				break
 			get_node("Timer").start()
 			yield(get_node("Timer"), "timeout")
 			buffer += i
@@ -30,7 +38,7 @@ func printText(vec):
 	get_node("Label").set_text("")
 	emit_signal("ended")
 	
-func printChoose(text, opts):
+func print_choose(text, opts):
 	get_node("Label").set_text(text)
 	for i in range(3):
 		get_node("Button" + str(i) + "/Label").set_text(opts[i])
@@ -40,7 +48,7 @@ func printChoose(text, opts):
 		get_node("Button" + str(i) + "/Label").set_text("")
 	emit_signal("ended")
 	
-func buttonClick(num):
+func _on_Button_click(num):
 	if (get_node("Button"+str(num)+"/Label").get_text() != ""):
 		option = num
 		emit_signal("chosen")

@@ -1,10 +1,10 @@
 {
      "FirstChar" : {
-         "Image" : "res://resources/assets/images/Bob.tex",
+         "Image" : "res://resources/assets/images/bobCEO.tex",
          "Dialogue" : "dialogue1"
      },
      "SecondChar" : {
-         "Image" : "res://resources/assets/images/Nelson.tex",
+         "Image" : "res://resources/assets/images/bobHacker.tex",
          "Dialogue" : "dialogue2"
      }
 }

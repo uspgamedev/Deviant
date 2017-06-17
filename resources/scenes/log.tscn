@@ -27,7 +27,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 850.0
+margin/right = 940.0
 margin/bottom = 175.0
 
 [node name="Label" type="Label" parent="."]
@@ -38,7 +38,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 25.0
 margin/top = 25.0
-margin/right = 825.0
+margin/right = 915.0
 margin/bottom = 150.0
 custom_fonts/font = ExtResource( 2 )
 percent_visible = 1.0
@@ -53,10 +53,10 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 25.0
 margin/top = 55.0
-margin/right = 285.0
+margin/right = 315.0
 margin/bottom = 155.0
 toggle_mode = false
-enabled_focus_mode = 2
+enabled_focus_mode = 0
 shortcut = null
 params/resize_mode = 0
 params/stretch_mode = 0
@@ -69,7 +69,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 10.0
 margin/top = 10.0
-margin/right = 250.0
+margin/right = 280.0
 margin/bottom = 90.0
 custom_fonts/font = ExtResource( 2 )
 autowrap = true
@@ -83,12 +83,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 295.0
+margin/left = 325.0
 margin/top = 55.0
-margin/right = 555.0
+margin/right = 615.0
 margin/bottom = 155.0
 toggle_mode = false
-enabled_focus_mode = 2
+enabled_focus_mode = 0
 shortcut = null
 params/resize_mode = 0
 params/stretch_mode = 0
@@ -101,7 +101,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 10.0
 margin/top = 10.0
-margin/right = 250.0
+margin/right = 280.0
 margin/bottom = 90.0
 custom_fonts/font = ExtResource( 2 )
 autowrap = true
@@ -115,12 +115,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 565.0
+margin/left = 625.0
 margin/top = 55.0
-margin/right = 825.0
+margin/right = 915.0
 margin/bottom = 155.0
 toggle_mode = false
-enabled_focus_mode = 2
+enabled_focus_mode = 0
 shortcut = null
 params/resize_mode = 0
 params/stretch_mode = 0
@@ -133,7 +133,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 10.0
 margin/top = 10.0
-margin/right = 250.0
+margin/right = 280.0
 margin/bottom = 90.0
 custom_fonts/font = ExtResource( 2 )
 autowrap = true
@@ -148,10 +148,10 @@ wait_time = 0.05
 one_shot = false
 autostart = false
 
-[connection signal="pressed" from="Button0" to="." method="buttonClick" binds= [ 0 ]]
+[connection signal="pressed" from="Button0" to="." method="_on_Button_click" binds= [ 0 ]]
 
-[connection signal="pressed" from="Button1" to="." method="buttonClick" binds= [ 1 ]]
+[connection signal="pressed" from="Button1" to="." method="_on_Button_click" binds= [ 1 ]]
 
-[connection signal="pressed" from="Button2" to="." method="buttonClick" binds= [ 2 ]]
+[connection signal="pressed" from="Button2" to="." method="_on_Button_click" binds= [ 2 ]]
 
 
