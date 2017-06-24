@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://resources/scenes/NPC.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://resources/scenes/log.tscn" type="PackedScene" id=5]
 [ext_resource path="res://resources/assets/images/BagButton.tex" type="Texture" id=6]
 [ext_resource path="res://resources/assets/images/ConfigButton.tex" type="Texture" id=7]
+[ext_resource path="res://resources/scenes/MinigameHandler.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 
@@ -236,7 +237,7 @@ margin/top = 509.0
 margin/right = 1024.0
 margin/bottom = 593.0
 toggle_mode = false
-enabled_focus_mode = 2
+enabled_focus_mode = 0
 shortcut = null
 textures/normal = SubResource( 7 )
 textures/pressed = SubResource( 8 )
@@ -254,6 +255,37 @@ stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
 
+[node name="MinigameHandler" parent="." instance=ExtResource( 8 )]
+
+margin/left = 239.0
+margin/top = 15.0
+margin/right = 279.0
+margin/bottom = 55.0
+
+[node name="TestButton" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 64.0
+margin/top = 108.0
+margin/right = 115.0
+margin/bottom = 153.0
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+flat = false
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = false
+
 [connection signal="pressed" from="Bag" to="." method="_bag_open"]
+
+[connection signal="pressed" from="TestButton" to="." method="_on_TestButton_pressed"]
 
 

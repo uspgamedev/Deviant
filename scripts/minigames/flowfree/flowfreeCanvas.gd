@@ -14,6 +14,8 @@ const Yellow = Color(1, 1, 0)
 const White = Color(1, 1, 1)
 const Red = Color(1, 0, 0)
 
+signal ended
+
 class Stack:
 	var vect = []
 	func isEmpty():
@@ -73,6 +75,7 @@ func _ready():
 func _fixed_process(delta):
 	if is_solved():
 		print("Gotcha")
+		emit_signal("ended")
 		set_fixed_process(false)
 	if (Input.is_mouse_button_pressed(BUTTON_LEFT) == true):
 		var i = 0
@@ -149,7 +152,7 @@ func is_solved():
 
 ## Retorna true se o mouse está na tile board[i][j]
 func mouse_is_on_tile(i, j):
-	var pos = get_viewport().get_mouse_pos()
+	var pos = get_local_mouse_pos()
 	if (pos.x > i*(tile_side+5)+recoil and pos.y > j*(tile_side+5)+recoil and pos.x < (i+1)*tile_side+recoil and pos.y < (j+1)*tile_side+recoil):
 		return true
 	return false

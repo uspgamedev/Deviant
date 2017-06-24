@@ -1,15 +1,19 @@
 
 extends Control
 
+# Json objects
 var NPCS
 var SCENES
 var ITEMS
+
+# Shortcuts for nodes
 var Box
 var Log
-
+var MGH
 var NPCs = [null, null]
 var Items = [null, null]
 
+# Other global variables
 var blockClick = false
 var bagOpen = false
 var roomName = null
@@ -21,17 +25,13 @@ func _ready():
 	ITEMS = parse_json("dictionaries/items")
 	Box = get_node("DialogueBox")
 	Log = get_node("Log")
+	MGH = get_node("MinigameHandler")
 	NPCs[0] = get_node("NPC0")
 	NPCs[1] = get_node("NPC1")
 	Items[0] = get_node("Item0")
 	Items[1] = get_node("Item1")
 	load_scene("TestRoom")
-	#set_fixed_process(true)
-	#set_process_input(true)	
 	# print(get_node("Bag/ItemList").get_item_icon(0))
-
-#func _fixed_process(delta):
-#	pass
 
 # Recieves the name of a json file and returns it's corresponding
 # dictionary
@@ -223,3 +223,19 @@ func _bag_open():
 	else:
 		get_node("Bag/ItemList").set_pos(Vector2(0, -425))
 		bagOpen = true
+
+
+func _on_TestButton_pressed():
+	blockClick = true
+	var Time = get_node("Timer")
+	MGH.run_minigame("flowfree", null)
+	yield(MGH, "ended")
+	Time.start()
+	yield(Time, "timeout")
+	MGH.game_close()
+	MGH.run_minigame("passBreaker", null)
+	yield(MGH, "ended")
+	Time.start()
+	yield(Time, "timeout")
+	MGH.game_close()
+	blockClick = false

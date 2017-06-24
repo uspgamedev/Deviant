@@ -1,0 +1,299 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scripts/minigames/flowfree/passBreaker.gd" type="Script" id=1]
+[ext_resource path="res://resources/assets/fonts/main_font.fnt" type="BitmapFont" id=2]
+
+[node name="passBreaker" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = ExtResource( 1 )
+diff = 1
+
+[node name="Panel" type="Panel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 300.0
+margin/bottom = 400.0
+
+[node name="LineEdit1" type="LineEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 47.0
+margin/top = 58.0
+margin/right = 117.0
+margin/bottom = 89.0
+custom_fonts/font = ExtResource( 2 )
+placeholder/alpha = 0.6
+align = 1
+max_length = 2
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="Polygon2D" type="Polygon2D" parent="LineEdit1"]
+
+visibility/behind_parent = true
+polygon = Vector2Array( -3, 34, 73, 34, 73, -3, -3, -3 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="LineEdit2" type="LineEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 146.0
+margin/top = 58.0
+margin/right = 216.0
+margin/bottom = 89.0
+custom_fonts/font = ExtResource( 2 )
+placeholder/alpha = 0.6
+align = 1
+max_length = 2
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="Polygon2D" type="Polygon2D" parent="LineEdit2"]
+
+visibility/behind_parent = true
+polygon = Vector2Array( -3, 34, 73, 34, 73, -3, -3, -3 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="LineEdit3" type="LineEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 47.0
+margin/top = 117.0
+margin/right = 117.0
+margin/bottom = 148.0
+custom_fonts/font = ExtResource( 2 )
+placeholder/alpha = 0.6
+align = 1
+max_length = 2
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="Polygon2D" type="Polygon2D" parent="LineEdit3"]
+
+visibility/behind_parent = true
+polygon = Vector2Array( -3, 34, 73, 34, 73, -3, -3, -3 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="LineEdit4" type="LineEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 148.0
+margin/top = 118.0
+margin/right = 218.0
+margin/bottom = 149.0
+custom_fonts/font = ExtResource( 2 )
+placeholder/alpha = 0.6
+align = 1
+max_length = 2
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="Polygon2D" type="Polygon2D" parent="LineEdit4"]
+
+visibility/behind_parent = true
+polygon = Vector2Array( -3, 34, 73, 34, 73, -3, -3, -3 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="LineEdit5" type="LineEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 47.0
+margin/top = 172.0
+margin/right = 117.0
+margin/bottom = 203.0
+custom_fonts/font = ExtResource( 2 )
+placeholder/alpha = 0.6
+align = 1
+max_length = 2
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="Polygon2D" type="Polygon2D" parent="LineEdit5"]
+
+visibility/behind_parent = true
+polygon = Vector2Array( -3, 34, 73, 34, 73, -3, -3, -3 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="LineEdit6" type="LineEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 149.0
+margin/top = 169.0
+margin/right = 219.0
+margin/bottom = 200.0
+custom_fonts/font = ExtResource( 2 )
+placeholder/alpha = 0.6
+align = 1
+max_length = 2
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="Polygon2D" type="Polygon2D" parent="LineEdit6"]
+
+visibility/behind_parent = true
+polygon = Vector2Array( -3, 34, 73, 34, 73, -3, -3, -3 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Button" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 83.0
+margin/top = 243.0
+margin/right = 195.0
+margin/bottom = 270.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 1
+shortcut = null
+text = "Try!"
+flat = false
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 21.0
+margin/top = 14.0
+margin/right = 162.0
+margin/bottom = 35.0
+custom_fonts/font = ExtResource( 2 )
+text = "Probability: 0.0%"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Hints" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 25.0
+margin/top = 298.0
+margin/right = 65.0
+margin/bottom = 319.0
+custom_fonts/font = ExtResource( 2 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="text_changed" from="LineEdit1" to="." method="_on_LineEdit_text_changed" binds= [ 0 ]]
+
+[connection signal="text_changed" from="LineEdit2" to="." method="_on_LineEdit_text_changed" binds= [ 1 ]]
+
+[connection signal="text_changed" from="LineEdit3" to="." method="_on_LineEdit_text_changed" binds= [ 2 ]]
+
+[connection signal="text_changed" from="LineEdit4" to="." method="_on_LineEdit_text_changed" binds= [ 3 ]]
+
+[connection signal="text_changed" from="LineEdit5" to="." method="_on_LineEdit_text_changed" binds= [ 4 ]]
+
+[connection signal="text_changed" from="LineEdit6" to="." method="_on_LineEdit_text_changed" binds= [ 5 ]]
+
+[connection signal="pressed" from="Button" to="." method="_on_passwd_submit"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+
