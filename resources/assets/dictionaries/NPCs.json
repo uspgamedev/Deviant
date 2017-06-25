@@ -1,10 +1,14 @@
 {
-     "FirstChar" : {
-         "Image" : "res://resources/assets/images/bobCEO.tex",
+     "Rafael" : {
+         "Image" : "res://resources/assets/images/Rafael.tex",
          "Dialogue" : "dialogue1"
      },
-     "SecondChar" : {
-         "Image" : "res://resources/assets/images/bobHacker.tex",
+     "Hasin" : {
+         "Image" : "res://resources/assets/images/Hasin.tex",
+         "Dialogue" : "dialogue2"
+     },
+     "Yosif" : {
+         "Image" : "res://resources/assets/images/YosifR.tex",
          "Dialogue" : "dialogue2"
      }
 }

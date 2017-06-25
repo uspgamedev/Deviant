@@ -6,5 +6,17 @@
     "Door" : {
         "Image" : "res://resources/assets/images/Door.tex",
         "Function" : "changeScene"
+    },
+    "Door2" : {
+        "Image" : "res://resources/assets/images/Door2.tex",
+        "Function" : "changeScene"
+    },
+    "Computer" : {
+        "Image" : "res://resources/assets/images/Computer.tex",
+        "Function" : "runMinigame"
+    },
+    "CoffeeMachine" : {
+        "Image" : "res://resources/assets/images/CoffeeMachine.tex",
+        "Function" : "addToBag"
     }
 }

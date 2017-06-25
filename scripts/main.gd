@@ -11,7 +11,7 @@ var Box
 var Log
 var MGH
 var NPCs = [null, null]
-var Items = [null, null]
+var Items = [null, null, null]
 
 # Other global variables
 var blockClick = false
@@ -30,7 +30,8 @@ func _ready():
 	NPCs[1] = get_node("NPC1")
 	Items[0] = get_node("Item0")
 	Items[1] = get_node("Item1")
-	load_scene("TestRoom")
+	Items[2] = get_node("Item2")
+	load_scene("Workshop")
 	# print(get_node("Bag/ItemList").get_item_icon(0))
 
 # Recieves the name of a json file and returns it's corresponding
@@ -197,7 +198,9 @@ func run_item_func(name, foo, args, img):
 		load_scene(args[0])
 		dim.play_backwards("change_scene")
 	elif (foo == "addToBag"):
-		add_to_bag(name, img)
+		add_to_bag(name, img, args[0])
+	elif (foo == "runMinigame"):
+		_on_TestButton_pressed()
 	blockClick = false
 
 func change_scene(scene):
@@ -207,11 +210,15 @@ func change_scene(scene):
 	load_scene(scene)
 	dim.play_backwards("change_scene")
 	
-func add_to_bag(name, img):
+func add_to_bag(name, img, who):
 	var num = get_num(name)
-	Items[num].set_pos(Vector2(-100, -100))
-	get_node("Bag/ItemList").add_icon_item(img)
-	SCENES[roomName]["Items"].remove(num)
+	if who == "self":
+		Items[num].set_pos(Vector2(-100, -100))
+		get_node("Bag/ItemList").add_icon_item(img)
+		SCENES[roomName]["Items"].remove(num)
+	else:
+		var item = load(ITEMS[who]["Image"])
+		get_node("Bag/ItemList").add_icon_item(item)
 
 # Open/close bag
 func _bag_open():
@@ -226,6 +233,8 @@ func _bag_open():
 
 
 func _on_TestButton_pressed():
+	#if blockClick:
+	#	return
 	blockClick = true
 	var Time = get_node("Timer")
 	MGH.run_minigame("flowfree", null)

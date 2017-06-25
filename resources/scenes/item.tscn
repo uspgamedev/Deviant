@@ -5,7 +5,6 @@
 [node name="Item" type="Sprite"]
 
 centered = false
-region = true
 region_rect = Rect2( 0, 0, 192, 320 )
 script/script = ExtResource( 1 )
 
