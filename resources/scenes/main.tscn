@@ -1,13 +1,11 @@
-[gd_scene load_steps=17 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
-[ext_resource path="res://resources/scenes/item.tscn" type="PackedScene" id=2]
-[ext_resource path="res://resources/scenes/NPC.tscn" type="PackedScene" id=3]
-[ext_resource path="res://resources/scenes/dialogueBox.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/scenes/log.tscn" type="PackedScene" id=5]
-[ext_resource path="res://resources/assets/images/BagButton.tex" type="Texture" id=6]
-[ext_resource path="res://resources/assets/images/ConfigButton.tex" type="Texture" id=7]
-[ext_resource path="res://resources/scenes/MinigameHandler.tscn" type="PackedScene" id=8]
+[ext_resource path="res://resources/scenes/dialogueBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/scenes/log.tscn" type="PackedScene" id=3]
+[ext_resource path="res://resources/assets/images/BagButton.tex" type="Texture" id=4]
+[ext_resource path="res://resources/assets/images/ConfigButton.tex" type="Texture" id=5]
+[ext_resource path="res://resources/scenes/MinigameHandler.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 
@@ -78,29 +76,29 @@ tracks/1/keys = {
 
 [sub_resource type="AtlasTexture" id=5]
 
-atlas = ExtResource( 6 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 84, 84 )
 margin = Rect2( 0, 0, 0, 0 )
 
 [sub_resource type="AtlasTexture" id=6]
 
-atlas = ExtResource( 6 )
+atlas = ExtResource( 4 )
 region = Rect2( 84, 0, 84, 84 )
 margin = Rect2( 0, 0, 0, 0 )
 
 [sub_resource type="AtlasTexture" id=7]
 
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 84, 84 )
 margin = Rect2( 0, 0, 0, 0 )
 
 [sub_resource type="AtlasTexture" id=8]
 
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 84, 0, 84, 84 )
 margin = Rect2( 0, 0, 0, 0 )
 
-[node name="Panel" type="Control"]
+[node name="Main" type="Control"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -123,16 +121,6 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 stretch_mode = 0
-
-[node name="Item0" parent="." instance=ExtResource( 2 )]
-
-[node name="Item1" parent="." instance=ExtResource( 2 )]
-
-[node name="Item2" parent="." instance=ExtResource( 2 )]
-
-[node name="NPC0" parent="." instance=ExtResource( 3 )]
-
-[node name="NPC1" parent="." instance=ExtResource( 3 )]
 
 [node name="DarkLight" type="Polygon2D" parent="."]
 
@@ -166,6 +154,7 @@ autoplay = ""
 [node name="FaceView0" type="Sprite" parent="."]
 
 transform/pos = Vector2( -101, 74 )
+z/z = 2
 texture = SubResource( 3 )
 centered = false
 modulate = Color( 1, 1, 1, 0 )
@@ -183,14 +172,14 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="DialogueBox" parent="." instance=ExtResource( 4 )]
+[node name="DialogueBox" parent="." instance=ExtResource( 2 )]
 
 margin/left = 500.0
 margin/top = 200.0
-margin/right = 540.0
-margin/bottom = 240.0
+margin/right = 500.0
+margin/bottom = 200.0
 
-[node name="Log" parent="." instance=ExtResource( 5 )]
+[node name="Log" parent="." instance=ExtResource( 3 )]
 
 margin/top = 425.0
 margin/bottom = 465.0
@@ -253,7 +242,7 @@ stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
 
-[node name="MinigameHandler" parent="." instance=ExtResource( 8 )]
+[node name="MinigameHandler" parent="." instance=ExtResource( 6 )]
 
 margin/left = 239.0
 margin/top = 15.0

@@ -6,7 +6,7 @@
 
 centered = false
 region = true
-region_rect = Rect2( 0, 0, 192, 320 )
+region_rect = Rect2( 16, 48, 160, 240 )
 script/script = ExtResource( 1 )
 
 [node name="Button" type="TextureButton" parent="."]
@@ -24,6 +24,10 @@ enabled_focus_mode = 0
 shortcut = null
 params/resize_mode = 0
 params/stretch_mode = 0
+
+[connection signal="mouse_enter" from="Button" to="." method="_on_mouse_enter"]
+
+[connection signal="mouse_exit" from="Button" to="." method="_on_mouse_exit"]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 

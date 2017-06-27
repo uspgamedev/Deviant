@@ -2,32 +2,32 @@
     "TestRoom" : {
         "Background" : "res://resources/assets/images/TestRoom.tex",
         "Characters" : [
-            {"Name" : "Rafael", "Pos" : [200, 100]},
-            {"Name" : "Hasin", "Pos" : [600, 100]}
+            {"Name" : "Rafael", "Pos" : [200, 150]},
+            {"Name" : "Hasin", "Pos" : [600, 150]}
         ],
         "Items" : [
-            {"Name" : "Cola", "Pos" : [400, 100], "Args" : ["self"]},
+            {"Name" : "Cola", "Pos" : [400, 300], "Args" : ["self"]},
             {"Name" : "Door", "Pos" : [800, 100], "Args" : ["Outdoors"]}
         ]
     },
     "Outdoors" : {
         "Background" : "res://resources/assets/images/Outdoors.tex",
         "Characters" : [
-            {"Name" : "Rafael", "Pos" : [400, 100]}
+            {"Name" : "Rafael", "Pos" : [400, 150]}
         ],
         "Items" : [
             {"Name" : "Door", "Pos" : [600, 5], "Args" : ["TestRoom"]}
         ]
     },
-    "Workshop" : {
-        "Background" : "res://resources/assets/images/Workshop.tex",
+    "Workroom" : {
+        "Background" : "res://resources/assets/images/Workroom.tex",
         "Characters" : [
-            {"Name" : "Yosif", "Pos" : [350, 95]}
+            {"Name" : "Marcus", "Pos" : [320, 155]}
         ],
         "Items" : [
             {"Name" : "Door2", "Pos" : [170, 122], "Args" : ["TestRoom"]},
             {"Name" : "Computer", "Pos" : [555, 310], "Args" : []},
-            {"Name" : "CoffeeMachine", "Pos" : [455, -5], "Args" : ["Cola"]}
+            {"Name" : "CoffeeMachine", "Pos" : [455, -5], "Args" : ["CoffeeCup"]}
         ]
     }
 }

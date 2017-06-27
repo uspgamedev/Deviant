@@ -1,14 +1,14 @@
 {
     "1": {
         "function": "faceShow",
-        "char": "FirstChar",
+        "char": "Rafael",
         "pos": 0
     },
     "2": {
         "function": "dialogueShow",
         "pos": 0,
         "text": ["Hi, my name",
-                "is Dr.Harberwood"]
+                "is Rafael"]
     },
     "3": {
         "function": "say",
@@ -33,7 +33,7 @@
     },
     "7": {
         "function": "faceHide",
-        "char": "FirstChar",
+        "char": "Rafael",
         "pos": 0
     },
     "8": {
@@ -46,7 +46,7 @@
     },
     "10": {
         "function": "faceHide",
-        "char": "FirstChar",
+        "char": "Rafael",
         "pos": 0
     },
     "11": {

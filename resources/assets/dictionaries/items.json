@@ -1,22 +1,32 @@
 {
     "Cola" : {
+        "Nickname" : "Lata de refrigerante",
         "Image" : "res://resources/assets/images/ColaCan.tex",
         "Function" : "addToBag"
     },
     "Door" : {
+        "Nickname" : "Porta",
         "Image" : "res://resources/assets/images/Door.tex",
         "Function" : "changeScene"
     },
     "Door2" : {
+        "Nickname" : "Porta",
         "Image" : "res://resources/assets/images/Door2.tex",
         "Function" : "changeScene"
     },
     "Computer" : {
+        "Nickname" : "Computador",
         "Image" : "res://resources/assets/images/Computer.tex",
         "Function" : "runMinigame"
     },
     "CoffeeMachine" : {
+        "Nickname" : "Máquina de café",
         "Image" : "res://resources/assets/images/CoffeeMachine.tex",
         "Function" : "addToBag"
+    },
+    "CoffeeCup" : {
+        "Nickname" : "Copo de café",
+        "Image" : "res://resources/assets/images/CoffeeCup.tex",
+        "Function" : ""
     }
 }

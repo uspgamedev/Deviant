@@ -17,10 +17,17 @@ func set_info(dic):
 		dialogue = null
 	else:
 		set_texture(load(dic["Image"]))
-		get_node("Button").set_size(Vector2(192, 320))
+		get_node("Button").set_size(Vector2(160, 240))
 		name = dic["Name"]
 		dialogue = dic["Dialogue"]
 
 func get_name():
 	return name
 	
+func _on_mouse_enter():
+	if not get_parent().is_block():
+		get_parent().get_node("Log").show_text(name)
+
+func _on_mouse_exit():
+	if not get_parent().is_block():
+		get_parent().get_node("Log").show_text("")

@@ -3,6 +3,7 @@ extends Sprite
 var name
 var function
 var args
+var nick
 
 func _ready():
 	pass
@@ -17,6 +18,7 @@ func set_info(dic):
 		name = null
 		function = null
 		args = null
+		nick = null
 	else:
 		var img = load(dic["Image"])
 		set_texture(img)
@@ -24,6 +26,15 @@ func set_info(dic):
 		name = dic["Name"]
 		function = dic["Function"]
 		args = dic["Args"]
+		nick = dic["Nickname"]
 
 func get_name():
 	return name
+	
+func _on_mouse_enter():
+	if not get_parent().is_block():
+		get_parent().get_node("Log").show_text(nick)
+
+func _on_mouse_exit():
+	if not get_parent().is_block():
+		get_parent().get_node("Log").show_text("")

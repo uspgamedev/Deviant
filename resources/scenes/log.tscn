@@ -45,7 +45,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Button0" type="TextureButton" parent="."]
+[node name="Button0" type="Button" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -58,8 +58,7 @@ margin/bottom = 155.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-params/resize_mode = 0
-params/stretch_mode = 0
+flat = false
 
 [node name="Label" type="Label" parent="Button0"]
 
@@ -77,7 +76,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Button1" type="TextureButton" parent="."]
+[node name="Button1" type="Button" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -90,8 +89,7 @@ margin/bottom = 155.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-params/resize_mode = 0
-params/stretch_mode = 0
+flat = false
 
 [node name="Label" type="Label" parent="Button1"]
 
@@ -109,7 +107,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Button2" type="TextureButton" parent="."]
+[node name="Button2" type="Button" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -122,8 +120,7 @@ margin/bottom = 155.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-params/resize_mode = 0
-params/stretch_mode = 0
+flat = false
 
 [node name="Label" type="Label" parent="Button2"]
 

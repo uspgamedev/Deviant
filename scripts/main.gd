@@ -1,6 +1,9 @@
 
 extends Control
 
+const NPC = preload("res://resources/scenes/NPC.tscn")
+const Item = preload("res://resources/scenes/item.tscn")
+
 # Json objects
 var NPCS
 var SCENES
@@ -10,8 +13,8 @@ var ITEMS
 var Box
 var Log
 var MGH
-var NPCs = [null, null]
-var Items = [null, null, null]
+var NPCs = []
+var Items = []
 
 # Other global variables
 var blockClick = false
@@ -26,12 +29,7 @@ func _ready():
 	Box = get_node("DialogueBox")
 	Log = get_node("Log")
 	MGH = get_node("MinigameHandler")
-	NPCs[0] = get_node("NPC0")
-	NPCs[1] = get_node("NPC1")
-	Items[0] = get_node("Item0")
-	Items[1] = get_node("Item1")
-	Items[2] = get_node("Item2")
-	load_scene("Workshop")
+	load_scene("Workroom")
 	# print(get_node("Bag/ItemList").get_item_icon(0))
 
 # Recieves the name of a json file and returns it's corresponding
@@ -53,11 +51,17 @@ func load_scene(name):
 	get_node("Background").set_texture(load(room["Background"]))
 	clear_room()
 	for i in range(room["Characters"].size()):
+		NPCs.append(NPC.instance())
 		NPCs[i].set_info(get_NPC(i))
 		NPCs[i].set_pos(get_pos("Characters", i))
+		add_child(NPCs[i])
+		move_child(NPCs[i], 1)
 	for i in range(room["Items"].size()):
+		Items.append(Item.instance())
 		Items[i].set_info(get_item(i))
 		Items[i].set_pos(get_pos("Items", i))
+		add_child(Items[i])
+		move_child(Items[i], 1)
 
 # Recieves the position "num" of the NPC at the scene's "Characters"
 # list and returns it's "key" field
@@ -80,6 +84,7 @@ func get_item(num, key="All"):
 	ret["Args"] = room["Items"][num]["Args"]
 	ret["Image"] = ITEMS[name]["Image"]
 	ret["Function"] = ITEMS[name]["Function"]
+	ret["Nickname"] = ITEMS[name]["Nickname"]
 	if key == "All":
 		return ret
 	return ret[key]
@@ -89,22 +94,27 @@ func get_item(num, key="All"):
 func get_pos(group, num):
 	var vec = room[group][num]["Pos"]
 	return Vector2(vec[0], vec[1])
-	
+
+# Returns the number of the object named "name" at the room's list
 func get_num(name):
-	for i in range(room["Characters"].size()):
-		if room["Characters"][i]["Name"] == name:
+	for i in range(NPCs.size()):
+		#print(room["Characters"][i]["Name"] + " == " + name)
+		if NPCs[i].get_name() == name:
 			return i
-	for i in range(room["Items"].size()):
-		if room["Items"][i]["Name"] == name:
+	for i in range(Items.size()):
+		#print(room["Items"][i]["Name"] + " == " + name)
+		if Items[i].get_name() == name:
 			return i
 	return null
 
 # Clear all the sprites of the room
 func clear_room():
-	for i in range(2):
-		NPCs[i].set_info(null)
-	for i in range(2):
-		Items[i].set_info(null)
+	for i in range(NPCs.size()):
+		NPCs[i].queue_free()
+	for i in range(Items.size()):
+		Items[i].queue_free()
+	NPCs = []
+	Items = []
 
 # Interprets the dialogue json with name "name" and executes it's
 # functions
@@ -118,6 +128,7 @@ func run_dialogue(name):
 	if bagOpen:
 		_bag_open()
 	blockClick = true
+	Log.clear_text()
 	while true:
 		cmd = dial[ctr]
 		foo = cmd["function"]
@@ -126,10 +137,8 @@ func run_dialogue(name):
 			# screen position "pos"
 			var char = cmd["char"]
 			var pos = cmd["pos"]
-			var num = 0
+			var num = get_num(char)
 			var view = "FaceView"+str(pos)
-			if NPCs[1].get_name() == char:
-				num = 1
 			get_node(view).set_texture(NPCs[num].get_texture())
 			get_node(view+"/appear").play("face_appear")
 			NPCs[num].set_opacity(0)
@@ -142,10 +151,8 @@ func run_dialogue(name):
 			# screen position "pos"
 			var char = cmd["char"]
 			var pos = cmd["pos"]
-			var num = 0
+			var num = get_num(char)
 			var view = "FaceView"+str(pos)
-			if NPCs[1].get_name() == char:
-				num = 1
 			get_node(view+"/appear").play_backwards("face_appear")
 			NPCs[num].set_opacity(1)
 			if pos == 0:
@@ -198,21 +205,26 @@ func run_item_func(name, foo, args, img):
 		load_scene(args[0])
 		dim.play_backwards("change_scene")
 	elif (foo == "addToBag"):
-		add_to_bag(name, img, args[0])
+		add_to_bag(name, args[0])
 	elif (foo == "runMinigame"):
+		#get_tree().change_scene("res://resources/scenes/minigames/flowfree/flowfreeCanvas.xscn")
 		_on_TestButton_pressed()
 	blockClick = false
 
+# Dims screen and change scene to "scene"
 func change_scene(scene):
 	var dim = get_node("DarkLight/dim")
 	dim.play("change_scene")
 	yield(dim, "finished")
 	load_scene(scene)
 	dim.play_backwards("change_scene")
-	
-func add_to_bag(name, img, who):
-	var num = get_num(name)
+
+# If "who" == "self", add item "name" to the bag and remove item from
+# the room, else add "who" to the bag and remove nothing from the room
+func add_to_bag(name, who):
 	if who == "self":
+		var num = get_num(name)
+		var img = Items[num].get_texture()
 		Items[num].set_pos(Vector2(-100, -100))
 		get_node("Bag/ItemList").add_icon_item(img)
 		SCENES[roomName]["Items"].remove(num)
@@ -231,7 +243,10 @@ func _bag_open():
 		get_node("Bag/ItemList").set_pos(Vector2(0, -425))
 		bagOpen = true
 
+func is_block():
+	return blockClick
 
+# Test
 func _on_TestButton_pressed():
 	#if blockClick:
 	#	return

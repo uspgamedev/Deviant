@@ -7,8 +7,8 @@
          "Image" : "res://resources/assets/images/Hasin.tex",
          "Dialogue" : "dialogue2"
      },
-     "Yosif" : {
-         "Image" : "res://resources/assets/images/YosifR.tex",
-         "Dialogue" : "dialogue2"
+     "Marcus" : {
+         "Image" : "res://resources/assets/images/Marcus.tex",
+         "Dialogue" : "dialogue3"
      }
 }
