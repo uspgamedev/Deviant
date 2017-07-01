@@ -27,7 +27,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 940.0
+margin/right = 1024.0
 margin/bottom = 175.0
 
 [node name="Label" type="Label" parent="."]

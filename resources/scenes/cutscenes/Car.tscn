@@ -1,6 +1,12 @@
-[gd_scene format=1]
+[gd_scene load_steps=6 format=1]
 
-[node name="Control" type="Control"]
+[ext_resource path="res://scripts/cutscenes/Car.gd" type="Script" id=1]
+[ext_resource path="res://resources/scenes/road.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/assets/images/InsideCar.tex" type="Texture" id=3]
+[ext_resource path="res://resources/assets/images/CarWheel.tex" type="Texture" id=4]
+[ext_resource path="res://resources/assets/images/CarRadio.tex" type="Texture" id=5]
+
+[node name="Car" type="Control"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -10,5 +16,100 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
+script/script = ExtResource( 1 )
+
+[node name="R3" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1024.0
+margin/bottom = 400.0
+
+[node name="Viewport" type="Viewport" parent="R3"]
+
+rect = Rect2( 0, 0, 1024, 400 )
+own_world = false
+world = null
+transparent_bg = false
+render_target/enabled = false
+render_target/v_flip = false
+render_target/clear_on_new_frame = true
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 2
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = false
+gui/disable_input = false
+
+[node name="StreetView" parent="R3/Viewport" instance=ExtResource( 2 )]
+
+[node name="Panel" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1024.0
+margin/bottom = 425.0
+texture = ExtResource( 3 )
+stretch_mode = 0
+
+[node name="Wheel" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 468.783, 363.269 )
+texture = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="Wheel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -160.0
+margin/top = -157.0
+margin/right = 160.0
+margin/bottom = 163.0
+
+[node name="Radio" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 763.0
+margin/top = 356.0
+margin/right = 907.0
+margin/bottom = 404.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 5 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 10.0
+one_shot = false
+autostart = true
+
+[connection signal="mouse_enter" from="Wheel/Control" to="." method="_on_Wheel_mouse_enter"]
+
+[connection signal="mouse_exit" from="Wheel/Control" to="." method="_on_mouse_exit"]
+
+[connection signal="mouse_enter" from="Radio" to="." method="_on_Radio_mouse_enter"]
+
+[connection signal="mouse_exit" from="Radio" to="." method="_on_mouse_exit"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

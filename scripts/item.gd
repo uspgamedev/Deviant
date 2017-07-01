@@ -37,4 +37,4 @@ func _on_mouse_enter():
 
 func _on_mouse_exit():
 	if not get_parent().is_block():
-		get_parent().get_node("Log").show_text("")
+		get_parent().get_node("Log").clear_text()

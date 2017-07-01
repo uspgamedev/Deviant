@@ -8,6 +8,7 @@ const Item = preload("res://resources/scenes/item.tscn")
 var NPCS
 var SCENES
 var ITEMS
+var SPECIALS
 
 # Shortcuts for nodes
 var Box
@@ -15,6 +16,7 @@ var Log
 var MGH
 var NPCs = []
 var Items = []
+var Specials = []
 
 # Other global variables
 var blockClick = false
@@ -26,10 +28,11 @@ func _ready():
 	SCENES = parse_json("dictionaries/scenes")
 	NPCS = parse_json("dictionaries/NPCs")
 	ITEMS = parse_json("dictionaries/items")
+	SPECIALS = parse_json("dictionaries/specials")
 	Box = get_node("DialogueBox")
 	Log = get_node("Log")
 	MGH = get_node("MinigameHandler")
-	load_scene("Workroom")
+	load_scene("Car")
 	# print(get_node("Bag/ItemList").get_item_icon(0))
 
 # Recieves the name of a json file and returns it's corresponding
@@ -49,6 +52,7 @@ func load_scene(name):
 	room = SCENES[name]
 	roomName = name
 	get_node("Background").set_texture(load(room["Background"]))
+	Log.clear_text()
 	clear_room()
 	for i in range(room["Characters"].size()):
 		NPCs.append(NPC.instance())
@@ -62,9 +66,16 @@ func load_scene(name):
 		Items[i].set_pos(get_pos("Items", i))
 		add_child(Items[i])
 		move_child(Items[i], 1)
+	for i in range(room["Specials"].size()):
+		var ins = get_special(i)
+		Specials.append(ins.instance())
+		Specials[i].set_pos(get_pos("Specials", i))
+		add_child(Specials[i])
+		move_child(Specials[i], 1)
 
-# Recieves the position "num" of the NPC at the scene's "Characters"
-# list and returns it's "key" field
+# Recieves a position "num" of the NPC at the scene's "Characters"
+# list and returns it's "key" field. If key == "All", returns a dictionary
+# with all keys
 func get_NPC(num, key="All"):
 	var name = room["Characters"][num]["Name"]
 	var ret = {}
@@ -75,8 +86,9 @@ func get_NPC(num, key="All"):
 		return ret
 	return ret[key]
 	
-# Recieves the position "num" of the item at the scene's "Items"
-# list and returns it's "key" field
+# Recieves a position "num" of the item at the scene's "Items"
+# list and returns it's "key" field. If key == "All", returns a dictionary
+# with all keys
 func get_item(num, key="All"):
 	var ret = {}
 	var name = room["Items"][num]["Name"]
@@ -88,6 +100,12 @@ func get_item(num, key="All"):
 	if key == "All":
 		return ret
 	return ret[key]
+
+# Recieves a position "num" at the scene's "Specials"
+# list and returns it's correspondent scene
+func get_special(num):
+	var name = room["Specials"][num]["Name"]
+	return load(SPECIALS[name])
 
 # Recieves a scene "group" (can be "Items" or "Characters") and
 # returns the "pos" value of the element number "num" in the group list
@@ -105,6 +123,9 @@ func get_num(name):
 		#print(room["Items"][i]["Name"] + " == " + name)
 		if Items[i].get_name() == name:
 			return i
+	for i in range(Specials.size()):
+		if Specials[i].get_name() == name:
+			return i
 	return null
 
 # Clear all the sprites of the room
@@ -113,8 +134,11 @@ func clear_room():
 		NPCs[i].queue_free()
 	for i in range(Items.size()):
 		Items[i].queue_free()
+	for i in range(Specials.size()):
+		Specials[i].queue_free()
 	NPCs = []
 	Items = []
+	Specials = []
 
 # Interprets the dialogue json with name "name" and executes it's
 # functions

@@ -7,8 +7,10 @@
         ],
         "Items" : [
             {"Name" : "Cola", "Pos" : [400, 300], "Args" : ["self"]},
-            {"Name" : "Door", "Pos" : [800, 100], "Args" : ["Outdoors"]}
-        ]
+            {"Name" : "Door2", "Pos" : [800, 100], "Args" : ["Outdoors"]},
+            {"Name" : "Door2", "Pos" : [100, 50], "Args" : ["Workroom"]}
+        ],
+        "Specials" : []
     },
     "Outdoors" : {
         "Background" : "res://resources/assets/images/Outdoors.tex",
@@ -17,7 +19,8 @@
         ],
         "Items" : [
             {"Name" : "Door", "Pos" : [600, 5], "Args" : ["TestRoom"]}
-        ]
+        ],
+        "Specials" : []
     },
     "Workroom" : {
         "Background" : "res://resources/assets/images/Workroom.tex",
@@ -28,6 +31,21 @@
             {"Name" : "Door2", "Pos" : [170, 122], "Args" : ["TestRoom"]},
             {"Name" : "Computer", "Pos" : [555, 310], "Args" : []},
             {"Name" : "CoffeeMachine", "Pos" : [455, -5], "Args" : ["CoffeeCup"]}
+        ],
+        "Specials" : []
+    },
+    "Car" : {
+        "Background" : "",
+        "Characters" : [],
+        "Items" : [],
+        "Specials" : [
+            {"Name" : "Car", "Pos" : [0, 0]}
         ]
+    },
+    "ConfRoom" : {
+        "Background" : "",
+        "Characters" : [],
+        "Items" : [],
+        "Specials" : []
     }
 }

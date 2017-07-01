@@ -11,8 +11,8 @@
     },
     "3": {
         "function": "choose",
-        "text": "Choose an answer:",
-        "opts": ["Bom dia!", "--", ""],
+        "text": "Escolha uma resposta:",
+        "opts": ["Bom dia!", "...", ""],
         "goto": ["5", "4", ""]
     },
     "4": {
