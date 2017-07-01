@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://scripts/road.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://resources/assets/Building/Building.scn" type="PackedScene" id=3]
-[ext_resource path="res://resources/assets/images/Building.tex" type="Texture" id=4]
-[ext_resource path="res://resources/assets/images/Road_test.tex" type="Texture" id=5]
+[ext_resource path="res://resources/assets/images/Building.tex" type="Texture" id=3]
+[ext_resource path="res://resources/assets/images/Road_test.tex" type="Texture" id=4]
 
 [node name="StreetView" type="Spatial"]
 
@@ -62,11 +61,6 @@ environment = null
 h_offset = 0.0
 v_offset = 0.0
 
-[node name="Building3D" parent="." instance=ExtResource( 3 )]
-
-transform/local = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 5, 0, -4.2 )
-visibility/visible = false
-
 [node name="Building2D" type="Sprite3D" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
@@ -97,7 +91,7 @@ axis = 0
 flags/transparent = true
 flags/shaded = false
 flags/alpha_cut = 0
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 vframes = 1
 hframes = 1
 frame = 0
@@ -134,7 +128,7 @@ axis = 1
 flags/transparent = true
 flags/shaded = false
 flags/alpha_cut = 0
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 vframes = 1
 hframes = 1
 frame = 0

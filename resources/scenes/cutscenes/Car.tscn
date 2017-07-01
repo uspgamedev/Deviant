@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://scripts/cutscenes/Car.gd" type="Script" id=1]
-[ext_resource path="res://resources/scenes/road.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/scenes/cutscenes/road.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/assets/images/InsideCar.tex" type="Texture" id=3]
 [ext_resource path="res://resources/assets/images/CarWheel.tex" type="Texture" id=4]
 [ext_resource path="res://resources/assets/images/CarRadio.tex" type="Texture" id=5]
