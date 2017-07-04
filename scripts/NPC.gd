@@ -5,9 +5,6 @@ var name
 
 func _ready():
 	pass
-	
-func _on_Button_pressed():
-	get_parent().run_dialogue(dialogue)
 
 func set_info(dic):
 	if dic == null:
@@ -23,6 +20,9 @@ func set_info(dic):
 
 func get_name():
 	return name
+	
+func _on_Button_pressed():
+	get_parent().run_dialogue(dialogue)
 	
 func _on_mouse_enter():
 	if not get_parent().is_block():

@@ -1,8 +1,10 @@
 
-extends Control
+extends YSort
 
 const NPC = preload("res://resources/scenes/NPC.tscn")
 const Item = preload("res://resources/scenes/item.tscn")
+
+const actList = ["ATO 1: UMA NOVA MISSÃO"]
 
 # Json objects
 var NPCS
@@ -23,6 +25,7 @@ var blockClick = false
 var bagOpen = false
 var roomName = null
 var room
+var act = 0
 
 func _ready():
 	SCENES = parse_json("dictionaries/scenes")
@@ -32,6 +35,7 @@ func _ready():
 	Box = get_node("DialogueBox")
 	Log = get_node("Log")
 	MGH = get_node("MinigameHandler")
+	change_act(1)
 	load_scene("Car")
 	# print(get_node("Bag/ItemList").get_item_icon(0))
 
@@ -59,19 +63,16 @@ func load_scene(name):
 		NPCs[i].set_info(get_NPC(i))
 		NPCs[i].set_pos(get_pos("Characters", i))
 		add_child(NPCs[i])
-		move_child(NPCs[i], 1)
 	for i in range(room["Items"].size()):
 		Items.append(Item.instance())
 		Items[i].set_info(get_item(i))
 		Items[i].set_pos(get_pos("Items", i))
 		add_child(Items[i])
-		move_child(Items[i], 1)
 	for i in range(room["Specials"].size()):
 		var ins = get_special(i)
 		Specials.append(ins.instance())
 		Specials[i].set_pos(get_pos("Specials", i))
 		add_child(Specials[i])
-		move_child(Specials[i], 1)
 
 # Recieves a position "num" of the NPC at the scene's "Characters"
 # list and returns it's "key" field. If key == "All", returns a dictionary
@@ -223,11 +224,17 @@ func run_item_func(name, foo, args, img):
 		return
 	blockClick = true
 	if (foo == "changeScene"):
-		var dim = get_node("DarkLight/dim")
-		dim.play("change_scene")
-		yield(dim, "finished")
-		load_scene(args[0])
-		dim.play_backwards("change_scene")
+		if args[0] == "":
+			var Time = get_node("Timer")
+			Log.show_text("O seu personagem se recusa a mudar de sala!")
+			Time.start()
+			yield(Time, "timeout")
+		else:
+			var dim = get_node("DarkLight/dim")
+			dim.play("change_scene")
+			yield(dim, "finished")
+			load_scene(args[0])
+			dim.play_backwards("change_scene")
 	elif (foo == "addToBag"):
 		add_to_bag(name, args[0])
 	elif (foo == "runMinigame"):
@@ -259,6 +266,7 @@ func add_to_bag(name, who):
 # Open/close bag
 func _bag_open():
 	if blockClick:
+		print("Hey")
 		return
 	if bagOpen:
 		get_node("Bag/ItemList").set_pos(Vector2(84, -425))
@@ -269,6 +277,20 @@ func _bag_open():
 
 func is_block():
 	return blockClick
+
+func change_act(a):
+	var dim = get_node("DarkLight/dim")
+	get_node("DarkLight/Act").set_text(actList[a-1])
+	dim.play("change_act")
+	yield(dim, "finished")
+	if a == 1:
+		var anim = dim.get_animation("change_act")
+		anim.add_track(0, 2)
+		anim.track_set_path(2, ".:color")
+		anim.track_insert_key(2, 0, Color(0, 0, 0, 0))
+		anim.track_insert_key(2, 0.5, Color(0, 0, 0, 1))
+		dim.add_animation("change_act", anim)
+	dim.play_backwards("change_act")
 
 # Test
 func _on_TestButton_pressed():

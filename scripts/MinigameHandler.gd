@@ -1,7 +1,7 @@
 extends Control
 
-const FF = preload("res://resources/scenes/minigames/flowfree/flowfreeCanvas.xscn")
-const PB = preload("res://resources/scenes/minigames/flowfree/passBreaker.tscn")
+const FF = preload("res://resources/scenes/minigames/hack/flowfreeCanvas.tscn")
+const PB = preload("res://resources/scenes/minigames/hack/passBreaker.tscn")
 
 var running = null
 var ins = null

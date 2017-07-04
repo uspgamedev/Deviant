@@ -7,9 +7,6 @@ var nick
 
 func _ready():
 	pass
-	
-func _on_Button_pressed():
-	get_parent().run_item_func(name, function, args, get_texture())
 
 func set_info(dic):
 	if dic == null:
@@ -31,6 +28,9 @@ func set_info(dic):
 func get_name():
 	return name
 	
+func _on_Button_pressed():
+	get_parent().run_item_func(name, function, args, get_texture())
+
 func _on_mouse_enter():
 	if not get_parent().is_block():
 		get_parent().get_node("Log").show_text(nick)

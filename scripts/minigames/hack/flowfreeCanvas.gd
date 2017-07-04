@@ -1,8 +1,8 @@
 
 extends Control
 
-const Tile = preload("res://resources/scenes/minigames/flowfree/tile.xscn")
-const Core = preload("res://resources/scenes/minigames/flowfree/core.xscn")
+const Tile = preload("res://resources/scenes/minigames/hack/tile.tscn")
+const Core = preload("res://resources/scenes/minigames/hack/core.tscn")
 
 const tile_side = 60
 const recoil = 10
@@ -13,6 +13,8 @@ const DarkCyan = Color(0, 0.5, 0.5)
 const Yellow = Color(1, 1, 0)
 const White = Color(1, 1, 1)
 const Red = Color(1, 0, 0)
+const Gray = Color(0.5, 0.5, 0.5)
+const Black = Color(0, 0, 0)
 
 signal ended
 
@@ -176,9 +178,13 @@ func is_the_next(i, j, colorNo):
 func _draw():
 	for i in range(activeTiles.size()):
 		var vect = activeTiles[i].vect
+		var to = null
 		for j in range(1, vect.size()):
 			var first = vect[j-1]
 			var second = vect[j]
 			var from = Vector2((first.x+0.5)*(tile_side+5)+recoil, (first.y+0.5)*(tile_side+5)+recoil)
-			var to = Vector2((second.x+0.5)*(tile_side+5)+recoil, (second.y+0.5)*(tile_side+5)+recoil)
-			draw_line(from, to, decode(i), 10)
+			to = Vector2((second.x+0.5)*(tile_side+5)+recoil, (second.y+0.5)*(tile_side+5)+recoil)
+			draw_line(from, to, Black, 10)
+			draw_circle(from, 4, Black)
+		if to != null:
+			draw_circle(to, 4, Black)

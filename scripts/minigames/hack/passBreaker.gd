@@ -23,6 +23,7 @@ var tries = 0
 var wasPressed = false
 var phase = 0
 var passwd = ""
+var victory = false
 
 signal ended
 
@@ -42,7 +43,7 @@ func _ready():
 			n += 1
 		else:
 			c += 1
-	Hints.set_text("Vogals: " + str(v) + "\nConsoants: " + str(c) + "\nNumbers: " + str(n))
+	Hints.set_text("V: " + str(v) + "       C: " + str(c) + "       N: " + str(n))
 	for i in range(1, 7):
 		fields.append(get_node("LineEdit"+str(i)))
 	init(1)
@@ -59,7 +60,7 @@ func _fixed_process(delta):
 		wasPressed = false
 	if phase == 1:
 		Log.set_text(str(int(Time.get_time_left())))
-				
+
 func same_group(char1, char2):
 	if (char1 in cons) and (char2 in cons):
 		return true
@@ -88,17 +89,21 @@ func _on_passwd_submit():
 		var rand = randf()
 		if rand < prob:
 			print(rand)
-			Log.set_text("Busted!!")
+			Log.set_text("")
+			get_parent().log_append(" -- Você foi descoberto!!")
 			rand = get_chi_squared_rand()
 			Time.set_wait_time(30-rand-diff)
+			get_parent().log_append(" -- Você tem " + str(int(30-rand-diff)) + "s")
+			get_parent().log_append("até que fechem a conexão!!")
 			Time.start()
 			phase = 1
 		else:
-			Log.set_text("Probability: " + str(int(prob*100)) + "%")
+			Log.set_text("Probabilidade: " + str(int(prob*100)) + "%")
 		print(rand)
 	if check_win():
 		phase = -1
-		Log.set_text("Congratzz!!!")
+		Log.set_text("")
+		get_parent().log_append(" -- Você conseguiu :)")
 		Time.stop()
 		emit_signal("ended")
 
@@ -116,6 +121,7 @@ func _on_Timer_timeout():
 		fields[i].set_editable(false)
 	Time.stop()
 	Log.set_text("Game Over")
+	get_parent().log_append(" -- Você não conseguiu :(")
 	print(passwd)
 	emit_signal("ended")
 
@@ -128,4 +134,5 @@ func check_win():
 	for i in range(6):
 		if fields[i].get_text() != passwd[i]:
 			return false
+	victory = true
 	return true

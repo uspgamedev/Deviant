@@ -28,9 +28,9 @@
             {"Name" : "Marcus", "Pos" : [320, 155]}
         ],
         "Items" : [
-            {"Name" : "Door2", "Pos" : [170, 122], "Args" : ["TestRoom"]},
-            {"Name" : "Computer", "Pos" : [555, 310], "Args" : []},
-            {"Name" : "CoffeeMachine", "Pos" : [455, -5], "Args" : ["CoffeeCup"]}
+            {"Name" : "Door2", "Pos" : [170, 122], "Args" : [""]},
+            {"Name" : "Computer", "Pos" : [565, 300], "Args" : ["Computer"]},
+            {"Name" : "CoffeeMachine", "Pos" : [520, -5], "Args" : ["CoffeeCup"]}
         ],
         "Specials" : []
     },
@@ -42,10 +42,22 @@
             {"Name" : "Car", "Pos" : [0, 0]}
         ]
     },
-    "ConfRoom" : {
-        "Background" : "",
+    "MeetingRoom" : {
+        "Background" : "res://resources/assets/images/MeetingRoom.tex",
+        "Characters" : [
+            {"Name" : "Rafael", "Pos" : [600, 130]}
+        ],
+        "Items" : [
+            {"Name" : "MeetingTable", "Pos" : [100, 270], "Args" : []}
+        ],
+        "Specials" : []
+    },
+    "Computer" : {
+        "Background" : "res://resources/assets/images/Monitor.tex",
         "Characters" : [],
         "Items" : [],
-        "Specials" : []
+        "Specials" : [
+            {"Name" : "Hack", "Pos" : [150, 40]}
+        ]
     }
 }

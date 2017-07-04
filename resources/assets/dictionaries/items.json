@@ -17,7 +17,7 @@
     "Computer" : {
         "Nickname" : "Computador",
         "Image" : "res://resources/assets/images/Computer.tex",
-        "Function" : "runMinigame"
+        "Function" : "changeScene"
     },
     "CoffeeMachine" : {
         "Nickname" : "Máquina de café",
@@ -27,6 +27,11 @@
     "CoffeeCup" : {
         "Nickname" : "Copo de café",
         "Image" : "res://resources/assets/images/CoffeeCup.tex",
+        "Function" : ""
+    },
+    "MeetingTable" : {
+        "Nickname" : "",
+        "Image" : "res://resources/assets/images/MeetingTable.tex",
         "Function" : ""
     }
 }

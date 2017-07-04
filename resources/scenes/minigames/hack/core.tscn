@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://scripts/minigames/hack/core.gd" type="Script" id=1]
+
+[node name="Core" type="Control"]
+
+visibility/behind_parent = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -30.0
+margin/top = -30.0
+margin/right = 30.0
+margin/bottom = 30.0
+script/script = ExtResource( 1 )
+
+[node name="Pipe" type="Polygon2D" parent="."]
+
+visibility/behind_parent = true
+transform/pos = Vector2( 30, 30 )
+polygon = Vector2Array( -30, -30, 30, -30, 30, 30, -30, 30 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+
