@@ -28,87 +28,116 @@
     "3" : {
         "func" : "choose",
         "text" : "Quer perguntar alguma coisa?",
-        "opts" : ["Alguma coisa", "Nada", ""],
-        "goto" : ["4", "4", ""]
+        "opts" : ["Sobre o novo integrante", "O serviço não pode ser prestado remotamente?", "Nada"],
+        "goto" : ["4", "7", "9"]
     },
     "4" : {
+        "func" : "say",
+        "text" : ["Chefe, acho que você se esqueceu do novo integrante da equipe...",
+                  "Ninguém novo entra na empresa e já vai para missões externas..."]
+    },
+    "5" : {
+        "func" : "dialogueShow",
+        "pos" : 0,
+        "text" : ["Ah...certo...eu já ia me esquecendo.",
+                  "Este é Hasin, ele acabou de ser contratado mas é extremamente qualificado"]
+    },
+    "6" : {
+        "func" : "jump",
+        "to" : "9"
+    },
+    "7" : {
+        "func" : "say",
+        "text" : ["É realmente necessário uma investigação na sede? O serviço não pode ser prestado remotamente?"]
+    },
+    "8" : {
+        "func" : "dialogueShow",
+        "pos" : 0,
+        "text" : ["Não, o CEO da Gate Tech entrou pessoalmente em contato comigo",
+                  "Ele acredita que ótimos profissionais estão por trás de tudo isso,",
+                  "e que há hackers infiltrados na sede da Gate Tech, logo eles podem",
+                  "bloquear qualquer suporte externo",
+                  "Isso também não ajuda a descobrir quem está fazendo isso"]
+    },
+    "9" : {
         "func" : "faceHide",
         "char" : "Rafael",
         "pos" : 0
     },
-    "5" : {
+    "10" : {
         "func" : "special",
         "targ" : "Slide"
     },
-    "6" : {
+    "11" : {
         "func" : "say",
         "text" : ["Rafael: Nosso cliente é a Gate Tech, que atualmente é o maior grupo de mídia do mundo"]
     },
-    "7" : {
+    "12" : {
         "func" : "special",
         "targ" : "Slide"
     },
-    "8" : {
+    "13" : {
         "func" : "say",
         "text" : ["Rafael: Essa é a sede da Gate Tech. Trabalham na sede todos os executivos e diretores que decidem o futuro da corporação e de todas as empresas do grupo"]
     },
-    "9" : {
+    "14" : {
         "func" : "special",
         "targ" : "Slide"
     },
-    "10" : {
+    "15" : {
         "func" : "say",
         "text" : ["Rafael: A Gate Tech possui um provedor de internet"]
     },
-    "11" : {
+    "16" : {
         "func" : "special",
         "targ" : "Slide"
     },
-    "12" : {
+    "17" : {
         "func" : "say",
         "text" : ["Rafael: TV por assinatura"]
     },
-    "13" : {
+    "18" : {
         "func" : "special",
         "targ" : "Slide"
     },
-    "14" : {
+    "19" : {
         "func" : "say",
         "text" : ["Rafael: Operadora telefônica"]
     },
-    "15" : {
+    "20" : {
         "func" : "special",
         "targ" : "Slide"
     },
-    "16" : {
+    "21" : {
         "func" : "say",
         "text" : ["Rafael: Um grande programa de venture capital"]
     },
-    "17" : {
+    "22" : {
         "func" : "special",
         "targ" : "Slide"
     },
-    "18" : {
+    "23" : {
         "func" : "say",
         "text" : ["Rafael: Um canal de TV"]
     },
-    "19" : {
+    "24" : {
         "func" : "special",
         "targ" : "Slide"
     },
-    "20" : {
+    "25" : {
         "func" : "say",
         "text" : ["Rafael: Uma empresa de produção de filmes"]
     },
-    "21" : {
+    "26" : {
         "func" : "special",
         "targ" : "Slide"
     },
-    "22" : {
+    "27" : {
         "func" : "say",
-        "text" : ["Rafael: E times em vários esportes"]
+        "text" : ["Rafael: E times em vários esportes",
+                  "Hora de irmos para a Gate Tech"]
     },
-    "23" : {
+    "28" : {
         "func" : "End"
     }
 }

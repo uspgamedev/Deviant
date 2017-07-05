@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://resources/assets/fonts/main_font.fnt" type="BitmapFont" id=2]
@@ -97,6 +97,23 @@ tracks/1/keys = {
 "values": [ Vector2Array( 0, 0, 0, 425, 1024, 425, 1024, 0 ) ]
 }
 
+[sub_resource type="Animation" id=11]
+
+resource/name = "show_text"
+length = 2.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Act:visibility/opacity")
+tracks/0/interp = 2
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 1, 1.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
 [sub_resource type="ImageTexture" id=5]
 
 flags = 7
@@ -167,7 +184,7 @@ centered = false
 
 [node name="DarkLight" type="Polygon2D" parent="."]
 
-z/z = 1
+z/z = 2
 polygon = Vector2Array( 0, 0, 0, 425, 1024, 425, 1024, 0 )
 uv = Vector2Array(  )
 color = Color( 0.00390625, 0.00390625, 0.00390625, 1 )
@@ -208,6 +225,7 @@ root/root = NodePath("..")
 anims/change_act = SubResource( 1 )
 anims/change_scene = SubResource( 2 )
 anims/make_it_dim = SubResource( 3 )
+anims/show_text = SubResource( 11 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -305,10 +323,12 @@ stream/buffering_ms = 500
 [node name="Timer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 2.0
+wait_time = 1.0
 one_shot = false
 autostart = false
 
 [connection signal="pressed" from="Bag" to="." method="_bag_open"]
+
+[connection signal="item_activated" from="Bag/ItemList" to="." method="_on_ItemList_item_activated"]
 
 

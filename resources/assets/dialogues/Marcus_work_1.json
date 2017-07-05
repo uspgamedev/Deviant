@@ -20,67 +20,75 @@
         "pos": 0,
         "text": ["Que mau humor!"]
     },
-    "5": {
+    "5" : {
+        "func" : "say",
+        "text" : ["*Marcus vai lembrar disso*"]
+    },
+    "6": {
         "func": "dialogueShow",
         "pos": 0,
         "text": ["Como anda aquele projeto que você estava trabalhando no outro dia?"]
     },
-    "6": {
+    "7": {
         "func": "say",
         "text": ["Estou progredindo bastante, mas estou tendo problemas com autômatos..."]
     },
-    "7": {
+    "8": {
         "func": "dialogueShow",
         "pos": 0,
         "text": ["Você vai continuar hoje?",
                  "Ouvi dizer que te escalaram em uma missão externa para a Gate Tech"]
     },
-    "8": {
+    "9": {
         "func": "say",
         "text": ["Com quem?"]
     },
-    "9": {
+    "10": {
         "func": "dialogueShow",
         "pos": 0,
         "text": ["Acho que é com seu time habitual", "Mas chamaram aquele cara novo..."]
     },
-    "10": {
+    "11": {
         "func": "say",
         "text": ["O que usa óculos escuros e blusa preta?"]
     },
-    "11": {
+    "12": {
         "func": "dialogueShow",
         "pos": 0,
         "text": ["Esse cara mesmo! Ele é meio esquisito...",
                  "Ele está no lugar da Josefina..."]
     },
-    "12": {
+    "13": {
         "func": "say",
         "text": ["...... Tem notícias do desaparecimento dela?"]
     },
-    "13": {
+    "14": {
         "func": "dialogueShow",
         "pos": 0,
         "text": ["Não... está tudo muito estranho",
                  "A polícia não libera informações e ninguém na empresa fala sobre isso"]
     },
-    "14": {
+    "15": {
         "func": "say",
         "text": ["Sinto falta dela!",
                  "Ela era uma boa pessoa... quer dizer, ela é...",
                  "Bom, eu tenho que trabalhar, vou para minha sala. Até mais!"]
     },
-    "15": {
+    "16": {
         "func": "dialogueShow",
         "pos": 0,
         "text": ["Falou!"]
     },
-    "16": {
+    "17": {
         "func": "faceHide",
         "char" : "Marcus",
         "pos": 0
     },
-    "17": {
+    "18" : {
+        "func" : "setDialogue",
+        "char" : "Marcus"
+    },
+    "19": {
         "func": "End"
     }
 }

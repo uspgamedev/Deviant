@@ -4,7 +4,7 @@ extends YSort
 const NPC = preload("res://resources/scenes/NPC.tscn")
 const Item = preload("res://resources/scenes/item.tscn")
 
-const actList = ["ATO 1: UMA NOVA MISSÃO"]
+const actList = ["ATO 1: UMA NOVA MISSÃO", "ATO 2: INVESTIGAÇÃO", "CONTINUA..."]
 
 # Json objects
 var NPCS
@@ -27,6 +27,8 @@ var roomName = null
 var room
 var act = 0
 
+signal finished_act
+
 func _ready():
 	SCENES = parse_json("dictionaries/scenes")
 	NPCS = parse_json("dictionaries/NPCs")
@@ -36,7 +38,7 @@ func _ready():
 	Log = get_node("Log")
 	MGH = get_node("MinigameHandler")
 	change_act(1)
-	load_scene("Car")
+	load_scene("MeetingRoom")
 
 # Recieves the name of a json file and returns it's corresponding
 # dictionary
@@ -143,7 +145,7 @@ func clear_room():
 # Interprets the dialogue json with name "name" and executes it's
 # functions
 func run_dialogue(name):
-	if blockClick:
+	if blockClick or name == "":
 		return
 	var dial = parse_json("dialogues/" + name)
 	var ctr = "1"
@@ -222,9 +224,27 @@ func run_dialogue(name):
 			var num = get_num(obj)
 			Specials[num].specFunc()
 			ctr = str(int(ctr) + 1)
+		elif foo == "jump":
+			ctr = cmd["to"]
+		elif foo == "changeDialogue":
+			var char = cmd["char"]
+			NPCs[get_num(char)].dialogue = ""
+			NPCS[char]["Dialogue"] = ""
+			ctr = str(int(ctr) + 1)
 		elif foo == "End":
-			blockClick = false
 			break
+	if name == "Rafael_meeting_1":
+		var dim = get_node("DarkLight/dim")
+		get_node("DarkLight/Act").set_text(actList[1])
+		dim.play("change_act")
+		yield(dim, "finished")
+		dim.play_backwards("show_text")
+		yield(dim, "finished")
+		get_node("DarkLight/Act").set_text(actList[2])
+		dim.play("show_text")
+		yield(dim, "finished")
+		get_tree().quit()
+	blockClick = false
 
 # Executed when an item is clicked. Runs the function associated
 # with that item with the aguments specified in the field "args"
@@ -304,6 +324,7 @@ func change_act(a):
 	dim.play_backwards("change_act")
 	yield(dim, "finished")
 	blockClick = false
+	emit_signal("finished_act")
 
 # Test
 func _on_TestButton_pressed():
@@ -322,3 +343,10 @@ func _on_TestButton_pressed():
 	yield(Time, "timeout")
 	MGH.game_close()
 	blockClick = false
+
+func _on_ItemList_item_activated( index ):
+	get_node("Bag/ItemList").remove_item(index)
+	Log.show_text("*Você bebe o copo de café*")
+	get_node("Timer").start()
+	yield(get_node("Timer"), "timeout")
+	Log.clear_text()
