@@ -29,7 +29,8 @@ func get_name():
 	return name
 	
 func _on_Button_pressed():
-	get_parent().run_item_func(name, function, args, get_texture())
+	if not get_parent().is_block():
+		get_parent().run_item_func(name, function, args, get_texture())
 
 func _on_mouse_enter():
 	if not get_parent().is_block():

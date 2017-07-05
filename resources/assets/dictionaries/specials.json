@@ -1,4 +1,5 @@
 {
     "Car" : "res://resources/scenes/cutscenes/Car.tscn",
-    "Hack" : "res://resources/scenes/minigames/hack/mainCanvas.tscn"
+    "Hack" : "res://resources/scenes/minigames/hack/mainCanvas.tscn",
+    "Slide" : "res://resources/scenes/cutscenes/Slide.tscn"
 }

@@ -1,7 +1,7 @@
 {
      "Rafael" : {
          "Image" : "res://resources/assets/images/Rafael.tex",
-         "Dialogue" : "dialogue1"
+         "Dialogue" : "Rafael_meeting_1"
      },
      "Hasin" : {
          "Image" : "res://resources/assets/images/Hasin.tex",
@@ -9,6 +9,6 @@
      },
      "Marcus" : {
          "Image" : "res://resources/assets/images/Marcus.tex",
-         "Dialogue" : "dialogue3"
+         "Dialogue" : "Marcus_work_1"
      }
 }

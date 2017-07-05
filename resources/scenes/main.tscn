@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://resources/assets/fonts/main_font.fnt" type="BitmapFont" id=2]
@@ -33,8 +33,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0.0, 1.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:z/z")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=2]
 
 resource/name = "change_scene"
 length = 0.5
@@ -55,13 +65,13 @@ tracks/1/path = NodePath(".:polygon")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ Vector2Array( 0, 0, 0, 425, 1024, 425, 1024, 0 ), Vector2Array( 0, 0, 0, 425, 1024, 425, 1024, 0 ) ]
+"values": [ Vector2Array( 0, 0, 0, 425, 1024, 425, 1024, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
 length = 1.0
 loop = false
@@ -76,25 +86,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.705882 ) ]
 }
-
-[sub_resource type="Animation" id=10]
-
-resource/name = "show_act_name"
-length = 2.5
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Act:visibility/opacity")
-tracks/0/interp = 2
-tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 1, 1.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 1.0 ]
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:polygon")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ Vector2Array( 0, 0, 0, 425, 1024, 425, 1024, 0 ) ]
 }
 
-[sub_resource type="ImageTexture" id=3]
+[sub_resource type="ImageTexture" id=5]
 
 flags = 7
 image = Image()
@@ -102,7 +105,7 @@ size = Vector2( 0, 0 )
 storage = 0
 lossy_quality = 0.7
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 
 length = 1.0
 loop = false
@@ -128,25 +131,25 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=7]
 
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 84, 84 )
 margin = Rect2( 0, 0, 0, 0 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=8]
 
 atlas = ExtResource( 5 )
 region = Rect2( 84, 0, 84, 84 )
 margin = Rect2( 0, 0, 0, 0 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=9]
 
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 84, 84 )
 margin = Rect2( 0, 0, 0, 0 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=10]
 
 atlas = ExtResource( 6 )
 region = Rect2( 84, 0, 84, 84 )
@@ -164,10 +167,10 @@ centered = false
 
 [node name="DarkLight" type="Polygon2D" parent="."]
 
-z/z = 10
-polygon = Vector2Array( 0, 0, 0, 600, 1024, 600, 1024, 0 )
+z/z = 1
+polygon = Vector2Array( 0, 0, 0, 425, 1024, 425, 1024, 0 )
 uv = Vector2Array(  )
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.00390625, 0.00390625, 0.00390625, 1 )
 vertex_colors = ColorArray(  )
 offset = Vector2( 0, 0 )
 texture/texture = null
@@ -203,9 +206,8 @@ playback/process_mode = 0
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/change_act = SubResource( 1 )
-anims/change_scene = SubResource( 9 )
-anims/make_it_dim = SubResource( 2 )
-anims/show_act_name = SubResource( 10 )
+anims/change_scene = SubResource( 2 )
+anims/make_it_dim = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -215,7 +217,7 @@ autoplay = ""
 
 transform/pos = Vector2( -101, 74 )
 z/z = 11
-texture = SubResource( 3 )
+texture = SubResource( 5 )
 centered = false
 modulate = Color( 1, 1, 1, 0 )
 region = true
@@ -226,7 +228,7 @@ region_rect = Rect2( 192, 0, 192, 320 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/face_appear = SubResource( 4 )
+anims/face_appear = SubResource( 6 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -244,7 +246,6 @@ margin/bottom = 465.0
 
 [node name="Bag" type="TextureButton" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -256,8 +257,8 @@ margin/bottom = 509.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-textures/normal = SubResource( 5 )
-textures/pressed = SubResource( 6 )
+textures/normal = SubResource( 7 )
+textures/pressed = SubResource( 8 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
@@ -267,10 +268,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 84.0
-margin/top = -425.0
-margin/right = 168.0
-margin/bottom = 0.0
+margin/left = 0.0
+margin/top = -850.0
+margin/right = 84.0
+margin/bottom = -425.0
 
 [node name="Config" type="TextureButton" parent="."]
 
@@ -285,8 +286,8 @@ margin/bottom = 593.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-textures/normal = SubResource( 7 )
-textures/pressed = SubResource( 8 )
+textures/normal = SubResource( 9 )
+textures/pressed = SubResource( 10 )
 params/resize_mode = 0
 params/stretch_mode = 0
 

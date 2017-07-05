@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://scripts/minigames/hack/mainCanvas.gd" type="Script" id=1]
 [ext_resource path="res://resources/assets/fonts/main_font.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://resources/scenes/cutscenes/Mail.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Theme" id=1]
 
@@ -100,6 +101,13 @@ process_mode = 1
 wait_time = 1.5
 one_shot = false
 autostart = false
+
+[node name="Mail" parent="." instance=ExtResource( 3 )]
+
+margin/left = 740.0
+margin/top = 40.0
+margin/right = 780.0
+margin/bottom = 80.0
 
 [connection signal="pressed" from="HelpButton" to="." method="_on_Button_pressed"]
 

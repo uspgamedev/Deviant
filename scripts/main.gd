@@ -37,7 +37,6 @@ func _ready():
 	MGH = get_node("MinigameHandler")
 	change_act(1)
 	load_scene("Car")
-	# print(get_node("Bag/ItemList").get_item_icon(0))
 
 # Recieves the name of a json file and returns it's corresponding
 # dictionary
@@ -148,6 +147,7 @@ func run_dialogue(name):
 		return
 	var dial = parse_json("dialogues/" + name)
 	var ctr = "1"
+	var mem = "0"
 	var foo = null
 	var cmd = null
 	if bagOpen:
@@ -156,7 +156,12 @@ func run_dialogue(name):
 	Log.clear_text()
 	while true:
 		cmd = dial[ctr]
-		foo = cmd["function"]
+		foo = cmd["func"]
+		if mem != ctr:
+			mem = ctr
+		else:
+			print("Você caiu no loop infinito do while hur-dur!!")
+			break
 		if foo == "faceShow":
 			# Executes face show animation for character "char" at
 			# screen position "pos"
@@ -212,6 +217,11 @@ func run_dialogue(name):
 			Log.print_choose(text, opts)
 			yield(Log, "ended")
 			ctr = goto[Log.option]
+		elif foo == "special":
+			var obj = cmd["targ"]
+			var num = get_num(obj)
+			Specials[num].specFunc()
+			ctr = str(int(ctr) + 1)
 		elif foo == "End":
 			blockClick = false
 			break
@@ -269,7 +279,7 @@ func _bag_open():
 		print("Hey")
 		return
 	if bagOpen:
-		get_node("Bag/ItemList").set_pos(Vector2(84, -425))
+		get_node("Bag/ItemList").set_pos(Vector2(0, -850))
 		bagOpen = false
 	else:
 		get_node("Bag/ItemList").set_pos(Vector2(0, -425))
@@ -279,6 +289,7 @@ func is_block():
 	return blockClick
 
 func change_act(a):
+	blockClick = true
 	var dim = get_node("DarkLight/dim")
 	get_node("DarkLight/Act").set_text(actList[a-1])
 	dim.play("change_act")
@@ -291,6 +302,8 @@ func change_act(a):
 		anim.track_insert_key(2, 0.5, Color(0, 0, 0, 1))
 		dim.add_animation("change_act", anim)
 	dim.play_backwards("change_act")
+	yield(dim, "finished")
+	blockClick = false
 
 # Test
 func _on_TestButton_pressed():

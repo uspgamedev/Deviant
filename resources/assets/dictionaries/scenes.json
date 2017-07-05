@@ -30,7 +30,7 @@
         "Items" : [
             {"Name" : "Door2", "Pos" : [170, 122], "Args" : [""]},
             {"Name" : "Computer", "Pos" : [565, 300], "Args" : ["Computer"]},
-            {"Name" : "CoffeeMachine", "Pos" : [520, -5], "Args" : ["CoffeeCup"]}
+            {"Name" : "CoffeeMachine", "Pos" : [520, 0], "Args" : ["CoffeeCup"]}
         ],
         "Specials" : []
     },
@@ -50,7 +50,9 @@
         "Items" : [
             {"Name" : "MeetingTable", "Pos" : [100, 270], "Args" : []}
         ],
-        "Specials" : []
+        "Specials" : [
+            {"Name" : "Slide", "Pos" : [344, 49]}
+        ]
     },
     "Computer" : {
         "Background" : "res://resources/assets/images/Monitor.tex",

@@ -1,0 +1,114 @@
+{
+    "1": {
+        "func": "faceShow",
+        "char": "Rafael",
+        "pos": 0
+    },
+    "2" : {
+        "func" : "dialogueShow",
+        "pos" : 0,
+        "text" : ["Bom dia!",
+                  "Um dos nossos clientes está tendo problemas com vazamentos de dados",
+                  "Eles querem descobrir quem está por trás disso",
+                  "Eles desconfiam que os concorrentes estão promovendo isso",
+                  "já que alguns dos documentos vazados contém novas patentes,",
+                  "projetos de serviços e produtos que estão sendo desenvolvidos e que ainda não",
+                  "foram revelados publicamente",
+                  "O técnico de segurança deles identificou uma invasão do sistema com um alerta",
+                  "do software IME Sec System Defender Pro 3.0",
+                  "Entretanto o software não identificou o ataque no momento da invasão",
+                  "apenas na saída do sistema",
+                  "Em uma análise prévia do problema",
+                  "acreditamos que eles conseguiram invadir graças a uma ação dentro da própria empresa",
+                  "A missão de vocês é ir até a sede, investigar como a invasão aconteceu,",
+                  "identificar os responsáveis e coletar dados",
+                  "para que nosso software identifique esse tipo de ataque na versão 4.0",
+                  "Perguntas?"]
+    },
+    "3" : {
+        "func" : "choose",
+        "text" : "Quer perguntar alguma coisa?",
+        "opts" : ["Alguma coisa", "Nada", ""],
+        "goto" : ["4", "4", ""]
+    },
+    "4" : {
+        "func" : "faceHide",
+        "char" : "Rafael",
+        "pos" : 0
+    },
+    "5" : {
+        "func" : "special",
+        "targ" : "Slide"
+    },
+    "6" : {
+        "func" : "say",
+        "text" : ["Rafael: Nosso cliente é a Gate Tech, que atualmente é o maior grupo de mídia do mundo"]
+    },
+    "7" : {
+        "func" : "special",
+        "targ" : "Slide"
+    },
+    "8" : {
+        "func" : "say",
+        "text" : ["Rafael: Essa é a sede da Gate Tech. Trabalham na sede todos os executivos e diretores que decidem o futuro da corporação e de todas as empresas do grupo"]
+    },
+    "9" : {
+        "func" : "special",
+        "targ" : "Slide"
+    },
+    "10" : {
+        "func" : "say",
+        "text" : ["Rafael: A Gate Tech possui um provedor de internet"]
+    },
+    "11" : {
+        "func" : "special",
+        "targ" : "Slide"
+    },
+    "12" : {
+        "func" : "say",
+        "text" : ["Rafael: TV por assinatura"]
+    },
+    "13" : {
+        "func" : "special",
+        "targ" : "Slide"
+    },
+    "14" : {
+        "func" : "say",
+        "text" : ["Rafael: Operadora telefônica"]
+    },
+    "15" : {
+        "func" : "special",
+        "targ" : "Slide"
+    },
+    "16" : {
+        "func" : "say",
+        "text" : ["Rafael: Um grande programa de venture capital"]
+    },
+    "17" : {
+        "func" : "special",
+        "targ" : "Slide"
+    },
+    "18" : {
+        "func" : "say",
+        "text" : ["Rafael: Um canal de TV"]
+    },
+    "19" : {
+        "func" : "special",
+        "targ" : "Slide"
+    },
+    "20" : {
+        "func" : "say",
+        "text" : ["Rafael: Uma empresa de produção de filmes"]
+    },
+    "21" : {
+        "func" : "special",
+        "targ" : "Slide"
+    },
+    "22" : {
+        "func" : "say",
+        "text" : ["Rafael: E times em vários esportes"]
+    },
+    "23" : {
+        "func" : "End"
+    }
+}

@@ -2,13 +2,19 @@ extends Spatial
 
 const Road = preload("res://resources/assets/images/Road_test.tex")
 const Building = preload("res://resources/assets/images/Building.tex")
+const Sign = [preload("res://resources/assets/images/GodotSign.tex"),
+			  preload("res://resources/assets/images/UGDSign.tex"),
+			  preload("res://resources/assets/images/GTWSign.tex"),
+			  preload("res://resources/assets/images/GTDSign.tex"),
+			  preload("res://resources/assets/images/GTCSign.tex")]
 
 const FRAME = Rect2(Vector2(374, 653), Vector2(700, 1000))
-const NUM_OF_ROADS = 10
+const NUM_OF_ROADS = 15
 
 var Cam
 var Roads = []
 var Builds = [[], []]
+var Signs = []
 var last = 0
 var last2 = 0
 var count = 0
@@ -18,16 +24,21 @@ func _ready():
 	Cam = get_node("Camera")
 	var pos = Vector3(0, 0, 0)
 	var pos2 = Vector3(3.5, 3.9, -3.6)
+	var pos3 = Vector3(-1, 2, 50)
 	for i in range(NUM_OF_ROADS):
 		Roads.append(new_road(pos))
 		add_child(Roads[i])
 		pos.z += 9.8
-	for j in range(3*NUM_OF_ROADS):
-		for k in range(2):
-			Builds[k].append(new_build(pos2))
-			add_child(Builds[k][j])
+	for i in range(3*NUM_OF_ROADS):
+		for j in range(2):
+			Builds[j].append(new_build(pos2))
+			add_child(Builds[j][i])
 			pos2.x = -pos2.x
 		pos2.z += 3.6
+	for i in range(5):
+		Signs.append(new_sign(i, pos3))
+		add_child(Signs[i])
+		pos3.z += 20
 	count = pos.z
 	count2 = pos2.z
 	set_fixed_process(true)
@@ -48,6 +59,13 @@ func new_build(pos):
 	build.set_axis(0)
 	build.set_scale(Vector3(2, 2, 2))
 	return build
+	
+func new_sign(i, pos):
+	var s = Sprite3D.new()
+	s.set_translation(pos)
+	s.set_texture(Sign[i])
+	s.set_rotation(Vector3(0, 3.14, 0))
+	return s
 
 func _fixed_process(delta):
 	var orig = Cam.get_translation()

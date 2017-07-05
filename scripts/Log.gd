@@ -45,13 +45,15 @@ func print_text(vec):
 	
 func print_choose(text, opts):
 	show_text(text)
-	add_buttons()
+	add_buttons(opts)
 	for i in range(3):
-		get_node("Button" + str(i) + "/Label").set_text(opts[i])
+		if opts[i] != "":
+			get_node("Button" + str(i) + "/Label").set_text(opts[i])
 	yield(self, "chosen")
 	clear_text()
 	for i in range(3):
-		get_node("Button" + str(i) + "/Label").set_text("")
+		if opts[i] != "":
+			get_node("Button" + str(i) + "/Label").set_text("")
 	remove_buttons()
 	emit_signal("ended")
 	
@@ -61,9 +63,10 @@ func show_text(text):
 func clear_text():
 	get_node("Label").set_text("")
 
-func add_buttons():
+func add_buttons(opts):
 	for i in range(3):
-		add_child(Buttons[i])
+		if opts[i] != "":
+			add_child(Buttons[i])
 
 func remove_buttons():
 	for i in range(3):

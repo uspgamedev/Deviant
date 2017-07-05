@@ -1,86 +1,86 @@
 {
     "1": {
-        "function": "faceShow",
+        "func": "faceShow",
         "char": "Marcus",
         "pos": 0
     },
     "2": {
-        "function": "dialogueShow",
+        "func": "dialogueShow",
         "pos": 0,
         "text": ["Bom dia!"]
     },
     "3": {
-        "function": "choose",
+        "func": "choose",
         "text": "Escolha uma resposta:",
         "opts": ["Bom dia!", "...", ""],
         "goto": ["5", "4", ""]
     },
     "4": {
-        "function": "dialogueShow",
+        "func": "dialogueShow",
         "pos": 0,
         "text": ["Que mau humor!"]
     },
     "5": {
-        "function": "dialogueShow",
+        "func": "dialogueShow",
         "pos": 0,
         "text": ["Como anda aquele projeto que você estava trabalhando no outro dia?"]
     },
     "6": {
-        "function": "say",
+        "func": "say",
         "text": ["Estou progredindo bastante, mas estou tendo problemas com autômatos..."]
     },
     "7": {
-        "function": "dialogueShow",
+        "func": "dialogueShow",
         "pos": 0,
         "text": ["Você vai continuar hoje?",
                  "Ouvi dizer que te escalaram em uma missão externa para a Gate Tech"]
     },
     "8": {
-        "function": "say",
+        "func": "say",
         "text": ["Com quem?"]
     },
     "9": {
-        "function": "dialogueShow",
+        "func": "dialogueShow",
         "pos": 0,
         "text": ["Acho que é com seu time habitual", "Mas chamaram aquele cara novo..."]
     },
     "10": {
-        "function": "say",
+        "func": "say",
         "text": ["O que usa óculos escuros e blusa preta?"]
     },
     "11": {
-        "function": "dialogueShow",
+        "func": "dialogueShow",
         "pos": 0,
         "text": ["Esse cara mesmo! Ele é meio esquisito...",
                  "Ele está no lugar da Josefina..."]
     },
     "12": {
-        "function": "say",
+        "func": "say",
         "text": ["...... Tem notícias do desaparecimento dela?"]
     },
     "13": {
-        "function": "dialogueShow",
+        "func": "dialogueShow",
         "pos": 0,
         "text": ["Não... está tudo muito estranho",
                  "A polícia não libera informações e ninguém na empresa fala sobre isso"]
     },
     "14": {
-        "function": "say",
+        "func": "say",
         "text": ["Sinto falta dela!",
                  "Ela era uma boa pessoa... quer dizer, ela é...",
                  "Bom, eu tenho que trabalhar, vou para minha sala. Até mais!"]
     },
     "15": {
-        "function": "dialogueShow",
+        "func": "dialogueShow",
         "pos": 0,
         "text": ["Falou!"]
     },
     "16": {
-        "function": "faceHide",
+        "func": "faceHide",
         "char" : "Marcus",
         "pos": 0
     },
     "17": {
-        "function": "End"
+        "func": "End"
     }
 }

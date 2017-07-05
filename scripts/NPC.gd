@@ -22,7 +22,8 @@ func get_name():
 	return name
 	
 func _on_Button_pressed():
-	get_parent().run_dialogue(dialogue)
+	if not get_parent().is_block():
+		get_parent().run_dialogue(dialogue)
 	
 func _on_mouse_enter():
 	if not get_parent().is_block():

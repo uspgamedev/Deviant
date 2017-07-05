@@ -45,6 +45,7 @@ func run_minigame():
 	add_child(ins)
 	minigame = "PB"
 	yield(ins, "ended")
+	get_node("Mail").recieveMail()
 	
 func log_append(s):
 	for i in range(MAXLINES-1):

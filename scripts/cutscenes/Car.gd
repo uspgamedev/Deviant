@@ -27,7 +27,7 @@ func _fixed_process(delta):
 		Wheel.set_rot(new_rot)
 
 func _on_Timer_timeout():
-	get_parent().load_scene("Workroom")
+	get_parent().run_item_func("", "changeScene", ["Workroom"], null)
 	#get_tree().change_scene("res://resources/scenes/road.tscn")
 
 func _on_Wheel_mouse_enter():
