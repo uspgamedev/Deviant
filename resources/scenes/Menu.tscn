@@ -103,6 +103,7 @@ flat = false
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 
+transform/pos = Vector2( 7.53683, 4.52203 )
 polygon = Vector2Array( 0, 0, 1024, 0, 1024, 600, 0, 600 )
 uv = Vector2Array(  )
 color = Color( 0, 0, 0, 0 )

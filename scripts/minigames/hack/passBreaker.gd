@@ -92,8 +92,8 @@ func _on_passwd_submit():
 			Log.set_text("")
 			get_parent().log_append(" -- Você foi descoberto!!")
 			rand = get_chi_squared_rand()
-			Time.set_wait_time(30-rand-diff)
-			get_parent().log_append(" -- Você tem " + str(int(30-rand-diff)) + "s")
+			Time.set_wait_time(180-rand-diff)
+			get_parent().log_append(" -- Você tem " + str(int(180-rand-diff)) + "s")
 			get_parent().log_append("até que fechem a conexão!!")
 			Time.start()
 			phase = 1

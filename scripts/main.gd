@@ -38,7 +38,7 @@ func _ready():
 	Log = get_node("Log")
 	MGH = get_node("MinigameHandler")
 	change_act(1)
-	load_scene("MeetingRoom")
+	load_scene("Car")
 
 # Recieves the name of a json file and returns it's corresponding
 # dictionary
@@ -243,7 +243,7 @@ func run_dialogue(name):
 		get_node("DarkLight/Act").set_text(actList[2])
 		dim.play("show_text")
 		yield(dim, "finished")
-		get_tree().quit()
+		get_tree().change_scene("res://resources/scenes/Menu.tscn")
 	blockClick = false
 
 # Executed when an item is clicked. Runs the function associated
