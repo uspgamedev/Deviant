@@ -147,6 +147,8 @@ func is_solved():
 			if board[i][j].get_color() == White:
 				return false
 	for i in range(activeTiles.size()):
+		if (activeTiles[i].isEmpty()):
+			return false
 		last = activeTiles[i].top()
 		if board[last.x][last.y].get_type() != "Core":
 			return false
