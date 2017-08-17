@@ -127,7 +127,10 @@ func _on_Timer_timeout():
 
 func _on_LineEdit_text_changed( text, num ):
 	if (text.length() == 2):
-		fields[num].set_text(text[1])
+		if (fields[num].get_cursor_pos() == 1):
+			fields[num].set_text(text[0])
+		else:
+			fields[num].set_text(text[1])
 		fields[num].set_cursor_pos(1)
 
 func check_win():
