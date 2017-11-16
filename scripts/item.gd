@@ -28,6 +28,9 @@ func set_info(dic):
 func get_name():
 	return name
 	
+func get_nick():
+	return nick
+	
 func _on_Button_pressed():
 	if not get_parent().is_block():
 		get_parent().run_item_func(name, function, args, get_texture())

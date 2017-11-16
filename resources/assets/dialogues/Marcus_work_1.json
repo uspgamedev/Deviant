@@ -85,8 +85,9 @@
         "pos": 0
     },
     "18" : {
-        "func" : "setDialogue",
-        "char" : "Marcus"
+        "func" : "changeDialogue",
+        "char" : "Marcus",
+        "dial" : ""
     },
     "19": {
         "func": "End"

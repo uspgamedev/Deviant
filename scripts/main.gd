@@ -26,6 +26,7 @@ var bagOpen = false
 var roomName = null
 var room
 var act = 0
+var faceViews = [false, false]
 
 signal finished_act
 
@@ -38,7 +39,7 @@ func _ready():
 	Log = get_node("Log")
 	MGH = get_node("MinigameHandler")
 	change_act(1)
-	load_scene("Car")
+	load_scene("Workroom")
 
 # Recieves the name of a json file and returns it's corresponding
 # dictionary
@@ -174,7 +175,8 @@ func run_dialogue(name):
 			get_node(view).set_texture(NPCs[num].get_texture())
 			get_node(view+"/appear").play("face_appear")
 			NPCs[num].set_opacity(0)
-			if pos == 0:
+			faceViews[pos] = true
+			if not (faceViews[0] and faceViews[1]) and (faceViews[0] or faceViews[1]):
 				get_node("DarkLight/dim").play("make_it_dim")
 			yield(get_node(view+"/appear"), "finished")
 			ctr = str(int(ctr) + 1)
@@ -187,7 +189,8 @@ func run_dialogue(name):
 			var view = "FaceView"+str(pos)
 			get_node(view+"/appear").play_backwards("face_appear")
 			NPCs[num].set_opacity(1)
-			if pos == 0:
+			faceViews[pos] = false
+			if not faceViews[0] and not faceViews[1]:
 				get_node("DarkLight/dim").play_backwards("make_it_dim")
 			yield(get_node(view+"/appear"), "finished")
 			get_node(view).set_texture(null)
@@ -228,11 +231,14 @@ func run_dialogue(name):
 			ctr = cmd["to"]
 		elif foo == "changeDialogue":
 			var char = cmd["char"]
-			NPCs[get_num(char)].dialogue = ""
-			NPCS[char]["Dialogue"] = ""
+			var dialogue = cmd["dial"]
+			NPCs[get_num(char)].dialogue = dialogue
+			NPCS[char]["Dialogue"] = dialogue
 			ctr = str(int(ctr) + 1)
 		elif foo == "End":
 			break
+		else:
+			print("The function " + foo + " doesn't exists!!!")
 	if name == "Rafael_meeting_1":
 		var dim = get_node("DarkLight/dim")
 		get_node("DarkLight/Act").set_text(actList[1])
@@ -244,6 +250,7 @@ func run_dialogue(name):
 		dim.play("show_text")
 		yield(dim, "finished")
 		get_tree().change_scene("res://resources/scenes/Menu.tscn")
+		blockClick = false
 	blockClick = false
 
 # Executed when an item is clicked. Runs the function associated
@@ -280,18 +287,28 @@ func change_scene(scene):
 	load_scene(scene)
 	dim.play_backwards("change_scene")
 
-# If "who" == "self", add item "name" to the bag and remove item from
-# the room, else add "who" to the bag and remove nothing from the room
-func add_to_bag(name, who):
-	if who == "self":
+# If "what" == "self", add item "name" to the bag and remove item from
+# the room, else add "what" to the bag and remove nothing from the room
+func add_to_bag(name, what):
+	if what == "self":
 		var num = get_num(name)
 		var img = Items[num].get_texture()
 		Items[num].set_pos(Vector2(-100, -100))
 		get_node("Bag/ItemList").add_icon_item(img)
 		SCENES[roomName]["Items"].remove(num)
+		var nick = ITEMS[name]["Nickname"]
+		Log.show_text("*Você pega " + nick + "*")
+		get_node("Timer").start()
+		yield(get_node("Timer"), "timeout")
+		Log.clear_text()
 	else:
-		var item = load(ITEMS[who]["Image"])
+		var item = load(ITEMS[what]["Image"])
 		get_node("Bag/ItemList").add_icon_item(item)
+		var nick = ITEMS[what]["Nickname"]
+		Log.show_text("*Você pega " + nick + "*")
+		get_node("Timer").start()
+		yield(get_node("Timer"), "timeout")
+		Log.clear_text()
 
 # Open/close bag
 func _bag_open():
