@@ -1,15 +1,117 @@
-[gd_scene load_steps=18 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
-[ext_resource path="res://resources/assets/fonts/main_font.fnt" type="BitmapFont" id=2]
-[ext_resource path="res://resources/scenes/dialogueBox.tscn" type="PackedScene" id=3]
-[ext_resource path="res://resources/scenes/log.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/assets/images/BagButton.tex" type="Texture" id=5]
-[ext_resource path="res://resources/assets/images/ConfigButton.tex" type="Texture" id=6]
+[ext_resource path="res://resources/assets/images/CircularLight.tex" type="Texture" id=2]
+[ext_resource path="res://resources/assets/images/GlobalDim.tex" type="Texture" id=3]
+[ext_resource path="res://resources/scenes/dialogueBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/scenes/log.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resources/assets/images/BagButton.tex" type="Texture" id=6]
+[ext_resource path="res://resources/assets/images/ConfigButton.tex" type="Texture" id=7]
+[ext_resource path="res://resources/assets/fonts/main_font.fnt" type="BitmapFont" id=8]
+
+[sub_resource type="Animation" id=12]
+
+resource/name = "make_it_dim"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="ImageTexture" id=5]
+
+flags = 7
+image = Image()
+size = Vector2( 0, 0 )
+storage = 0
+lossy_quality = 0.7
+
+[sub_resource type="Animation" id=6]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -100, 74 ), Vector2( 55, 74 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 895, 74 ), Vector2( 740, 74 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=8]
+
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 84, 84 )
+margin = Rect2( 0, 0, 0, 0 )
+
+[sub_resource type="AtlasTexture" id=9]
+
+atlas = ExtResource( 6 )
+region = Rect2( 84, 0, 84, 84 )
+margin = Rect2( 0, 0, 0, 0 )
+
+[sub_resource type="AtlasTexture" id=10]
+
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 84, 84 )
+margin = Rect2( 0, 0, 0, 0 )
+
+[sub_resource type="AtlasTexture" id=11]
+
+atlas = ExtResource( 7 )
+region = Rect2( 84, 0, 84, 84 )
+margin = Rect2( 0, 0, 0, 0 )
 
 [sub_resource type="Animation" id=1]
 
-resource/name = "change_act"
 length = 2.5
 loop = false
 step = 0.1
@@ -46,7 +148,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=2]
 
-resource/name = "change_scene"
 length = 0.5
 loop = false
 step = 0.1
@@ -99,7 +200,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=4]
 
-resource/name = "show_text"
 length = 2.5
 loop = false
 step = 0.1
@@ -114,149 +214,74 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="ImageTexture" id=5]
-
-flags = 7
-image = Image()
-size = Vector2( 0, 0 )
-storage = 0
-lossy_quality = 0.7
-
-[sub_resource type="Animation" id=6]
-
-length = 1.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:transform/pos")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 1 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -100, 74 ), Vector2( 55, 74 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0, 1 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=11]
-
-resource/name = "face_appear"
-length = 1.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:transform/pos")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 1 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 895, 74 ), Vector2( 740, 74 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0, 1 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="AtlasTexture" id=7]
-
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 84, 84 )
-margin = Rect2( 0, 0, 0, 0 )
-
-[sub_resource type="AtlasTexture" id=8]
-
-atlas = ExtResource( 5 )
-region = Rect2( 84, 0, 84, 84 )
-margin = Rect2( 0, 0, 0, 0 )
-
-[sub_resource type="AtlasTexture" id=9]
-
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 84, 84 )
-margin = Rect2( 0, 0, 0, 0 )
-
-[sub_resource type="AtlasTexture" id=10]
-
-atlas = ExtResource( 6 )
-region = Rect2( 84, 0, 84, 84 )
-margin = Rect2( 0, 0, 0, 0 )
-
 [node name="Main" type="YSort"]
 
 sort/enabled = true
 script/script = ExtResource( 1 )
 
-[node name="Background" type="Sprite" parent="."]
+[node name="Circular light" type="Light2D" parent="."]
 
-z/z = -1
-centered = false
-
-[node name="DarkLight" type="Polygon2D" parent="."]
-
-z/z = 2
-polygon = Vector2Array( 0, 0, 0, 425, 1024, 425, 1024, 0 )
-uv = Vector2Array(  )
-color = Color( 0.00390625, 0.00390625, 0.00390625, 1 )
-vertex_colors = ColorArray(  )
+transform/pos = Vector2( 534.505, 465.023 )
+z/z = 4
+enabled = true
+editor_only = false
+texture = ExtResource( 2 )
 offset = Vector2( 0, 0 )
-texture/texture = null
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
-__meta__ = {
-"_edit_lock_": true
-}
+scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 0.6
+mode = 0
+range/height = 0.0
+range/z_min = -1024
+range/z_max = 10
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
 
-[node name="Act" type="Label" parent="DarkLight"]
+[node name="Light Dim" type="Light2D" parent="."]
 
-visibility/opacity = 0.0
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 197.0
-margin/top = 142.0
-margin/right = 243.0
-margin/bottom = 163.0
-custom_fonts/font = ExtResource( 2 )
-text = "TOP"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+transform/pos = Vector2( 512, 300 )
+z/z = 3
+enabled = true
+editor_only = false
+texture = ExtResource( 3 )
+offset = Vector2( 0, 0 )
+scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 1
+range/height = 0.0
+range/z_min = -1024
+range/z_max = 10
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
 
-[node name="dim" type="AnimationPlayer" parent="DarkLight"]
+[node name="dim" type="AnimationPlayer" parent="Light Dim"]
 
-playback/process_mode = 0
+playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/change_act = SubResource( 1 )
-anims/change_scene = SubResource( 2 )
-anims/make_it_dim = SubResource( 3 )
-anims/show_text = SubResource( 4 )
+anims/make_it_dim = SubResource( 12 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="Background" type="Sprite" parent="."]
+
+z/z = -1
+centered = false
 
 [node name="FaceView0" type="Sprite" parent="."]
 
@@ -294,24 +319,33 @@ region_rect = Rect2( 192, 0, 192, 320 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/face_appear = SubResource( 11 )
+anims/face_appear = SubResource( 7 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="DialogueBox" parent="." instance=ExtResource( 3 )]
+[node name="DialogueBox" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 490, 212 )
 z/z = 11
 
-[node name="Log" parent="." instance=ExtResource( 4 )]
+[node name="HUD" type="CanvasLayer" parent="."]
 
+layer = 2
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="Log" parent="HUD" instance=ExtResource( 5 )]
+
+visibility/light_mask = 0
 margin/top = 425.0
 margin/bottom = 465.0
 
-[node name="Bag" type="TextureButton" parent="."]
+[node name="Bag" type="TextureButton" parent="HUD"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -323,12 +357,12 @@ margin/bottom = 509.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-textures/normal = SubResource( 7 )
-textures/pressed = SubResource( 8 )
+textures/normal = SubResource( 8 )
+textures/pressed = SubResource( 9 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
-[node name="ItemList" type="ItemList" parent="Bag"]
+[node name="ItemList" type="ItemList" parent="HUD/Bag"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -339,7 +373,7 @@ margin/top = -850.0
 margin/right = 84.0
 margin/bottom = -425.0
 
-[node name="Config" type="TextureButton" parent="."]
+[node name="Config" type="TextureButton" parent="HUD"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -352,10 +386,80 @@ margin/bottom = 593.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-textures/normal = SubResource( 9 )
-textures/pressed = SubResource( 10 )
+textures/normal = SubResource( 10 )
+textures/pressed = SubResource( 11 )
 params/resize_mode = 0
 params/stretch_mode = 0
+
+[node name="Tutorial text" type="Label" parent="HUD"]
+
+visibility/behind_parent = true
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -506.0
+margin/top = 92.0
+margin/right = -208.0
+margin/bottom = 204.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "I like nonsense, it wakes up the brain cells. Fantasy is a necessary ingredient in living, it's a way of looking at life through the wrong end of a telescope and that enables you to laugh at life's realities."
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DarkLight" type="Polygon2D" parent="HUD"]
+
+z/z = 13
+polygon = Vector2Array( 0, 0, 0, 425, 1024, 425, 1024, 0 )
+uv = Vector2Array(  )
+color = Color( 0.00390625, 0.00390625, 0.00390625, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Act" type="Label" parent="HUD/DarkLight"]
+
+visibility/opacity = 0.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 197.0
+margin/top = 142.0
+margin/right = 243.0
+margin/bottom = 163.0
+custom_fonts/font = ExtResource( 8 )
+text = "TOP"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="dim" type="AnimationPlayer" parent="HUD/DarkLight"]
+
+playback/process_mode = 0
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/change_act = SubResource( 1 )
+anims/change_scene = SubResource( 2 )
+anims/make_it_dim = SubResource( 3 )
+anims/show_text = SubResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
 
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
@@ -375,8 +479,8 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
-[connection signal="pressed" from="Bag" to="." method="_bag_open"]
+[connection signal="pressed" from="HUD/Bag" to="." method="_bag_open"]
 
-[connection signal="item_activated" from="Bag/ItemList" to="." method="_on_ItemList_item_activated"]
+[connection signal="item_activated" from="HUD/Bag/ItemList" to="." method="_on_ItemList_item_activated"]
 
 

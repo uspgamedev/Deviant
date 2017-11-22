@@ -16,6 +16,11 @@ var SPECIALS
 var Box
 var Log
 var MGH
+var LightDim
+var DarkLight
+var CircLight
+var TutText
+var BagList
 var NPCs = []
 var Items = []
 var Specials = []
@@ -27,6 +32,8 @@ var roomName = null
 var room
 var act = 0
 var faceViews = [false, false]
+var next_tutorial = false
+var waiting_click = false
 
 signal finished_act
 
@@ -36,10 +43,16 @@ func _ready():
 	ITEMS = parse_json("dictionaries/items")
 	SPECIALS = parse_json("dictionaries/specials")
 	Box = get_node("DialogueBox")
-	Log = get_node("Log")
+	Log = get_node("HUD/Log")
 	MGH = get_node("MinigameHandler")
+	BagList = get_node("HUD/Bag/ItemList")
+	LightDim = get_node("Light Dim")
+	CircLight = get_node("Circular light")
+	TutText = get_node("HUD/Tutorial text")
+	DarkLight = get_node("HUD/DarkLight")
 	change_act(1)
 	load_scene("Workroom")
+	show_tutorial(Items[2], "pressed", "Clique na máquina de café para pegar um café")
 
 # Recieves the name of a json file and returns it's corresponding
 # dictionary
@@ -177,7 +190,7 @@ func run_dialogue(name):
 			NPCs[num].set_opacity(0)
 			faceViews[pos] = true
 			if not (faceViews[0] and faceViews[1]) and (faceViews[0] or faceViews[1]):
-				get_node("DarkLight/dim").play("make_it_dim")
+				LightDim.get_node("dim").play("make_it_dim")
 			yield(get_node(view+"/appear"), "finished")
 			ctr = str(int(ctr) + 1)
 		elif foo == "faceHide":
@@ -191,7 +204,7 @@ func run_dialogue(name):
 			NPCs[num].set_opacity(1)
 			faceViews[pos] = false
 			if not faceViews[0] and not faceViews[1]:
-				get_node("DarkLight/dim").play_backwards("make_it_dim")
+				LightDim.get_node("dim").play_backwards("make_it_dim")
 			yield(get_node(view+"/appear"), "finished")
 			get_node(view).set_texture(null)
 			ctr = str(int(ctr) + 1)
@@ -223,30 +236,34 @@ func run_dialogue(name):
 			yield(Log, "ended")
 			ctr = goto[Log.option]
 		elif foo == "special":
+			# Executes the special method of the special object "targ"
 			var obj = cmd["targ"]
 			var num = get_num(obj)
 			Specials[num].specFunc()
 			ctr = str(int(ctr) + 1)
 		elif foo == "jump":
+			# Jumps to line "to"
 			ctr = cmd["to"]
 		elif foo == "changeDialogue":
+			# Change the base character dialogue of "char" to "dial"
 			var char = cmd["char"]
 			var dialogue = cmd["dial"]
 			NPCs[get_num(char)].dialogue = dialogue
 			NPCS[char]["Dialogue"] = dialogue
 			ctr = str(int(ctr) + 1)
 		elif foo == "End":
+			# End the loop
 			break
 		else:
 			print("The function " + foo + " doesn't exists!!!")
 	if name == "Rafael_meeting_1":
-		var dim = get_node("DarkLight/dim")
-		get_node("DarkLight/Act").set_text(actList[1])
+		var dim = DarkLight.get_node("dim")
+		DarkLight.get_node("Act").set_text(actList[1])
 		dim.play("change_act")
 		yield(dim, "finished")
 		dim.play_backwards("show_text")
 		yield(dim, "finished")
-		get_node("DarkLight/Act").set_text(actList[2])
+		DarkLight.get_node("Act").set_text(actList[2])
 		dim.play("show_text")
 		yield(dim, "finished")
 		get_tree().change_scene("res://resources/scenes/Menu.tscn")
@@ -267,7 +284,7 @@ func run_item_func(name, foo, args, img):
 			Time.start()
 			yield(Time, "timeout")
 		else:
-			var dim = get_node("DarkLight/dim")
+			var dim = DarkLight.get_node("dim")
 			dim.play("change_scene")
 			yield(dim, "finished")
 			load_scene(args[0])
@@ -281,7 +298,7 @@ func run_item_func(name, foo, args, img):
 
 # Dims screen and change scene to "scene"
 func change_scene(scene):
-	var dim = get_node("DarkLight/dim")
+	var dim = DarkLight.get_node("dim")
 	dim.play("change_scene")
 	yield(dim, "finished")
 	load_scene(scene)
@@ -294,20 +311,24 @@ func add_to_bag(name, what):
 		var num = get_num(name)
 		var img = Items[num].get_texture()
 		Items[num].set_pos(Vector2(-100, -100))
-		get_node("Bag/ItemList").add_icon_item(img)
+		BagList.add_icon_item(img)
 		SCENES[roomName]["Items"].remove(num)
 		var nick = ITEMS[name]["Nickname"]
 		Log.show_text("*Você pega " + nick + "*")
+		get_node("Timer").set_wait_time(2)
 		get_node("Timer").start()
 		yield(get_node("Timer"), "timeout")
+		get_node("Timer").set_wait_time(1)
 		Log.clear_text()
 	else:
 		var item = load(ITEMS[what]["Image"])
-		get_node("Bag/ItemList").add_icon_item(item)
+		BagList.add_icon_item(item)
 		var nick = ITEMS[what]["Nickname"]
 		Log.show_text("*Você pega " + nick + "*")
+		get_node("Timer").set_wait_time(2)
 		get_node("Timer").start()
 		yield(get_node("Timer"), "timeout")
+		get_node("Timer").set_wait_time(1)
 		Log.clear_text()
 
 # Open/close bag
@@ -316,19 +337,22 @@ func _bag_open():
 		print("Hey")
 		return
 	if bagOpen:
-		get_node("Bag/ItemList").set_pos(Vector2(0, -850))
+		BagList.set_pos(Vector2(0, -850))
 		bagOpen = false
 	else:
-		get_node("Bag/ItemList").set_pos(Vector2(0, -425))
+		BagList.set_pos(Vector2(0, -425))
 		bagOpen = true
 
 func is_block():
 	return blockClick
+	
+func get_waiting():
+	return waiting_click
 
 func change_act(a):
 	blockClick = true
-	var dim = get_node("DarkLight/dim")
-	get_node("DarkLight/Act").set_text(actList[a-1])
+	var dim = DarkLight.get_node("dim")
+	DarkLight.get_node("Act").set_text(actList[a-1])
 	dim.play("change_act")
 	yield(dim, "finished")
 	if a == 1:
@@ -342,6 +366,36 @@ func change_act(a):
 	yield(dim, "finished")
 	blockClick = false
 	emit_signal("finished_act")
+
+func show_tutorial(obj, event, text):
+	var obj_size = obj.get_texture().get_size()
+	var obj_pos = obj.get_pos()
+	var rad = obj_size.length()/2
+	var light_size = CircLight.get_texture().get_size()
+	var new_pos = obj_pos + obj_size/2
+	var label_size = TutText.get_size()
+	var label_rad = label_size.length()/2
+	var screen_center = Vector2(512, 212.5)
+	CircLight.set_scale(2*Vector2(rad, rad)/light_size)
+	CircLight.set_pos(new_pos)
+	var alpha = (rad+label_rad)/new_pos.distance_to(screen_center)
+	TutText.set_pos(alpha*screen_center + (1-alpha)*new_pos - label_size/2)
+	CircLight.set_energy(0.4)
+	LightDim.set_energy(1)
+	TutText.set_text(text)
+	waiting_click = obj.get_name()
+	yield(obj.get_node("Button"), event)
+	waiting_click = false
+	CircLight.set_energy(0)
+	LightDim.set_energy(0)
+	TutText.set_text("")
+	
+func _on_ItemList_item_activated( index ):
+	BagList.remove_item(index)
+	Log.show_text("*Você bebe o copo de café*")
+	get_node("Timer").start()
+	yield(get_node("Timer"), "timeout")
+	Log.clear_text()
 
 # Test
 func _on_TestButton_pressed():
@@ -360,10 +414,3 @@ func _on_TestButton_pressed():
 	yield(Time, "timeout")
 	MGH.game_close()
 	blockClick = false
-
-func _on_ItemList_item_activated( index ):
-	get_node("Bag/ItemList").remove_item(index)
-	Log.show_text("*Você bebe o copo de café*")
-	get_node("Timer").start()
-	yield(get_node("Timer"), "timeout")
-	Log.clear_text()

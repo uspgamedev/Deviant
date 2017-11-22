@@ -32,13 +32,16 @@ func get_nick():
 	return nick
 	
 func _on_Button_pressed():
-	if not get_parent().is_block():
-		get_parent().run_item_func(name, function, args, get_texture())
+	var prt = get_parent()
+	if not prt.is_block() and (not prt.get_waiting() or prt.get_waiting() == name):
+		prt.run_item_func(name, function, args, get_texture())
 
 func _on_mouse_enter():
-	if not get_parent().is_block():
-		get_parent().get_node("Log").show_text(nick)
+	var prt = get_parent()
+	if not prt.is_block() and (not prt.get_waiting() or prt.get_waiting() == name):
+		prt.Log.show_text(nick)
 
 func _on_mouse_exit():
-	if not get_parent().is_block():
-		get_parent().get_node("Log").clear_text()
+	var prt = get_parent()
+	if not prt.is_block() and (not prt.get_waiting() or prt.get_waiting() == name):
+		prt.Log.clear_text()

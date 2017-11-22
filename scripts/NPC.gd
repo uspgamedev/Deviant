@@ -22,13 +22,16 @@ func get_name():
 	return name
 	
 func _on_Button_pressed():
-	if not get_parent().is_block():
-		get_parent().run_dialogue(dialogue)
+	var prt = get_parent()
+	if not prt.is_block() and (not prt.get_waiting() or prt.get_waiting() == name):
+		prt.run_dialogue(dialogue)
 	
 func _on_mouse_enter():
-	if not get_parent().is_block():
-		get_parent().get_node("Log").show_text(name)
+	var prt = get_parent()
+	if not prt.is_block() and (not prt.get_waiting() or prt.get_waiting() == name):
+		prt.Log.show_text(name)
 
 func _on_mouse_exit():
-	if not get_parent().is_block():
-		get_parent().get_node("Log").clear_text()
+	var prt = get_parent()
+	if not prt.is_block() and (not prt.get_waiting() or prt.get_waiting() == name):
+		prt.Log.clear_text()
