@@ -249,8 +249,25 @@ popup/exclusive = false
 window/title = "Ajuda"
 dialog/hide_on_ok = true
 
+[node name="HackDialog" type="ConfirmationDialog" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 149.0
+margin/bottom = 58.0
+popup/exclusive = false
+window/title = "Confirme Por Favor..."
+dialog/hide_on_ok = true
+
 [connection signal="pressed" from="HelpButton" to="." method="_on_Button_pressed"]
 
 [connection signal="confirmed" from="HelpDialog" to="." method="_on_HelpDialog_confirmed"]
+
+[connection signal="confirmed" from="HackDialog" to="." method="_on_HackDialog_confirmed"]
 
 

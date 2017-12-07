@@ -1,0 +1,135 @@
+{
+    "1": {
+        "func": "faceShow",
+        "char": "Marcus",
+        "pos": 0
+    },
+    "2": {
+        "func": "dialogueShow",
+        "pos": 0,
+        "text": [
+            "Bom dia!"
+        ]
+    },
+    "3": {
+        "func": "say",
+        "text": [
+            "Bom dia Marcus!"
+        ]
+    },
+    "4": {
+        "func": "dialogueShow",
+        "pos": 0,
+        "text": [
+            "Veja quem acaba de chegar...",
+            "Aquele babaca do Roberto..."
+        ]
+    },
+    "5": {
+        "func": "faceShow",
+        "char": "Roberto",
+        "pos": 1
+    },
+    "6": {
+        "func": "dialogueShow",
+        "pos": 1,
+        "text": [
+            "Bom dia pessoal!",
+            "Vocês viram a minha nova Firrare na garagem?",
+            "Comprei ontem voltando do meu iate!"
+        ]
+    },
+    "7": {
+        "func": "say",
+        "text": [
+            "Hehehe, que legal Roberto..."
+        ]
+    },
+    "8": {
+        "func": "dialogueShow",
+        "pos": 1,
+        "text": [
+            "Mas e ai, vocês terminaram o relatório que o chefe pediu ontem?"
+        ]
+    },
+    "9": {
+        "func": "dialogueShow",
+        "pos": 0,
+        "text": [
+            "Estou terminando"
+        ]
+    },
+    "10": {
+        "func": "say",
+        "text": [
+            "R-Relatório? Ahh, sim... claro..."
+        ]
+    },
+    "11": {
+        "func": "dialogueShow",
+        "pos": 1,
+        "text": [
+            "Não me diga que você se esqueceu?",
+            "Que falta de profissionalismo..."
+        ]
+    },
+    "12": {
+        "func": "say",
+        "text": [
+            "Claaaaro que não...",
+            "*Roberto te olha com um olhar desconfiado*"
+        ]
+    },
+    "13": {
+        "func": "dialogueShow",
+        "pos": 1,
+        "text": [
+            "Bem, de qualquer forma tenho que buscar meu Relox de ouro que esqueci no meu carro."
+        ]
+    },
+    "14": {
+        "func": "faceHide",
+        "char": "Roberto",
+        "pos": 1
+    },
+    "15": {
+        "func": "removeFromScene",
+        "type": "Character",
+        "name": "Roberto",
+        "scn": "Workroom"
+    },
+    "16": {
+        "func": "dialogueShow",
+        "pos": 0,
+        "text": [
+            "Hump, que cara convencido...",
+            "Vou terminar o relatório, bom trabalho amigo!"
+        ]
+    },
+    "17": {
+        "func": "say",
+        "text": [
+            "Bom trabalho Marcus!"
+        ]
+    },
+    "18": {
+        "func": "changeDialogue",
+        "char": "Marcus",
+        "dial": ""
+    },
+    "19": {
+        "func": "faceHide",
+        "char": "Marcus",
+        "pos": 0
+    },
+    "20": {
+        "func": "queueTutorial",
+        "type": "Item",
+        "name": "CoffeeMachine",
+        "evnt": "pressed",
+        "text": "Clique na máquina de café para pegar um café"
+    },
+    "21": {
+        "func": "End"
+    }
+}

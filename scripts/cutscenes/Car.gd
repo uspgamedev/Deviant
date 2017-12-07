@@ -9,7 +9,7 @@ var wheel_pos = Vector2(0 ,0)
 
 func _ready():
 	Wheel = get_node("Wheel")
-	Log = get_parent().get_node("Log")
+	Log = get_parent().get_node("HUD/Log")
 	wheel_pos = get_node("Wheel").get_pos()
 	set_process_input(true)
 	set_fixed_process(true)

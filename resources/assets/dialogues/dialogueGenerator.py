@@ -10,6 +10,8 @@ FUNCTIONS = {
     'special' : [('targ', 'name')],
     'changeDialogue' : [('char', 'name'), ('dial', 'str')],
     'jump' : [('to', 'num')],
+    'removeFromScene' : [('type', 'str'), ('name', 'name'), ('scn', 'name')],
+    'queueTutorial' : [('type', 'str'), ('name', 'name'), ('evnt', 'str'), ('text', 'str')],
     'End' : []
 }
 

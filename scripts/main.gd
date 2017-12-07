@@ -51,8 +51,8 @@ func _ready():
 	TutText = get_node("HUD/Tutorial text")
 	DarkLight = get_node("HUD/DarkLight")
 	change_act(1)
-	load_scene("Workroom")
-	show_tutorial(Items[2], "pressed", "Clique na máquina de café para pegar um café")
+	load_scene("Computer")
+	#show_tutorial(Items[2], "pressed", "Clique na máquina de café para pegar um café")
 
 # Recieves the name of a json file and returns it's corresponding
 # dictionary
@@ -245,13 +245,46 @@ func run_dialogue(name):
 			# Jumps to line "to"
 			ctr = cmd["to"]
 		elif foo == "changeDialogue":
-			# Change the base character dialogue of "char" to "dial"
+			# Change the base dialogue of "char" to "dial"
 			var char = cmd["char"]
 			var dialogue = cmd["dial"]
 			NPCs[get_num(char)].dialogue = dialogue
 			NPCS[char]["Dialogue"] = dialogue
 			ctr = str(int(ctr) + 1)
-		elif foo == "End":
+		elif foo == "removeFromScene":
+			# Remove the node "name" of type "type" from scene "scn"
+			var type = cmd["type"]
+			var name = cmd["name"]
+			var scene = cmd["scn"]
+			var num = get_num(name)
+			SCENES[scene][type+"s"].remove(num)
+			if roomName == scene:
+				if type == "Character":
+					NPCs[num].queue_free()
+					NPCs.remove(num)
+				elif type == "Item":
+					Items[num].queue_free()
+					Items.remove(num)
+				elif type == "Special":
+					Specials[num].queue_free()
+					Specials.remove(num)
+			ctr = str(int(ctr) + 1)
+		elif foo == "queueTutorial":
+			var type = cmd["type"]
+			var name = cmd["name"]
+			var text = cmd["text"]
+			var event = cmd["evnt"]
+			var num = get_num(name)
+			var obj
+			if type == "Character":
+				obj = NPCs[num]
+			elif type == "Item":
+				obj = Items[num]
+			elif type == "Special":
+				obj = Specials[num]
+			next_tutorial = [obj, event, text]
+			ctr = str(int(ctr) + 1)
+		elif foo == "end":
 			# End the loop
 			break
 		else:
@@ -269,6 +302,9 @@ func run_dialogue(name):
 		get_tree().change_scene("res://resources/scenes/Menu.tscn")
 		blockClick = false
 	blockClick = false
+	if next_tutorial != false:
+		show_tutorial(next_tutorial[0], next_tutorial[1], next_tutorial[2])
+		next_tutorial = false
 
 # Executed when an item is clicked. Runs the function associated
 # with that item with the aguments specified in the field "args"

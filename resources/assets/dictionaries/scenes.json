@@ -60,7 +60,7 @@
         "Characters" : [],
         "Items" : [],
         "Specials" : [
-            {"Name" : "Hack", "Pos" : [150, 40]}
+            {"Name" : "Report", "Pos" : [46, 33.75]}
         ]
     }
 }
