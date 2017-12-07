@@ -59,7 +59,7 @@ func _fixed_process(delta):
 	elif (not Input.is_action_pressed("submit_pass")):
 		wasPressed = false
 	if phase == 1:
-		Log.set_text(str(int(Time.get_time_left())))
+		Log.set_text("Restam " + str(int(Time.get_time_left())) + " segundos!")
 
 func same_group(char1, char2):
 	if (char1 in cons) and (char2 in cons):

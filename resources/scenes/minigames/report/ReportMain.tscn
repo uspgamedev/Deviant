@@ -1,0 +1,256 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://resources/scenes/minigames/report/ReportMain.gd" type="Script" id=1]
+[ext_resource path="res://resources/assets/images/ReportPin.tex" type="Texture" id=2]
+[ext_resource path="res://resources/assets/fonts/emoticons.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://resources/assets/images/icons/save.tex" type="Texture" id=4]
+[ext_resource path="res://resources/assets/images/icons/open-folder.tex" type="Texture" id=5]
+[ext_resource path="res://resources/assets/images/icons/open-book.tex" type="Texture" id=6]
+[ext_resource path="res://resources/assets/images/icons/trash-can.tex" type="Texture" id=7]
+[ext_resource path="res://resources/assets/fonts/main_font.fnt" type="BitmapFont" id=8]
+
+[sub_resource type="Theme" id=1]
+
+default_font = ExtResource( 8 )
+
+[node name="ReportMain" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="Background" type="Polygon2D" parent="."]
+
+polygon = Vector2Array( 0, 0, 928, 0, 928, 354, 0, 354 )
+uv = Vector2Array(  )
+color = Color( 0.65625, 0.65625, 0.65625, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="CentralLine" type="Polygon2D" parent="."]
+
+transform/pos = Vector2( 465, 0 )
+polygon = Vector2Array( 0, 0, 5, 0, 5, 354, 0, 354 )
+uv = Vector2Array(  )
+color = Color( 0, 0, 0, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Trail" type="Polygon2D" parent="."]
+
+transform/pos = Vector2( 132, 0 )
+polygon = Vector2Array( 0, 0, 200, 0, 200, 354, 0, 354 )
+uv = Vector2Array(  )
+color = Color( 0.488281, 0.488281, 0.488281, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Trail"]
+
+transform/pos = Vector2( 48.5, 0 )
+polygon = Vector2Array( 0, 0, 5, 0, 5, 354, 0, 354 )
+uv = Vector2Array(  )
+color = Color( 0, 0, 0, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Polygon2D1" type="Polygon2D" parent="Trail"]
+
+transform/pos = Vector2( 98.5, 0 )
+polygon = Vector2Array( 0, 0, 5, 0, 5, 354, 0, 354 )
+uv = Vector2Array(  )
+color = Color( 0, 0, 0, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Polygon2D2" type="Polygon2D" parent="Trail"]
+
+transform/pos = Vector2( 148.5, 0 )
+polygon = Vector2Array( 0, 0, 5, 0, 5, 354, 0, 354 )
+uv = Vector2Array(  )
+color = Color( 0, 0, 0, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Pin0" type="Sprite" parent="."]
+
+transform/pos = Vector2( 157, 329 )
+texture = ExtResource( 2 )
+hframes = 2
+modulate = Color( 1, 0, 0, 1 )
+
+[node name="Pin1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 208, 329 )
+texture = ExtResource( 2 )
+hframes = 2
+modulate = Color( 0, 1, 0.15625, 1 )
+
+[node name="Pin2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 258, 329 )
+texture = ExtResource( 2 )
+hframes = 2
+modulate = Color( 0, 0.0390625, 1, 1 )
+
+[node name="Pin3" type="Sprite" parent="."]
+
+transform/pos = Vector2( 308, 329 )
+texture = ExtResource( 2 )
+hframes = 2
+modulate = Color( 0.898438, 1, 0, 1 )
+
+[node name="Paper" type="Polygon2D" parent="."]
+
+transform/pos = Vector2( 555, 80 )
+polygon = Vector2Array( 0, 0, 300, 0, 300, 275, 0, 275 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Doc" type="RichTextLabel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 570.0
+margin/top = 95.0
+margin/right = 840.0
+margin/bottom = 355.0
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+bbcode/enabled = false
+bbcode/bbcode = ""
+visible_characters = -1
+percent_visible = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Polygon2D 2" type="Polygon2D" parent="."]
+
+transform/pos = Vector2( 470, 0 )
+polygon = Vector2Array( 0, 0, 458, 0, 458, 70, 0, 70 )
+uv = Vector2Array(  )
+color = Color( 0.828125, 0.828125, 0.828125, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Save" type="Sprite" parent="."]
+
+transform/pos = Vector2( 510, 35 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="Load" type="Sprite" parent="."]
+
+transform/pos = Vector2( 560, 35 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="Book" type="Sprite" parent="."]
+
+transform/pos = Vector2( 610, 35 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="Trash" type="Sprite" parent="."]
+
+transform/pos = Vector2( 660, 35 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="HelpButton" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 893.0
+margin/top = 10.0
+margin/right = 913.0
+margin/bottom = 30.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "?"
+flat = false
+
+[node name="HelpDialog" type="AcceptDialog" parent="."]
+
+process/pause_mode = 2
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = SubResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 58.0
+margin/bottom = 58.0
+popup/exclusive = false
+window/title = "Ajuda"
+dialog/hide_on_ok = true
+
+[connection signal="pressed" from="HelpButton" to="." method="_on_Button_pressed"]
+
+[connection signal="confirmed" from="HelpDialog" to="." method="_on_HelpDialog_confirmed"]
+
+

@@ -25,7 +25,8 @@
     "Workroom" : {
         "Background" : "res://resources/assets/images/Workroom.tex",
         "Characters" : [
-            {"Name" : "Marcus", "Pos" : [320, 155]}
+            {"Name" : "Marcus", "Pos" : [290, 160]},
+            {"Name" : "Roberto", "Pos" : [750, 100]}
         ],
         "Items" : [
             {"Name" : "Door2", "Pos" : [170, 122], "Args" : [""]},

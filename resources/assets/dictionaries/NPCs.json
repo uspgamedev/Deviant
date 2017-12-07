@@ -10,5 +10,9 @@
      "Marcus" : {
          "Image" : "res://resources/assets/images/Marcus.tex",
          "Dialogue" : "Marcus_work_1"
+     },
+     "Roberto" : {
+         "Image" : "res://resources/assets/images/Roberto.tex",
+         "Dialogue" : ""
      }
 }
