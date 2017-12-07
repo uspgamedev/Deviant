@@ -14,8 +14,8 @@
    viewBox="0 0 297 210"
    version="1.1"
    id="svg8"
-   sodipodi:docname="workroom2.svg"
-   inkscape:version="0.92.1 unknown">
+   sodipodi:docname="workroom.svg"
+   inkscape:version="0.92.1 r15371">
   <defs
      id="defs2">
     <inkscape:perspective
@@ -33,20 +33,21 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.4017753"
-     inkscape:cx="506.95402"
-     inkscape:cy="413.88237"
+     inkscape:zoom="0.083304835"
+     inkscape:cx="2060.9145"
+     inkscape:cy="-205.55858"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
-     showgrid="true"
+     showgrid="false"
      inkscape:window-width="1366"
-     inkscape:window-height="717"
+     inkscape:window-height="710"
      inkscape:window-x="0"
-     inkscape:window-y="27"
+     inkscape:window-y="32"
      inkscape:window-maximized="1"
      inkscape:snap-grids="true"
      units="mm"
-     inkscape:lockguides="false">
+     inkscape:lockguides="false"
+     inkscape:object-nodes="true">
     <inkscape:grid
        type="axonomgrid"
        id="grid4485"
@@ -69,7 +70,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1476,42 +1477,6 @@
            sodipodi:role="line">Coffee</tspan></text>
     </g>
     <g
-       id="g6611"
-       transform="matrix(0.01108918,0,0,0.01108918,137.58662,199.26097)">
-      <path
-         inkscape:connector-curvature="0"
-         id="path6576-5"
-         d="M -909.32665,-127.99999 -866.0254,247 c 0,0 86.60253,50.00001 173.20508,0 l 43.30125,-374.99999 z"
-         style="fill:#ac9393;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path6576"
-         transform="matrix(0.26458333,0,0,0.26458333,0,87)"
-         d="m -3436.8242,-812.59766 49.4336,428.11133 a 639.5607,354.17909 0 0 1 456.6777,-106.69726 639.5607,354.17909 0 0 1 428.1465,91.60937 l 47.6914,-413.02344 z m 110.0664,953.20704 53.5918,464.11523 c 0,0 327.3161,188.97638 654.6328,0 l 52.0898,-451.11133 a 639.5607,354.17909 0 0 1 -364.2695,63.56055 639.5607,354.17909 0 0 1 -396.0449,-76.56445 z"
-         style="fill:#e3dbdb;stroke:none;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path6580"
-         d="m -909.32666,-157.99999 v -39.99999 h 259.8076 v 39.99999 z"
-         style="fill:#552200;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path6578"
-         d="m -649.51906,-127.99999 h 34.64103 c 0,0 -8.66027,-15 -8.66027,-35 h -311.76912 c 0,0 0,20 -8.66026,35 h 34.64102 z"
-         style="fill:#280b0b;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-      <text
-         id="text6584"
-         y="80.565666"
-         x="-875.9649"
-         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.22238845"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.37322998px;line-height:1.25;font-family:Purisa;-inkscape-font-specification:Purisa;fill:#000000;stroke:#000000;stroke-width:0.22238845;stroke-opacity:1"
-           y="80.565666"
-           x="-875.9649"
-           id="tspan6582"
-           sodipodi:role="line">Coffee</tspan></text>
-    </g>
-    <g
        id="g3649"
        transform="matrix(1.6476719,0,0,1.6476719,-32.741615,-32.532853)">
       <path
@@ -1880,6 +1845,85 @@
            ry="0.93294072"
            transform="matrix(0.40165697,-0.91579019,0.67547274,0.73738496,0,0)" />
       </g>
+    </g>
+    <g
+       id="g4975">
+      <path
+         id="path6576-5-3"
+         transform="matrix(0.26458333,0,0,0.26458333,0,86.999994)"
+         d="M 3519.2617 -1366.6543 A 496.39051 307.09071 0 0 0 3022.873 -1059.5625 A 496.39051 307.09071 0 0 0 3023.6055 -1046.7461 L 3023.3105 -1046.7461 L 3023.8965 -1041.6777 A 496.39051 307.09071 0 0 0 3024.6582 -1035.0703 L 3188.6211 384.88672 C 3188.6211 384.88672 3519.2419 575.77123 3849.8633 384.88672 L 4013.0625 -1028.4531 A 496.39051 307.09071 0 0 0 4013.3105 -1030.5859 L 4015.1758 -1046.7461 L 4014.6172 -1046.7461 A 496.39051 307.09071 0 0 0 4015.6523 -1059.5625 A 496.39051 307.09071 0 0 0 3519.2617 -1366.6543 z "
+         style="fill:#6c5353;stroke:none;stroke-width:1.01009691px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         id="path6576-5"
+         transform="matrix(0.26458333,0,0,0.26458333,0,86.999994)"
+         d="M 4012.3848 -1046.7461 A 496.39051 307.09071 0 0 1 3517.3555 -756.49023 A 496.39051 307.09071 0 0 1 3026.2578 -1021.2188 L 3188.6211 384.88672 C 3188.6211 384.88672 3519.2419 575.77119 3849.8633 384.88672 L 4015.1758 -1046.7461 L 4012.3848 -1046.7461 z "
+         style="fill:#ac9393;stroke:none;stroke-width:1.01009691px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         id="text6584"
+         y="46.139599"
+         x="852.73218"
+         style="font-style:normal;font-weight:normal;font-size:9.79998684px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.18161701"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:43.58808136px;line-height:1.25;font-family:Purisa;-inkscape-font-specification:Purisa;fill:#000000;stroke:#000000;stroke-width:0.18161701;stroke-opacity:1"
+           y="46.139599"
+           x="852.73218"
+           id="tspan6582"
+           sodipodi:role="line">Coffee</tspan></text>
+      <ellipse
+         ry="70.603432"
+         rx="121.39885"
+         cy="-195.04515"
+         cx="930.43048"
+         id="path4840-6-7"
+         style="fill:#ac9393;fill-opacity:1;stroke:none;stroke-width:0.21900792;stroke-opacity:1" />
+      <path
+         id="path6576-5-5"
+         transform="matrix(0.26458333,0,0,0.26458333,0,86.999994)"
+         d="M 4012.3848 -1046.7461 A 496.39053 307.09071 0 0 1 3517.3555 -756.49023 A 496.39053 307.09071 0 0 1 3026.2578 -1021.2188 L 3085.4258 -508.80078 A 794.13026 313.89609 0 0 1 3552.123 -569.19922 A 794.13026 313.89609 0 0 1 3954.9766 -525.41016 L 4015.1758 -1046.7461 L 4012.3848 -1046.7461 z M 3145.791 13.962891 L 3188.6211 384.88672 C 3188.6211 384.88672 3519.2415 575.77123 3849.8633 384.88672 L 3891.0488 28.208984 A 794.13026 313.89609 0 0 1 3552.123 58.59375 A 794.13026 313.89609 0 0 1 3145.791 13.962891 z "
+         style="fill:#e3dbdb;fill-opacity:1;stroke:none;stroke-width:1.01009691px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4984">
+      <path
+         id="path6576-5-3-3"
+         d="m 1311.7903,-271.04584 a 131.33666,81.251084 0 0 0 -131.3362,81.25138 131.33666,81.251084 0 0 0 0.1938,3.391 h -0.078 l 0.155,1.34102 a 131.33666,81.251084 0 0 0 0.2016,1.7482 l 43.3818,375.69696 c 0,0 87.4767,50.50486 174.9536,0 l 43.1798,-373.94616 a 131.33666,81.251084 0 0 0 0.066,-0.5643 l 0.4935,-4.27572 h -0.1477 a 131.33666,81.251084 0 0 0 0.2738,-3.391 131.33666,81.251084 0 0 0 -131.3367,-81.25138 z"
+         style="fill:#6c5353;stroke:none;stroke-width:0.2672548px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path6576-5-56"
+         d="m 1442.2624,-186.40346 a 131.33666,81.251084 0 0 1 -130.9765,76.79687 131.33666,81.251084 0 0 1 -129.9363,-70.04277 l 42.9587,372.03208 c 0,0 87.4767,50.50486 174.9536,0 l 43.739,-378.78618 z"
+         style="fill:#ac9393;stroke:none;stroke-width:0.2672548px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <text
+         id="text6584-2"
+         y="49.687729"
+         x="1233.3844"
+         style="font-style:normal;font-weight:normal;font-size:9.79998684px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.18161701"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:43.58808136px;line-height:1.25;font-family:Purisa;-inkscape-font-specification:Purisa;fill:#000000;stroke:#000000;stroke-width:0.18161701;stroke-opacity:1"
+           y="49.687729"
+           x="1233.3844"
+           id="tspan6582-9"
+           sodipodi:role="line">Coffee</tspan></text>
+      <ellipse
+         ry="70.603432"
+         rx="121.39885"
+         cy="-191.49704"
+         cx="1311.0828"
+         id="path4840-6-7-1"
+         style="fill:#ac9393;fill-opacity:1;stroke:none;stroke-width:0.21900792;stroke-opacity:1" />
+      <path
+         id="path6576-5-5-2"
+         d="m 1442.2624,-186.40346 a 131.33666,81.251084 0 0 1 -130.9765,76.79687 131.33666,81.251084 0 0 1 -129.9363,-70.04277 l 15.6549,135.577266 a 210.11363,83.051674 0 0 1 123.4803,-15.98042 210.11363,83.051674 0 0 1 106.5884,11.58585 l 15.9277,-137.936796 z m -229.2863,280.645916 11.3322,98.140264 c 0,0 87.4766,50.50486 174.9536,0 l 10.897,-94.370974 a 210.11363,83.051674 0 0 1 -89.6741,8.039314 210.11363,83.051674 0 0 1 -107.5087,-11.808604 z"
+         style="fill:#e3dbdb;fill-opacity:1;stroke:none;stroke-width:0.2672548px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <ellipse
+         ry="58.251358"
+         rx="116.90719"
+         cy="-177.9935"
+         cx="1311.566"
+         id="path4840-6-7-1-0"
+         style="fill:#784421;fill-opacity:1;stroke:none;stroke-width:0.19521503;stroke-opacity:1" />
     </g>
   </g>
 </svg>
