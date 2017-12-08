@@ -32,7 +32,8 @@ var roomName = null
 var room
 var act = 0
 var faceViews = [false, false]
-var next_tutorial = false
+var next_tutorial = null
+var next_change = null
 var waiting_click = false
 
 signal finished_act
@@ -51,7 +52,7 @@ func _ready():
 	TutText = get_node("HUD/Tutorial text")
 	DarkLight = get_node("HUD/DarkLight")
 	change_act(1)
-	load_scene("Computer")
+	load_scene("Car")
 	#show_tutorial(Items[2], "pressed", "Clique na máquina de café para pegar um café")
 
 # Recieves the name of a json file and returns it's corresponding
@@ -142,7 +143,7 @@ func get_num(name):
 	for i in range(Specials.size()):
 		if Specials[i].get_name() == name:
 			return i
-	return null
+	return -1
 
 # Clear all the sprites of the room
 func clear_room():
@@ -248,8 +249,7 @@ func run_dialogue(name):
 			# Change the base dialogue of "char" to "dial"
 			var char = cmd["char"]
 			var dialogue = cmd["dial"]
-			NPCs[get_num(char)].dialogue = dialogue
-			NPCS[char]["Dialogue"] = dialogue
+			change_dialogue(char, dialogue)
 			ctr = str(int(ctr) + 1)
 		elif foo == "removeFromScene":
 			# Remove the node "name" of type "type" from scene "scn"
@@ -270,19 +270,10 @@ func run_dialogue(name):
 					Specials.remove(num)
 			ctr = str(int(ctr) + 1)
 		elif foo == "queueTutorial":
-			var type = cmd["type"]
-			var name = cmd["name"]
-			var text = cmd["text"]
-			var event = cmd["evnt"]
-			var num = get_num(name)
-			var obj
-			if type == "Character":
-				obj = NPCs[num]
-			elif type == "Item":
-				obj = Items[num]
-			elif type == "Special":
-				obj = Specials[num]
-			next_tutorial = [obj, event, text]
+			next_tutorial = cmd["name"]
+			ctr = str(int(ctr) + 1)
+		elif foo == "queueChangeScene":
+			next_change = cmd["scn"]
 			ctr = str(int(ctr) + 1)
 		elif foo == "end":
 			# End the loop
@@ -301,10 +292,20 @@ func run_dialogue(name):
 		yield(dim, "finished")
 		get_tree().change_scene("res://resources/scenes/Menu.tscn")
 		blockClick = false
+	if "Rafael_after_report" in name:
+		var num
+		for i in range(SCENES["Workroom"]["Items"].size()):
+			if SCENES["Workroom"]["Items"][i]["Name"] == "Door2":
+				num = i
+				break
+		SCENES["Workroom"]["Items"][num]["Args"] = ["MeetingRoom2"]
 	blockClick = false
-	if next_tutorial != false:
-		show_tutorial(next_tutorial[0], next_tutorial[1], next_tutorial[2])
-		next_tutorial = false
+	if next_tutorial:
+		run_tutorial(next_tutorial)
+		next_tutorial = null
+	if next_change:
+		change_scene(next_change)
+		next_change = null
 
 # Executed when an item is clicked. Runs the function associated
 # with that item with the aguments specified in the field "args"
@@ -313,10 +314,12 @@ func run_item_func(name, foo, args, img):
 	if blockClick:
 		return
 	blockClick = true
-	if (foo == "changeScene"):
+	if foo == "":
+		return
+	elif foo == "changeScene":
 		if args[0] == "":
 			var Time = get_node("Timer")
-			Log.show_text("O seu personagem se recusa a mudar de sala!")
+			Log.show_timed_text("*O seu personagem se recusa a mudar de sala!*")
 			Time.start()
 			yield(Time, "timeout")
 		else:
@@ -325,12 +328,21 @@ func run_item_func(name, foo, args, img):
 			yield(dim, "finished")
 			load_scene(args[0])
 			dim.play_backwards("change_scene")
-	elif (foo == "addToBag"):
-		add_to_bag(name, args[0])
-	elif (foo == "runMinigame"):
+	elif foo == "addToBag":
+		add_to_bag(name, args[0], args[1])
+	elif foo == "runMinigame":
 		#get_tree().change_scene("res://resources/scenes/minigames/flowfree/flowfreeCanvas.xscn")
 		_on_TestButton_pressed()
+	elif foo == "custom":
+		if args[0] != "":
+			funcref(self, args[0]).call_func()
 	blockClick = false
+	
+func change_dialogue(char, dialogue):
+	var num = get_num(char)
+	if num != -1:
+		NPCs[num].dialogue = dialogue
+	NPCS[char]["Dialogue"] = dialogue
 
 # Dims screen and change scene to "scene"
 func change_scene(scene):
@@ -342,30 +354,16 @@ func change_scene(scene):
 
 # If "what" == "self", add item "name" to the bag and remove item from
 # the room, else add "what" to the bag and remove nothing from the room
-func add_to_bag(name, what):
-	if what == "self":
+func add_to_bag(name, what, deleteSelf):
+	var item = load(ITEMS[what]["Image"])
+	BagList.add_icon_item(item)
+	if deleteSelf == "yes":
 		var num = get_num(name)
-		var img = Items[num].get_texture()
-		Items[num].set_pos(Vector2(-100, -100))
-		BagList.add_icon_item(img)
+		Items[num].queue_free()
+		Items.remove(num)
 		SCENES[roomName]["Items"].remove(num)
-		var nick = ITEMS[name]["Nickname"]
-		Log.show_text("*Você pega " + nick + "*")
-		get_node("Timer").set_wait_time(2)
-		get_node("Timer").start()
-		yield(get_node("Timer"), "timeout")
-		get_node("Timer").set_wait_time(1)
-		Log.clear_text()
-	else:
-		var item = load(ITEMS[what]["Image"])
-		BagList.add_icon_item(item)
-		var nick = ITEMS[what]["Nickname"]
-		Log.show_text("*Você pega " + nick + "*")
-		get_node("Timer").set_wait_time(2)
-		get_node("Timer").start()
-		yield(get_node("Timer"), "timeout")
-		get_node("Timer").set_wait_time(1)
-		Log.clear_text()
+	var nick = ITEMS[what]["Nickname"]
+	Log.show_timed_text("*Você pega " + nick + "*")
 
 # Open/close bag
 func _bag_open():
@@ -378,6 +376,34 @@ func _bag_open():
 	else:
 		BagList.set_pos(Vector2(0, -425))
 		bagOpen = true
+
+func coffee_machine_func():
+	var money = -1
+	var cup = -1
+	for i in range(BagList.get_item_count()):
+		if BagList.get_item_icon(i) == load(ITEMS["EmptyCup"]["Image"]):
+			cup = i
+		elif BagList.get_item_icon(i) == load(ITEMS["MoneyBag"]["Image"]):
+			money = i
+	if cup == -1:
+		BagList.add_icon_item(load(ITEMS["EmptyCup"]["Image"]))
+		Log.show_timed_text("*Você pega um copo de café*")
+	elif cup != -1 and money == -1:
+		Log.show_timed_text("*Você precisa de dinheiro para comprar café!*")
+	elif money != -1 and cup != -1:
+		if BagList.is_selected(money):
+			BagList.remove_item(max(cup, money))
+			BagList.remove_item(min(cup, money))
+			BagList.add_icon_item(load(ITEMS["CoffeeCup"]["Image"]))
+			var num = get_num("CoffeeMachine")
+			Items[num].args = [""]
+			SCENES[roomName]["Items"][num]["Args"] = [""]
+			Log.show_timed_text("*Você coloca dinheiro na máquina e enche o copo de café*")
+		else:
+			Log.show_timed_text("*Você precisa inserir o dinheiro na máquina primeiro*")
+	else:
+		print(cup, " ", money)
+		print("NOPE")
 
 func is_block():
 	return blockClick
@@ -403,6 +429,58 @@ func change_act(a):
 	blockClick = false
 	emit_signal("finished_act")
 
+func run_tutorial(name):
+	var dial = parse_json("tutorials/" + name)
+	var ctr = "1"
+	var mem = "0"
+	var foo = null
+	var cmd = null
+	var screen_center = Vector2(512, 212.5)
+	var light_size = CircLight.get_texture().get_size()
+	var label_size = TutText.get_size()
+	var label_rad = label_size.length()/2
+	if bagOpen:
+		_bag_open()
+	Log.clear_text()
+	while true:
+		cmd = dial[ctr]
+		if mem != ctr:
+			mem = ctr
+		else:
+			print("Você caiu no loop infinito do while hur-dur!!")
+			break
+		var obj
+		var obj_size
+		if cmd["type"] == "Item":
+			var num = get_num(cmd["name"])
+			if num == -1:
+				ctr = str(int(ctr) + 1)
+				continue
+			obj = Items[num]
+			obj_size = obj.get_texture().get_size()
+		elif cmd["type"] == "GUI":
+			obj = get_node("HUD/" + cmd["name"])
+			obj_size = obj.get_normal_texture().get_size()
+		elif cmd["type"] == "End":
+			break
+		var obj_pos = obj.get_pos()
+		var rad = obj_size.length()/2
+		var new_pos = obj_pos + obj_size/2
+		CircLight.set_scale(2*Vector2(rad, rad)/light_size)
+		CircLight.set_pos(new_pos)
+		var alpha = (rad+label_rad)/new_pos.distance_to(screen_center)
+		TutText.set_pos(alpha*screen_center + (1-alpha)*new_pos - label_size/2)
+		CircLight.set_energy(0.4)
+		LightDim.set_energy(1)
+		TutText.set_text(cmd["text"])
+		waiting_click = obj.get_name()
+		yield(obj.get_node(cmd["node"]), cmd["evnt"])
+		waiting_click = false
+		CircLight.set_energy(0)
+		LightDim.set_energy(0)
+		TutText.set_text("")
+		ctr = str(int(ctr) + 1)
+
 func show_tutorial(obj, event, text):
 	var obj_size = obj.get_texture().get_size()
 	var obj_pos = obj.get_pos()
@@ -427,11 +505,9 @@ func show_tutorial(obj, event, text):
 	TutText.set_text("")
 	
 func _on_ItemList_item_activated( index ):
-	BagList.remove_item(index)
-	Log.show_text("*Você bebe o copo de café*")
-	get_node("Timer").start()
-	yield(get_node("Timer"), "timeout")
-	Log.clear_text()
+	if BagList.get_item_icon(index) == load(ITEMS["CoffeeCup"]["Image"]):
+		BagList.remove_item(index)
+		Log.show_timed_text("*Você bebe o copo de café*")
 
 # Test
 func _on_TestButton_pressed():

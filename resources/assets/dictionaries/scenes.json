@@ -6,7 +6,7 @@
             {"Name" : "Hasin", "Pos" : [600, 150]}
         ],
         "Items" : [
-            {"Name" : "Cola", "Pos" : [400, 300], "Args" : ["self"]},
+            {"Name" : "Cola", "Pos" : [400, 300], "Args" : ["Cola", "yes"]},
             {"Name" : "Door2", "Pos" : [800, 100], "Args" : ["Outdoors"]},
             {"Name" : "Door2", "Pos" : [100, 50], "Args" : ["Workroom"]}
         ],
@@ -31,7 +31,8 @@
         "Items" : [
             {"Name" : "Door2", "Pos" : [170, 122], "Args" : [""]},
             {"Name" : "Computer", "Pos" : [565, 300], "Args" : ["Computer"]},
-            {"Name" : "CoffeeMachine", "Pos" : [520, 0], "Args" : ["CoffeeCup"]}
+            {"Name" : "CoffeeMachine", "Pos" : [520, 0], "Args" : ["coffee_machine_func"]},
+            {"Name" : "Money", "Pos" : [540, 337], "Args" : ["MoneyBag", "yes"]}
         ],
         "Specials" : []
     },
@@ -43,8 +44,19 @@
             {"Name" : "Car", "Pos" : [0, 0]}
         ]
     },
-    "MeetingRoom" : {
+    "MeetingRoom1" : {
         "Background" : "res://resources/assets/images/MeetingRoom.tex",
+        "Characters" : [
+            {"Name" : "Rafael", "Pos" : [600, 130]},
+            {"Name" : "Roberto", "Pos" : [400, 130]}
+        ],
+        "Items" : [
+            {"Name" : "MeetingTable", "Pos" : [100, 270], "Args" : []}
+        ],
+        "Specials" : []
+    },
+    "MeetingRoom2" : {
+        "Background" : "res://resources/assets/images/MeetingRoom2.tex",
         "Characters" : [
             {"Name" : "Rafael", "Pos" : [600, 130]}
         ],

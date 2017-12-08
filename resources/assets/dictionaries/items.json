@@ -22,7 +22,7 @@
     "CoffeeMachine" : {
         "Nickname" : "Máquina de café",
         "Image" : "res://resources/assets/images/CoffeeMachine.tex",
-        "Function" : "addToBag"
+        "Function" : "custom"
     },
     "CoffeeCup" : {
         "Nickname" : "Copo de café",
@@ -32,6 +32,26 @@
     "MeetingTable" : {
         "Nickname" : "",
         "Image" : "res://resources/assets/images/MeetingTable.tex",
+        "Function" : ""
+    },
+    "EmptyCup" : {
+        "Nickname" : "Copo vazio",
+        "Image" : "res://resources/assets/images/EmptyCup.tex",
+        "Function" : ""
+    },
+    "FilledCup" : {
+        "Nickname" : "Copo cheio",
+        "Image" : "res://resources/assets/images/FilledCup.tex",
+        "Function" : ""
+    },
+    "Money" : {
+        "Nickname" : "Dinheiro",
+        "Image" : "res://resources/assets/images/Money.tex",
+        "Function" : "addToBag"
+    },
+    "MoneyBag" : {
+        "Nickname" : "Dinheiro",
+        "Image" : "res://resources/assets/images/MoneyBag.tex",
         "Function" : ""
     }
 }

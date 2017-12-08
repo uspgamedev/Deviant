@@ -1,10 +1,13 @@
 extends Control
 
+onready var STT = get_node("ShowTextTimer")
+
 export var option = 0
 
 var wasPressed = false
 var isPressed = false
 var Buttons = []
+var texts = [null, null]
 
 signal ended
 signal pressed
@@ -28,6 +31,7 @@ func _input(event):
 
 func print_text(vec):
 	var buffer
+	clear_text()
 	for line in vec:
 		buffer = ""
 		for i in line:
@@ -58,10 +62,25 @@ func print_choose(text, opts):
 	emit_signal("ended")
 	
 func show_text(text):
+	if not texts[1]:
+		get_node("Label").set_text(text)
+	texts[0] = text
+
+func show_timed_text(text):
+	texts[1] = text
 	get_node("Label").set_text(text)
-	
+	STT.start()
+	yield(STT, "timeout")
+	texts[1] = null
+	if texts[0]:
+		show_text(texts[0])
+	else:
+		clear_text()
+
 func clear_text():
-	get_node("Label").set_text("")
+	if not texts[1]:
+		get_node("Label").set_text("")
+	texts[0] = null
 
 func add_buttons(opts):
 	for i in range(3):

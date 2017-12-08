@@ -261,7 +261,7 @@ margin/top = 0.0
 margin/right = 149.0
 margin/bottom = 58.0
 popup/exclusive = false
-window/title = "Confirme Por Favor..."
+window/title = "Ideia"
 dialog/hide_on_ok = true
 
 [connection signal="pressed" from="HelpButton" to="." method="_on_Button_pressed"]

@@ -1,0 +1,33 @@
+{
+    "1" : {
+        "type" : "Item",
+        "name" : "CoffeeMachine",
+        "node" : "Button",
+        "evnt" : "pressed",
+        "text" : "Clique na máquina de café para pegar um copo"
+    },
+    "2" : {
+        "type" : "Item",
+        "name" : "Money",
+        "node" : "Button",
+        "evnt" : "pressed",
+        "text" : "Para pegar café você precisa de dinheiro"
+    },
+    "3" : {
+        "type" : "GUI",
+        "name" : "Bag",
+        "node" : ".",
+        "evnt" : "pressed",
+        "text" : "Abra a mochila para ver seu inventário"
+    },
+    "4" : {
+        "type" : "Item",
+        "name" : "CoffeeMachine",
+        "node" : "Button",
+        "evnt" : "pressed",
+        "text" : "Selecione o dinheiro e clique na máquina para pegar café"
+    },
+    "5" : {
+        "type" : "End"
+    }
+}

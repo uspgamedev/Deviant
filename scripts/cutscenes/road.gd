@@ -24,7 +24,7 @@ func _ready():
 	Cam = get_node("Camera")
 	var pos = Vector3(0, 0, 0)
 	var pos2 = Vector3(3.5, 3.9, -3.6)
-	var pos3 = Vector3(-1, 2, 50)
+	var pos3 = Vector3(-1, 2, 70)
 	for i in range(NUM_OF_ROADS):
 		Roads.append(new_road(pos))
 		add_child(Roads[i])

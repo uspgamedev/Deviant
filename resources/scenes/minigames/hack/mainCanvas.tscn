@@ -19,6 +19,7 @@ margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
 script/script = ExtResource( 1 )
+won = false
 
 [node name="Panel" type="Panel" parent="."]
 
@@ -109,6 +110,23 @@ margin/top = 40.0
 margin/right = 780.0
 margin/bottom = 80.0
 
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 58.0
+margin/bottom = 58.0
+popup/exclusive = false
+window/title = "Alerta!"
+dialog/hide_on_ok = true
+
 [connection signal="pressed" from="HelpButton" to="." method="_on_Button_pressed"]
+
+[connection signal="confirmed" from="AcceptDialog" to="." method="_on_AcceptDialog_confirmed"]
 
 

@@ -1,10 +1,11 @@
 extends Node2D
 
 const Hit = preload("res://resources/scenes/minigames/report/Hit.tscn")
+const PB = preload("res://resources/scenes/minigames/hack/mainCanvas.tscn")
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 const Help = "Use as teclas 'D', 'F', 'J' e 'K' para jogar.\nCada tecla corresponde à um círculo colorido.\nPara escrever o relatório aperte a tecla\ncorrespondente para acertar os círculos brancos."
-const WinLog = ""
-const LoseLog = ""
+const WinLog = "Você conseguiu escrever o relatório a tempo :D\nQuer tentar hackear Roberto para deletar o relatório dele?"
+const LoseLog = "Você não conseguiu escrever o relatório a tempo D:\nQuer tentar hackear Roberto para copiar o relatório dele?"
 
 onready var HelpDialog = get_node("HelpDialog")
 onready var HackDialog = get_node("HackDialog")
@@ -17,6 +18,7 @@ signal yellow
 
 var colors = ["red", "green", "blue", "yellow"]
 var keys = [KEY_D, KEY_F, KEY_J, KEY_K]
+var won
 
 var Pins = []
 var Cancel
@@ -43,7 +45,7 @@ func start_map():
 	Time.set_wait_time(5)
 	Time.start()
 	yield(Time, "timeout")
-	while (ctr < 50):
+	while (ctr < 1):
 		var new_hit = Hit.instance()
 		var rail = randi()%4
 		new_hit.set_pos(Vector2(158 + 50*rail, 0))
@@ -59,10 +61,12 @@ func start_map():
 	yield(Time, "timeout")
 	var HD = get_node("HackDialog")
 	if get_node("Doc").get_text().length() < 40:
+		won = false
 		HackDialog.set_pos(Vector2(120, 100))
 		HackDialog.set_text(LoseLog)
 		HackDialog.popup()
 	else:
+		won = true
 		HackDialog.set_pos(Vector2(120, 100))
 		HackDialog.set_text(WinLog)
 		HackDialog.popup()
@@ -77,9 +81,20 @@ func _on_HelpDialog_confirmed():
 	get_tree().set_pause(false)
 
 func _on_Cancel_pressed():
-	# Do not hack Roberto
-	pass
+	var p = get_node("../../../")
+	p.change_dialogue("Rafael", "Rafael_after_report_bad")
+	var num
+	for i in range(p.SCENES["Workroom"]["Items"].size()):
+		if p.SCENES["Workroom"]["Items"][i]["Name"] == "Door2":
+			num = i
+			break
+	p.SCENES["Workroom"]["Items"][num]["Args"] = ["MeetingRoom1"]
+	p.change_scene("Workroom")
 
 func _on_HackDialog_confirmed():
-	# Hack Roberto
-	pass
+	var newPB = PB.instance()
+	newPB.set_pos(Vector2(150, 40))
+	newPB.won = won
+	var p = get_node("../../")
+	p.get_parent().add_child(newPB)
+	p.queue_free()

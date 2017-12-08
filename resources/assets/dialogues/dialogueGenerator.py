@@ -12,6 +12,7 @@ FUNCTIONS = {
     'jump' : [('to', 'num')],
     'removeFromScene' : [('type', 'str'), ('name', 'name'), ('scn', 'name')],
     'queueTutorial' : [('type', 'str'), ('name', 'name'), ('evnt', 'str'), ('text', 'str')],
+    'queueChangeScene' : [('scn', 'name')],
     'End' : []
 }
 

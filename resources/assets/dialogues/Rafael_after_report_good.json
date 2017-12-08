@@ -1,0 +1,38 @@
+{
+    "1": {
+        "func": "faceShow",
+        "char": "Rafael",
+        "pos": 0
+    },
+    "2": {
+        "func": "dialogueShow",
+        "pos": 0,
+        "text": [
+            "Parabéns!",
+            "Por ser o funcionário mais produtivo",
+            "Eu te condecoro o funcionário do mês!"
+        ]
+    },
+    "3": {
+        "func": "faceHide",
+        "char": "Rafael",
+        "pos": 0
+    },
+    "4": {
+        "func": "changeDialogue",
+        "char": "Marcus",
+        "dial": "Marcus_work_1"
+    },
+    "5": {
+        "func": "changeDialogue",
+        "char": "Rafael",
+        "dial": "Rafael_meeting_1"
+    },
+    "6": {
+        "func": "queueChangeScene",
+        "scn": "Car"
+    },
+    "7": {
+        "func": "End"
+    }
+}

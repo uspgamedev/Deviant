@@ -124,10 +124,7 @@
     },
     "20": {
         "func": "queueTutorial",
-        "type": "Item",
-        "name": "CoffeeMachine",
-        "evnt": "pressed",
-        "text": "Clique na máquina de café para pegar um café"
+        "name": "Coffee_tutorial"
     },
     "21": {
         "func": "End"

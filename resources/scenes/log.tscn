@@ -146,6 +146,13 @@ wait_time = 0.05
 one_shot = false
 autostart = false
 
+[node name="ShowTextTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 2.5
+one_shot = true
+autostart = false
+
 [connection signal="pressed" from="Button0" to="." method="_on_Button_click" binds= [ 0 ]]
 
 [connection signal="pressed" from="Button1" to="." method="_on_Button_click" binds= [ 1 ]]
