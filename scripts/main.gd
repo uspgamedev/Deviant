@@ -275,7 +275,7 @@ func run_dialogue(name):
 		elif foo == "queueChangeScene":
 			next_change = cmd["scn"]
 			ctr = str(int(ctr) + 1)
-		elif foo == "end":
+		elif foo == "End":
 			# End the loop
 			break
 		else:
@@ -294,11 +294,14 @@ func run_dialogue(name):
 		blockClick = false
 	if "Rafael_after_report" in name:
 		var num
+		var num2
 		for i in range(SCENES["Workroom"]["Items"].size()):
 			if SCENES["Workroom"]["Items"][i]["Name"] == "Door2":
 				num = i
-				break
+			if SCENES["Workroom"]["Items"][i]["Name"] == "Computer":
+				num2 = i
 		SCENES["Workroom"]["Items"][num]["Args"] = ["MeetingRoom2"]
+		SCENES["Workroom"]["Items"][num2]["Args"] = [""]
 	blockClick = false
 	if next_tutorial:
 		run_tutorial(next_tutorial)
@@ -315,6 +318,7 @@ func run_item_func(name, foo, args, img):
 		return
 	blockClick = true
 	if foo == "":
+		blockClick = false
 		return
 	elif foo == "changeScene":
 		if args[0] == "":
@@ -346,11 +350,13 @@ func change_dialogue(char, dialogue):
 
 # Dims screen and change scene to "scene"
 func change_scene(scene):
+	blockClick = true
 	var dim = DarkLight.get_node("dim")
 	dim.play("change_scene")
 	yield(dim, "finished")
 	load_scene(scene)
 	dim.play_backwards("change_scene")
+	blockClick = false
 
 # If "what" == "self", add item "name" to the bag and remove item from
 # the room, else add "what" to the bag and remove nothing from the room

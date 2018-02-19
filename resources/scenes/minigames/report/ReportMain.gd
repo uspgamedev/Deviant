@@ -28,6 +28,7 @@ func _ready():
 		Pins.append(get_node("Pin" + str(i)))
 	Cancel = HackDialog.get_cancel()
 	Cancel.connect("pressed", self, "_on_Cancel_pressed")
+	randomize()
 	start_map()
 	set_process_input(true)
 
@@ -42,10 +43,14 @@ func _input(event):
 func start_map():
 	var ctr = 1
 	var t = 0
-	Time.set_wait_time(5)
+	Time.set_wait_time(2)
 	Time.start()
 	yield(Time, "timeout")
-	while (ctr < 1):
+	_on_Button_pressed()
+	Time.set_wait_time(3)
+	Time.start()
+	yield(Time, "timeout")
+	while (ctr < 50):
 		var new_hit = Hit.instance()
 		var rail = randi()%4
 		new_hit.set_pos(Vector2(158 + 50*rail, 0))
@@ -84,11 +89,14 @@ func _on_Cancel_pressed():
 	var p = get_node("../../../")
 	p.change_dialogue("Rafael", "Rafael_after_report_bad")
 	var num
+	var num2
 	for i in range(p.SCENES["Workroom"]["Items"].size()):
 		if p.SCENES["Workroom"]["Items"][i]["Name"] == "Door2":
 			num = i
-			break
+		if p.SCENES["Workroom"]["Items"][i]["Name"] == "Computer":
+			num2 = i
 	p.SCENES["Workroom"]["Items"][num]["Args"] = ["MeetingRoom1"]
+	p.SCENES["Workroom"]["Items"][num2]["Args"] = [""]
 	p.change_scene("Workroom")
 
 func _on_HackDialog_confirmed():
@@ -97,4 +105,5 @@ func _on_HackDialog_confirmed():
 	newPB.won = won
 	var p = get_node("../../")
 	p.get_parent().add_child(newPB)
+	p.get_parent().Specials[0] = newPB
 	p.queue_free()

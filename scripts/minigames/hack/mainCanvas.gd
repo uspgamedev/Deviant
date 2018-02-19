@@ -44,6 +44,7 @@ func run_minigame():
 	log_append(" -- Conecte os cabos para conectar-se ao servidor")
 	var ins = FF.instance()
 	add_child(ins)
+	_on_Button_pressed()
 	yield(ins, "ended")
 	ins.queue_free()
 	log_append(" -- Conectado ao servidor!!")
@@ -51,6 +52,7 @@ func run_minigame():
 	ins = PB.instance()
 	add_child(ins)
 	minigame = "PB"
+	_on_Button_pressed()
 	yield(ins, "ended")
 	Dialog.set_pos(Vector2(120, 100))
 	if ins.victory:
@@ -90,10 +92,13 @@ func _on_Button_pressed():
 
 func _on_AcceptDialog_confirmed():
 	var num
+	var num2
 	var p = get_parent()
 	for i in range(p.SCENES["Workroom"]["Items"].size()):
 		if p.SCENES["Workroom"]["Items"][i]["Name"] == "Door2":
 			num = i
-			break
+		if p.SCENES["Workroom"]["Items"][i]["Name"] == "Computer":
+			num2 = i
 	p.SCENES["Workroom"]["Items"][num]["Args"] = ["MeetingRoom1"]
+	p.SCENES["Workroom"]["Items"][num2]["Args"] = [""]
 	p.change_scene("Workroom")
